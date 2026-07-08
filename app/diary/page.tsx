@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { BottomNav } from "@/components/BottomNav";
 import { RadarChart } from "@/components/RadarChart";
 import { listCheckins, type LocalCheckin } from "@/lib/data/local";
 import { FLAVOR_TAGS } from "@/lib/flavorTags";
@@ -60,16 +61,20 @@ export default function DiaryPage() {
 
   if (checkins === null) {
     return (
-      <main className="mx-auto max-w-md px-6 py-10">
-        <p className="text-body text-crema-400">불러오는 중…</p>
-      </main>
+      <div className="flex min-h-dvh flex-col">
+        <main className="mx-auto w-full max-w-md flex-1 px-6 py-10">
+          <p className="text-body text-crema-400">불러오는 중…</p>
+        </main>
+        <BottomNav />
+      </div>
     );
   }
 
   return (
-    <main className="mx-auto max-w-md px-6 py-8">
+    <div className="flex min-h-dvh flex-col">
+    <main className="mx-auto w-full max-w-md flex-1 px-6 py-8">
       <header className="mb-6 flex items-center justify-between">
-        <Link href="/" className="text-caption text-crema-400">
+        <Link href="/map" className="text-caption text-crema-400">
           ← 홈
         </Link>
         <Link
@@ -193,5 +198,7 @@ export default function DiaryPage() {
         </>
       )}
     </main>
+    <BottomNav />
+    </div>
   );
 }

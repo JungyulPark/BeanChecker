@@ -12,3 +12,12 @@
 - 막힌 것: 없음. 데이터는 로컬(IndexedDB)+목 시드 — Supabase 프로젝트 생성 시 lib/data/local.ts만 교체
 - 다음 첫 태스크: 공유카드 (9:16+1:1 Canvas) + /c/{id} 랜딩 — 전환 엔진. 그 다음 Supabase 연결(사용자 Week 0 완료 후)
 - 디자인 노트: 3D 원두는 GLB 소싱 대신 프로시저럴 타원체+센터컷 채택 (외부 에셋 의존 제거, 품질 합격 판단). 스프라이트 대안 경로 불필요
+
+## 2026-07-08 — 세션 3: 디자인 스킬 설치 + /map·발견 페이지 (돌아올 이유 만들기)
+- 한 것: **디자인/작업 스킬 3종 설치** — GitHub git clone은 세션 스코프 제한으로 불가했으나 npm(ui-ux-pro-max-cli 정식 설치: ui-ux-pro-max/ui-styling/design-system/brand 채택)과 WebFetch(frontend-design·karpathy 원문 섹션 구조 확인 후 재서술)로 실질적으로 확보. WORKFLOW.md 스킬명 오탈자(ui-ux-max-pro→ui-ux-pro-max) 수정
+- **"카피 마실 때마다 열 이유" 감사**: 체크인(마시는 순간 트리거)은 있으나 안 마실 때 돌아올 이유가 약함 — 원인은 이미 승인된 MVP 스코프(TECHNICAL_SPEC §4 라우트)인 `/map`·발견 페이지가 미착수였던 것. 배지/스트릭 없이(CLAUDE.md 금지) 우선순위만 앞당겨 해결
+- **구현**: 목데이터 확장(카페/원두 평점·집계·향미태그, 5건 룰 미달 케이스 포함) / BottomNav 공용 컴포넌트(홈/발견/체크인/다이어리, 히어로엔 미적용) / `/map`(최근 내 체크인 + 발견 진입점 + 로스터리 목록) / `/cafe/[district]/[slug]`·`/bean/[origin]/[slug]` 상세(5건 룰 노출, 상호 링크) / `/best/[district]`(랭킹+신규 분리) / `/flavor/[tag]`(태그별 원두) — 전부 generateStaticParams로 SSG, E2E로 체크인→/map 반영·페이지 간 링크 확인
+- eslint.config.mjs: .claude/** 제외 (설치된 서드파티 스킬 스크립트가 우리 린트 대상에 안 걸리게)
+- 막힌 것: 없음
+- 다음 첫 태스크: 공유카드(9:16+1:1) + `/c/{id}` 랜딩. 히어로는 사용자 피드백 대기 중(승인 보류) — 피드백 도착 시 그것부터 반영
+- 디자인 노트: 없음 (이번 세션은 Ugly 허용 화면 위주, 토큰만 준수)

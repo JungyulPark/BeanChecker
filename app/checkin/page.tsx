@@ -147,7 +147,7 @@ export default function CheckinPage() {
     <main className="mx-auto max-w-md px-6 py-8">
       <header className="mb-6">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-caption text-crema-400">
+          <Link href="/map" className="text-caption text-crema-400">
             ← 홈
           </Link>
           <div className="flex gap-1.5" aria-label={`3단계 중 ${step}단계`}>
