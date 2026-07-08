@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+/*
+ * VEANN 디자인 토큰 — 단일 출처: DESIGN_DIRECTION.md §2
+ * 다크 단일 테마. 토큰 밖 임의 색/폰트 사용 금지.
+ */
+@theme {
+  --color-roast-950: #120c09; /* 페이지 배경 */
+  --color-roast-900: #1c1310; /* 카드/서피스 */
+  --color-roast-700: #3b2a20; /* 보더, 분리선 */
+  --color-crema-100: #f1e7db; /* 본문 텍스트 */
+  --color-crema-400: #b9a48f; /* 보조 텍스트 */
+  --color-amber-glow: #d98e32; /* 액센트: 별점, CTA, 레이더 스트로크, 배지 */
+  --color-aura: #7a4a24; /* 아우라 그라데이션 시작색 */
+
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, sans-serif;
+  --font-display: var(--font-nanum-myeongjo), "Nanum Myeongjo", serif;
+  --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+
+  --radius-card: 16px;
+
+  --text-display: 40px;
+  --text-display--line-height: 48px;
+  --text-h2: 24px;
+  --text-body: 15px;
+  --text-caption: 12px;
+}
+
+body {
+  background: var(--color-roast-950);
+  color: var(--color-crema-100);
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em; /* 국문 자간 -1% 기본 */
+}
+
+/* 히어로/공유카드 배경 아우라 */
+.bg-aura {
+  background: radial-gradient(
+    ellipse at center,
+    var(--color-aura) 0%,
+    transparent 70%
+  );
+}
