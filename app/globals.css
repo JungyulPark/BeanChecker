@@ -41,3 +41,29 @@ body {
     transparent 70%
   );
 }
+
+/* 향미 5축 슬라이더 */
+.flavor-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--color-roast-700);
+  outline: none;
+}
+.flavor-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--color-amber-glow);
+  border: 3px solid var(--color-roast-950);
+}
+.flavor-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--color-amber-glow);
+  border: 3px solid var(--color-roast-950);
+}

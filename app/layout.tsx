@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Nanum_Myeongjo, JetBrains_Mono } from "next/font/google";
+import { BRAND } from "@/lib/brand";
 import "./globals.css";
 
 const display = Nanum_Myeongjo({
@@ -16,9 +17,8 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VEANN — 그 한 잔, 기억되게",
-  description:
-    "스페셜티 커피 전용 체크인·향미 평가·발견 플랫폼. 당신이 마신 원두가 당신의 취향이 된다.",
+  title: `${BRAND.name} — ${BRAND.tagline}`,
+  description: BRAND.description,
 };
 
 export default function RootLayout({

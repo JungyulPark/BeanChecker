@@ -1,0 +1,197 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
+import { RadarChart } from "@/components/RadarChart";
+import { listCheckins, type LocalCheckin } from "@/lib/data/local";
+import { FLAVOR_TAGS } from "@/lib/flavorTags";
+import type { FlavorProfile } from "@/types/domain";
+
+const RADAR_MIN_CHECKINS = 10; // user_stats avg_profile 10건 룰 (TECHNICAL_SPEC §1)
+
+function tagLabel(id: string) {
+  return FLAVOR_TAGS.find((t) => t.id === id)?.label ?? id;
+}
+
+function avgProfile(checkins: LocalCheckin[]): FlavorProfile | null {
+  if (checkins.length === 0) return null;
+  const sum = checkins.reduce(
+    (acc, c) => ({
+      acidity: acc.acidity + c.profile.acidity,
+      sweetness: acc.sweetness + c.profile.sweetness,
+      body: acc.body + c.profile.body,
+      bitterness: acc.bitterness + c.profile.bitterness,
+      aftertaste: acc.aftertaste + c.profile.aftertaste,
+    }),
+    { acidity: 0, sweetness: 0, body: 0, bitterness: 0, aftertaste: 0 },
+  );
+  const n = checkins.length;
+  return {
+    acidity: sum.acidity / n,
+    sweetness: sum.sweetness / n,
+    body: sum.body / n,
+    bitterness: sum.bitterness / n,
+    aftertaste: sum.aftertaste / n,
+  };
+}
+
+export default function DiaryPage() {
+  const [checkins, setCheckins] = useState<LocalCheckin[] | null>(null);
+
+  useEffect(() => {
+    listCheckins().then(setCheckins);
+  }, []);
+
+  const stats = useMemo(() => {
+    if (!checkins || checkins.length === 0) return null;
+    const avgRating =
+      checkins.reduce((s, c) => s + c.rating, 0) / checkins.length;
+    const tagCounts = new Map<string, number>();
+    for (const c of checkins)
+      for (const t of c.flavorTags)
+        tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
+    const topTags = [...tagCounts.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([id]) => id);
+    return { avgRating, topTags, profile: avgProfile(checkins) };
+  }, [checkins]);
+
+  if (checkins === null) {
+    return (
+      <main className="mx-auto max-w-md px-6 py-10">
+        <p className="text-body text-crema-400">불러오는 중…</p>
+      </main>
+    );
+  }
+
+  return (
+    <main className="mx-auto max-w-md px-6 py-8">
+      <header className="mb-6 flex items-center justify-between">
+        <Link href="/" className="text-caption text-crema-400">
+          ← 홈
+        </Link>
+        <Link
+          href="/checkin"
+          className="rounded-full bg-amber-glow px-4 py-2 text-caption font-semibold text-roast-950"
+        >
+          + 체크인
+        </Link>
+      </header>
+
+      <h1 className="font-display text-h2 text-crema-100">커피 다이어리</h1>
+
+      {checkins.length === 0 ? (
+        <div className="mt-16 flex flex-col items-center gap-4 text-center">
+          <p className="text-body text-crema-400">
+            아직 기록된 잔이 없어요.
+            <br />첫 잔부터 시작해볼까요?
+          </p>
+          <Link
+            href="/checkin"
+            className="rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950"
+          >
+            첫 잔 기록하기
+          </Link>
+        </div>
+      ) : (
+        <>
+          {/* 통계 */}
+          <section className="mt-5 grid grid-cols-2 gap-3">
+            <div className="rounded-card border border-roast-700 bg-roast-900 p-4">
+              <p className="text-caption text-crema-400">기록한 잔</p>
+              <p className="font-mono mt-1 text-h2 text-crema-100">
+                {checkins.length}
+              </p>
+            </div>
+            <div className="rounded-card border border-roast-700 bg-roast-900 p-4">
+              <p className="text-caption text-crema-400">평균 별점</p>
+              <p className="font-mono mt-1 text-h2 text-amber-glow">
+                ★ {stats!.avgRating.toFixed(1)}
+              </p>
+            </div>
+          </section>
+
+          {/* 취향 레이더 — 10건 룰 */}
+          <section className="mt-3 rounded-card border border-roast-700 bg-roast-900 p-4">
+            <p className="text-caption text-crema-400">나의 취향 레이더</p>
+            {checkins.length >= RADAR_MIN_CHECKINS && stats!.profile ? (
+              <div className="mt-2 flex flex-col items-center">
+                <RadarChart profile={stats!.profile} size={220} />
+                <div className="mt-2 flex gap-1.5">
+                  {stats!.topTags.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full border border-amber-glow/50 px-2.5 py-0.5 text-caption text-amber-glow"
+                    >
+                      {tagLabel(t)}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <p className="mt-2 text-body text-crema-400">
+                {RADAR_MIN_CHECKINS}잔이 쌓이면 취향 레이더가 열려요 — 지금{" "}
+                <span className="font-mono text-crema-100">
+                  {checkins.length}/{RADAR_MIN_CHECKINS}
+                </span>
+              </p>
+            )}
+          </section>
+
+          {/* 타임라인 */}
+          <section className="mt-8 flex flex-col gap-3">
+            {checkins.map((c) => (
+              <article
+                key={c.id}
+                className="flex gap-3 rounded-card border border-roast-700 bg-roast-900 p-3"
+              >
+                <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-[10px]">
+                  <Image
+                    src={c.photoDataUrl}
+                    alt=""
+                    fill
+                    unoptimized
+                    className="object-cover"
+                  />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-baseline justify-between gap-2">
+                    <p className="truncate text-body font-semibold text-crema-100">
+                      {c.beanName}
+                    </p>
+                    <span className="font-mono shrink-0 text-body text-amber-glow">
+                      ★ {c.rating.toFixed(1)}
+                    </span>
+                  </div>
+                  <p className="mt-0.5 truncate text-caption text-crema-400">
+                    {c.context === "home" ? "홈브루" : c.cafeName}
+                    {c.gpsVerified && " · 인증됨"}
+                    {" · "}
+                    <span className="font-mono">
+                      {new Date(c.createdAt).toLocaleDateString("ko-KR", {
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </span>
+                  </p>
+                  <div className="mt-1.5 flex flex-wrap gap-1">
+                    {c.flavorTags.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full border border-roast-700 px-2 py-0.5 text-caption text-crema-400"
+                      >
+                        {tagLabel(t)}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </section>
+        </>
+      )}
+    </main>
+  );
+}
