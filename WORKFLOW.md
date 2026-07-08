@@ -21,7 +21,7 @@
 - 전환 기준: "계획서만 보고 주니어가 구현 가능한 수준"이면 빠른 모델로 넘긴다. 판단이 필요한 지점(스키마 변경, 히어로/공유카드 비주얼, RLS)이 나오면 다시 상위 모델.
 
 ## 4. 디자인 파이프라인 (히어로·공유카드·전 화면 공통)
-1. **스킬 로드**: 디자인 작업 세션은 `frontend-design` skill + `ui-ux-max-pro` skill을 반드시 로드하고 시작. 두 스킬의 원칙이 충돌하면 frontend-design(고유성) > ui-ux(관례) 순.
+1. **스킬 로드**: 디자인 작업 세션은 `frontend-design` skill + `ui-ux-pro-max` skill(+필요 시 `design-system`, `ui-styling`, `brand`)을 반드시 로드하고 시작. 두 스킬의 원칙이 충돌하면 frontend-design(고유성) > ui-ux-pro-max(관례) 순. (.claude/skills/에 설치됨 — ui-ux-pro-max-cli 배포본 + frontend-design/karpathy는 anthropics/skills, andrej-karpathy-skills 원문 기반 재구성)
 2. **레퍼런스 수집 순서**:
    - Claude Design에서 전반 디자인 시안/토큰 초안 생성 → 리포에 스크린샷과 토큰 반영
    - Dribbble + Awwwards에서 "dark premium / coffee / 3D product hero" 계열 레퍼런스 3~5개 수집 (링크와 채택 요소를 DESIGN_DIRECTION.md 하단에 기록 — 모방 아닌 방향 캘리브레이션 용도)
