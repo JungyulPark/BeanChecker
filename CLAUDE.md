@@ -1,6 +1,6 @@
-# VEANN — CLAUDE.md (마스터 v3)
+# BEAN. — CLAUDE.md (마스터 v3)
 
-> 작업명: VEANN (비앤/빈 — 네이밍 근거는 NAMING.md, 도메인 확정 전까지 코드네임 겸 유력 확정안)
+> 작업명: BEAN. (국문 표기: 빈. — 2026-07-09 확정, 도메인/상표 검증은 진행 중. 이전 후보 VEANN 등 배경은 NAMING.md)
 > 한 줄 정의: 스페셜티 커피 전용 체크인·향미 평가·발견 플랫폼. "Vivino for Specialty Coffee"
 > 원칙: 추측 금지. 설명 금지. 직설적으로 실행 가능하게. Ship Fast / Ugly but Functional — 단, 히어로와 공유카드 두 곳만은 예외적으로 아름다워야 한다.
 > **개발 환경: Claude Code (web) + GitHub + Vercel. 이 문서가 Claude Code의 최상위 컨텍스트다. 세션 운영 규칙은 WORKFLOW.md를 먼저 읽는다.**

@@ -31,4 +31,11 @@
 - 실제 서버(next start) 기반 E2E로 체크인→카드 생성→클립보드 캡션→/c 랜딩→OG 이미지 바이트까지 전부 실렌더 확인
 - 막힌 것: 없음. 배포 후 NEXT_PUBLIC_SITE_URL env 설정 필요(현재 localhost 폴백)
 - 다음 첫 태스크: Supabase 연결(사용자 Week 0 완료 후) — lib/data/local.ts 교체 + `/c/[id]`를 실제 checkins.id 조회로 전환. 그 전까지는 admin 페이지나 시딩 스크립트 등 스코프 남은 항목 진행 가능
+
+## 2026-07-09 — 세션 5: 네이밍 확정 — BEAN.
+- 한 것: @orchestrator가 이름을 **BEAN.**(국문: 빈.)으로 확정. lib/brand.ts 단일 지점 수정 한 곳으로 히어로/`/map`/페이지 타이틀/PWA manifest/공유카드/OG 이미지까지 전부 자동 반영됨을 실렌더로 확인 — 브랜드 추상화가 의도대로 작동. 전 문서(CLAUDE.md/WORKFLOW.md/TECHNICAL_SPEC.md/DESIGN_DIRECTION.md/launch/*.md/skills/*.md) 마스트헤드 VEANN→BEAN. 일괄 치환, supabase 마이그레이션의 cron job 이름도 변경(미배포 상태라 안전)
+- NAMING.md: BEAN. 확정 기록 + **미검증 경고** — 기존 §확정 절차는 VEANN 등 이전 후보군 대상이라 BEAN.에 대해 도메인/상표/SNS 핸들 재검증 필요(특히 "bean"은 일반명사라 L.L.Bean 등과의 상표 충돌 확인 필수, 마침표 포함 워드마크는 SNS 핸들 표기 별도 고민 필요)
+- 막힌 것: 없음
+- 다음 첫 태스크: 세션4와 동일(Supabase 연결 대기) — 그 사이 NAMING.md §확정 절차(도메인/상표/SNS) 실행은 사용자 몫
+- 디자인 노트: 없음
 - 디자인 노트: 공유카드 톤은 히어로와 동일 토큰(아우라+앰버) 재사용 — 브랜드 시각 자산 일관성 유지, 별도 방향 탐색 불필요

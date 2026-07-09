@@ -1,4 +1,4 @@
-# VEANN — WORKFLOW.md (Claude Code Web 운영 프로토콜)
+# BEAN. — WORKFLOW.md (Claude Code Web 운영 프로토콜)
 
 > 이 프로젝트는 Claude Code (web)에서 개발한다. 모든 세션은 이 프로토콜을 따른다.
 

@@ -1,4 +1,4 @@
-# VEANN — 3주 런칭 체크리스트 (v3)
+# BEAN. — 3주 런칭 체크리스트 (v3)
 
 ## Week 0 (사용자 실행 — 코드 전)
 - [ ] NAMING.md 확정 절차: veann.app/.coffee/.kr 가용성 + 키프리스 + SNS 핸들 → 이름 확정

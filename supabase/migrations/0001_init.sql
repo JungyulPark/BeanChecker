@@ -1,4 +1,4 @@
--- VEANN 0001_init — TECHNICAL_SPEC.md §1–3 구현
+-- BEAN. 0001_init — TECHNICAL_SPEC.md §1–3 구현
 -- 스키마 변경은 이 디렉토리의 마이그레이션 파일로만 (대시보드 수기 변경 금지)
 
 create extension if not exists postgis;
@@ -375,7 +375,7 @@ end;
 $$;
 
 select cron.schedule(
-  'veann-daily-aggregates',
+  'bean-daily-aggregates',
   '0 18 * * *',  -- 18:00 UTC = 03:00 KST
   $$select public.recompute_aggregates()$$
 );

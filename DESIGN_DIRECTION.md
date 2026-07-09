@@ -1,4 +1,4 @@
-# VEANN — DESIGN_DIRECTION.md
+# BEAN. — DESIGN_DIRECTION.md
 
 > 모든 시각 결정의 단일 출처. frontend-design + ui-ux-max-pro skill을 로드한 세션에서만 이 문서 관련 작업을 한다.
 > 원칙: 볼드함은 한 곳에 쓴다. 이 제품의 시그니처는 두 개 — ①히어로의 회전 원두 ②레이더 차트. 나머지는 조용하고 절제되게.

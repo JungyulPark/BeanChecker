@@ -1,4 +1,4 @@
-# VEANN — TECHNICAL_SPEC.md (v3)
+# BEAN. — TECHNICAL_SPEC.md (v3)
 
 > 추측 금지. 이 문서의 스키마/로직을 그대로 구현한다. 변경 필요 시 @orchestrator 승인 후 문서 먼저 수정.
 > v3: Firebase → Supabase(Postgres+RLS) 전환. v2에서 확정한 로직(홈브루 context, 5건 룰, 중복 병합, 드래프트 예외, 좌표 미저장, 딥링크 랜딩)은 전부 승계.
