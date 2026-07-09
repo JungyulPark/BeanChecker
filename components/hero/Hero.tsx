@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { BRAND } from "@/lib/brand";
+import { Wordmark } from "@/components/Wordmark";
 import { HeroBean } from "./HeroBean";
 
 /**
@@ -26,9 +27,7 @@ export function Hero() {
     <section className="relative flex min-h-dvh flex-col items-center overflow-hidden px-6 pt-10 pb-16">
       <div className="bg-aura absolute inset-x-0 top-[8dvh] h-[70dvh] opacity-70" aria-hidden />
 
-      <span className="relative text-caption tracking-[0.08em] text-crema-400">
-        {BRAND.wordmark}
-      </span>
+      <Wordmark size="sm" className="relative" />
 
       <div
         ref={stage}

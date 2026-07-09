@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { RadarChart } from "@/components/RadarChart";
+import { Wordmark } from "@/components/Wordmark";
 import { BRAND } from "@/lib/brand";
 import { FLAVOR_TAGS } from "@/lib/flavorTags";
 import { decodeShareId } from "@/lib/shareCard";
@@ -47,9 +48,7 @@ export default async function SharedCheckinPage({
     <main className="relative flex min-h-dvh flex-col items-center overflow-hidden px-6 py-14 text-center">
       <div className="bg-aura absolute inset-x-0 top-0 h-[55dvh] opacity-60" aria-hidden />
 
-      <span className="relative text-caption tracking-[0.08em] text-crema-400">
-        {BRAND.wordmark}
-      </span>
+      <Wordmark size="sm" className="relative" />
 
       <p className="relative mt-6 text-caption text-crema-400">{data.subLabel}</p>
       <h1 className="font-display relative mt-1 text-display text-crema-100">

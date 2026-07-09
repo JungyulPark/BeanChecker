@@ -40,10 +40,16 @@ function fontFamily(cssVar: string, fallback: string): string {
 }
 
 /** 캔버스 텍스트는 이미 로드된 폰트만 정확히 그린다 — 그리기 전 명시적으로 로드해 대기. */
-export async function preloadShareCardFonts(): Promise<{ display: string; mono: string; body: string }> {
+export async function preloadShareCardFonts(): Promise<{
+  display: string;
+  mono: string;
+  body: string;
+  wordmark: string;
+}> {
   const display = fontFamily("--font-nanum-myeongjo", "serif");
   const mono = fontFamily("--font-jetbrains-mono", "monospace");
   const body = "Pretendard Variable, Pretendard, sans-serif";
+  const wordmark = fontFamily("--font-space-grotesk", "sans-serif");
 
   const specs = [
     `800 88px ${display}`,
@@ -51,10 +57,49 @@ export async function preloadShareCardFonts(): Promise<{ display: string; mono: 
     `600 30px ${body}`,
     `500 26px ${body}`,
     `400 24px ${body}`,
+    `700 40px ${wordmark}`,
   ];
   await Promise.all(specs.map((s) => document.fonts.load(s).catch(() => undefined)));
   await document.fonts.ready;
-  return { display, mono, body };
+  return { display, mono, body, wordmark };
+}
+
+/**
+ * 로고타입 — FAMIMA 레퍼런스 캘리브레이션(볼드 지오메트릭+투톤+언더라인)을 우리 팔레트로 번역.
+ * "BEAN" 뒤 마침표만 amber-glow로 분리. components/Wordmark.tsx와 동일 규칙(DESIGN_DIRECTION §2).
+ */
+function drawWordmark(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  y: number,
+  fontPx: number,
+  wordmarkFont: string,
+  underline: boolean,
+) {
+  const mark = BRAND.wordmark.endsWith(".") ? BRAND.wordmark.slice(0, -1) : BRAND.wordmark;
+  const dot = BRAND.wordmark.endsWith(".") ? "." : "";
+
+  ctx.font = `700 ${fontPx}px ${wordmarkFont}`;
+  ctx.textAlign = "left";
+  ctx.textBaseline = "alphabetic";
+  const markW = ctx.measureText(mark).width;
+  const dotW = dot ? ctx.measureText(dot).width : 0;
+  const totalW = markW + dotW;
+  const startX = cx - totalW / 2;
+
+  ctx.fillStyle = COLOR.crema100;
+  ctx.fillText(mark, startX, y);
+  if (dot) {
+    ctx.fillStyle = COLOR.amberGlow;
+    ctx.fillText(dot, startX + markW, y);
+  }
+
+  if (underline) {
+    const barY = y + fontPx * 0.28;
+    ctx.fillStyle = COLOR.amberGlow;
+    ctx.fillRect(startX, barY, totalW, Math.max(2, Math.round(fontPx * 0.05)));
+  }
+  ctx.textAlign = "center";
 }
 
 function roundedRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
@@ -168,7 +213,7 @@ export async function renderShareCard(
   const ctx = canvas.getContext("2d");
   if (!ctx) throw new Error("canvas 2d context unavailable");
 
-  const { display, mono, body } = await preloadShareCardFonts();
+  const { display, mono, body, wordmark } = await preloadShareCardFonts();
 
   // 배경
   ctx.fillStyle = COLOR.roast950;
@@ -193,14 +238,8 @@ export async function renderShareCard(
 
   let y = L.startY;
 
-  // 워드마크
-  ctx.textAlign = "center";
-  ctx.font = `700 ${L.wordmark}px ${body}`;
-  ctx.fillStyle = COLOR.crema400;
-  ctx.save();
-  ctx.letterSpacing = "4px";
-  ctx.fillText(BRAND.wordmark, cx, y);
-  ctx.restore();
+  // 워드마크 (투톤 + 언더라인 — 카드의 첫인상, 풀 로고타입 처리)
+  drawWordmark(ctx, cx, y, L.wordmark, wordmark, true);
 
   // 서브라벨 (카페명/홈브루)
   y += L.gapSub;
@@ -255,12 +294,10 @@ export async function renderShareCard(
     contentBottom = chipY + chipH;
   }
 
-  // 하단 로고 + URL — 콘텐츠 끝에 이어 배치
+  // 하단 로고 + URL — 콘텐츠 끝에 이어 배치 (풋터는 언더라인 없이 미니멀하게)
+  drawWordmark(ctx, cx, contentBottom + L.gapLogo, L.logo, wordmark, false);
   ctx.textAlign = "center";
   ctx.textBaseline = "alphabetic";
-  ctx.font = `700 ${L.logo}px ${body}`;
-  ctx.fillStyle = COLOR.crema400;
-  ctx.fillText(BRAND.wordmark, cx, contentBottom + L.gapLogo);
   ctx.font = `400 ${L.url}px ${mono}`;
   ctx.fillStyle = COLOR.crema400;
   ctx.fillText(shortenUrlForDisplay(shareUrl), cx, contentBottom + L.gapLogo + L.gapUrl);

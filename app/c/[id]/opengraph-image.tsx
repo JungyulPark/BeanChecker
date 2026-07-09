@@ -40,6 +40,36 @@ function StarIcon({ size: s = 44 }: { size?: number }) {
   );
 }
 
+/**
+ * 로고타입 — FAMIMA 레퍼런스 캘리브레이션(투톤+언더라인)을 Satori 기본 폰트로 재현.
+ * Space Grotesk를 여기서 쓰려면 런타임에 폰트 바이너리를 직접 fetch해야 해서(이 세션 네트워크
+ * 제약상 불안정) 안전하게 기본 폰트를 쓰고 투톤+언더라인 장치만 이식했다. 정확한 서체 일치보다
+ * 장치(두 색 분리 + 밑줄 바) 일관성이 우선 — components/Wordmark.tsx, lib/shareCard/render.ts와 동일 규칙.
+ */
+function WordmarkOg({ fontSize, underline }: { fontSize: number; underline: boolean }) {
+  const mark = BRAND.wordmark.endsWith(".") ? BRAND.wordmark.slice(0, -1) : BRAND.wordmark;
+  const dot = BRAND.wordmark.endsWith(".") ? "." : "";
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <div style={{ display: "flex", fontSize, fontWeight: 800, letterSpacing: 1 }}>
+        <span style={{ color: COLOR.crema100 }}>{mark}</span>
+        {dot && <span style={{ color: COLOR.amberGlow }}>{dot}</span>}
+      </div>
+      {underline && (
+        <div
+          style={{
+            display: "flex",
+            marginTop: fontSize * 0.14,
+            width: "100%",
+            height: Math.max(2, Math.round(fontSize * 0.06)),
+            background: COLOR.amberGlow,
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
 function RadarSvg({ profile }: { profile: ShareCardData["profile"] }) {
   const size_ = 460;
   const cx = size_ / 2;
@@ -84,11 +114,9 @@ export default async function Image({ params }: { params: Promise<{ id: string }
             alignItems: "center",
             justifyContent: "center",
             background: COLOR.roast950,
-            color: COLOR.crema100,
-            fontSize: 48,
           }}
         >
-          {BRAND.name}
+          <WordmarkOg fontSize={64} underline />
         </div>
       ),
       size,
@@ -113,9 +141,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
           padding: 60,
         }}
       >
-        <div style={{ display: "flex", fontSize: 26, letterSpacing: 4, color: COLOR.crema400, fontWeight: 700 }}>
-          {BRAND.wordmark}
-        </div>
+        <WordmarkOg fontSize={30} underline />
         <div style={{ display: "flex", marginTop: 28, fontSize: 26, color: COLOR.crema400 }}>
           {data.subLabel}
         </div>

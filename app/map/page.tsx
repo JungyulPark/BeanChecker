@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BottomNav } from "@/components/BottomNav";
-import { BRAND } from "@/lib/brand";
+import { Wordmark } from "@/components/Wordmark";
 import { listCheckins, type LocalCheckin } from "@/lib/data/local";
 import { MOCK_CAFES } from "@/lib/mock/seed";
 
@@ -24,9 +24,7 @@ export default function MapPage() {
     <div className="flex min-h-dvh flex-col">
       <main className="mx-auto w-full max-w-md flex-1 px-6 py-8">
         <header className="mb-6 flex items-center justify-between">
-          <span className="text-caption tracking-[0.08em] text-crema-400">
-            {BRAND.wordmark}
-          </span>
+          <Wordmark size="sm" underline={false} />
           <Link
             href="/checkin"
             className="rounded-full bg-amber-glow px-4 py-2 text-caption font-semibold text-roast-950"

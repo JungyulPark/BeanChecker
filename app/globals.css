@@ -16,6 +16,7 @@
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, sans-serif;
   --font-display: var(--font-nanum-myeongjo), "Nanum Myeongjo", serif;
   --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+  --font-wordmark: var(--font-space-grotesk), "Space Grotesk", sans-serif; /* 로고타입 전용 (라틴만) */
 
   --radius-card: 16px;
 
