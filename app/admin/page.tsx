@@ -26,8 +26,8 @@ const TARGET_LABEL: Record<LocalReport["targetType"], string> = {
 /**
  * /admin — isAdmin만 (TECHNICAL_SPEC §4). Ugly 허용 (DESIGN_DIRECTION §5).
  *
- * ⚠ 실 Auth 미연결 상태 — 이 페이지는 지금 아무나 열 수 있다. Supabase 연결 시
- * 미들웨어(profiles.is_admin) 게이트를 여기에 반드시 추가할 것 (TECHNICAL_SPEC §3 Auth).
+ * 게이트: middleware.ts의 HTTP Basic Auth로 보호 중(임시, ADMIN_BASIC_AUTH_USER/PASSWORD
+ * env 필요 — 미설정 시 전부 401). Supabase 연결 시 profiles.is_admin 세션 체크로 교체할 것.
  * verified/병합은 admin/service role 전용 RLS로 보호되는 실 DB 작업이라, 백엔드 없는
  * 지금은 신고 처리(로컬에서 실제로 의미 있게 동작하는 유일한 부분)만 구현했다.
  */
@@ -49,7 +49,7 @@ export default function AdminPage() {
           ← 홈
         </Link>
         <span className="rounded-full border border-amber-glow/50 px-2.5 py-0.5 text-caption text-amber-glow">
-          admin (게이트 미연결)
+          admin (임시 Basic Auth)
         </span>
       </div>
 

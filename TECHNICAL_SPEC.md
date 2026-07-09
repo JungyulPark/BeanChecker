@@ -130,6 +130,10 @@ TypeScript 타입은 `supabase gen types typescript`로 생성해 `types/databas
 ### Auth
 - Supabase Auth: Google + **Kakao 프로바이더 (네이티브 지원 — 카카오 개발자 콘솔 앱 등록 + redirect URL만 설정)**. Week 1 선행 태스크.
 - 미들웨어: 로그인 필수 라우트 = /checkin, /diary, /admin. 그 외 전부 비로그인 열람 가능.
+- **임시 상태(Supabase 연결 전)**: `/admin`만 `middleware.ts`의 HTTP Basic Auth로 보호 중
+  (env: `ADMIN_BASIC_AUTH_USER`/`ADMIN_BASIC_AUTH_PASSWORD`, 미설정 시 fail-closed로 전부 401).
+  `/checkin`·`/diary`는 아직 게이트 없음 — 로그인 개념 자체가 없어 전부 비로그인 열람 상태.
+  Supabase Auth 연결 시 이 미들웨어를 profiles.is_admin 세션 체크로 교체할 것.
 
 ### GPS 체크인 인증 (v2 확정 로직 유지)
 ```

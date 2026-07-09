@@ -50,7 +50,8 @@
 - verified·병합은 admin/service role 전용 RLS로 보호되는 실 DB 작업이라 로컬 mock 배열에 가짜 토글을 만들지 않고 "Supabase 연결 후 구현" 안내로 남김 — 병합 배치 로직 자체는 이미 0001_init.sql의 recompute_aggregates()에 구현되어 있음
 - 실서버 E2E로 카페/원두/체크인 3종 신고 접수 → admin 필터·처리완료(체크인은 숨김 반영까지) → 다이어리에 "숨김 처리됨" 배지 노출 확인
 - 막힌 것: 없음. `/admin`은 실 Auth 게이트가 없어 지금은 아무나 열 수 있음 — 코드 주석·화면 배지로 명시, Supabase 연결 시 반드시 미들웨어 추가 필요
-- 다음 첫 태스크: SEO 메타데이터+sitemap, PWA Service Worker, 법무 문서 실작성 중 사용자 선택. Supabase 연결은 여전히 사용자 Week 0 대기
+- **추가 작업(같은 세션)**: 위 게이트 공백을 즉시 해결 — `middleware.ts`로 `/admin` HTTP Basic Auth 보호 추가(`ADMIN_BASIC_AUTH_USER`/`PASSWORD` env, **fail-closed**: 미설정 시 전부 401). 비밀번호는 서버(엣지 미들웨어)에서만 비교되고 클라이언트 번들에 노출 안 됨. `.env.example` 신규 작성, TECHNICAL_SPEC §3 Auth에 임시 상태 문서화. curl로 4가지 케이스(env없음/인증없음/틀린비번/올바른인증) 전부 실동작 확인 — env없음·인증없음·틀린비번 401, 올바른 인증만 200, 하위경로까지 보호됨
+- 다음 첫 태스크: SEO 메타데이터+sitemap, PWA Service Worker, 법무 문서 실작성 중 사용자 선택. Supabase 연결은 여전히 사용자 Week 0 대기 (연결 시 이 Basic Auth 미들웨어는 profiles.is_admin 세션 체크로 교체)
 - 디자인 노트: 없음 (Ugly 허용 화면, 토큰만 준수)
 - 디자인 노트: 없음
 - 디자인 노트: 공유카드 톤은 히어로와 동일 토큰(아우라+앰버) 재사용 — 브랜드 시각 자산 일관성 유지, 별도 방향 탐색 불필요
