@@ -6,9 +6,11 @@ import { StepCafe } from "./StepCafe";
 import { StepPhoto } from "./StepPhoto";
 import { StepRate, type RateResult } from "./StepRate";
 import { RadarChart } from "@/components/RadarChart";
+import { ShareSheet } from "@/components/ShareSheet";
 import { addCheckin, clearDraft, loadDraft, saveDraft } from "@/lib/data/local";
 import type { LocalCheckin } from "@/lib/data/local";
 import type { MockCafe } from "@/lib/mock/seed";
+import { shareCardDataFromCheckin } from "@/lib/shareCard";
 
 type Step = 1 | 2 | 3;
 const STEP_TITLES: Record<Step, string> = {
@@ -28,6 +30,7 @@ export default function CheckinPage() {
   const [gpsVerified, setGpsVerified] = useState(false);
   const [photoDataUrl, setPhotoDataUrl] = useState<string | null>(null);
   const [done, setDone] = useState<LocalCheckin | null>(null);
+  const [showShare, setShowShare] = useState(false);
   const [restored, setRestored] = useState(false);
 
   // 드래프트 복원
@@ -117,28 +120,43 @@ export default function CheckinPage() {
         <p className="font-mono relative text-h2 text-amber-glow">
           ★ {done.rating.toFixed(1)}
         </p>
-        <div className="relative mt-10 flex flex-col gap-3">
-          <Link
-            href="/diary"
-            className="rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950"
-          >
-            다이어리에서 보기
-          </Link>
-          <button
-            type="button"
-            onClick={() => {
-              setDone(null);
-              setStep(1);
-              setCafe(null);
-              setPhotoDataUrl(null);
-              setGpsVerified(false);
-              setContext("cafe");
-            }}
-            className="py-2 text-body text-crema-400"
-          >
-            한 잔 더 기록하기
-          </button>
-        </div>
+
+        {showShare ? (
+          <div className="relative mt-8 w-full">
+            <ShareSheet data={shareCardDataFromCheckin(done)} />
+          </div>
+        ) : (
+          <div className="relative mt-10 flex flex-col gap-3">
+            <button
+              type="button"
+              onClick={() => setShowShare(true)}
+              className="rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950"
+            >
+              공유카드 만들기
+            </button>
+            <Link
+              href="/diary"
+              className="rounded-full border border-roast-700 px-8 py-3 text-body text-crema-100"
+            >
+              다이어리에서 보기
+            </Link>
+            <button
+              type="button"
+              onClick={() => {
+                setDone(null);
+                setShowShare(false);
+                setStep(1);
+                setCafe(null);
+                setPhotoDataUrl(null);
+                setGpsVerified(false);
+                setContext("cafe");
+              }}
+              className="py-2 text-body text-crema-400"
+            >
+              한 잔 더 기록하기
+            </button>
+          </div>
+        )}
       </main>
     );
   }
