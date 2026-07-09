@@ -1,0 +1,50 @@
+name,name_en,address,district,is_roastery,source_url,confidence,operating_status
+센터커피 서울숲점,Center Coffee,서울특별시 성동구 서울숲2길 28-11,seongsu,true,https://www.centercoffee.co.kr/whereweare,높음,미확인
+로우키,Lowkey,서울특별시 성동구 연무장3길 6,seongsu,true,https://lowkeycoffee.com/shop/list-cf10,중간,미확인
+커피냅로스터스 성수,Coffee Nap Roasters,서울특별시 성동구 성수일로4길 35-11,seongsu,true,https://www.coffeenaproasters.com/,높음,미확인
+메쉬커피,Mesh Coffee,서울특별시 성동구 서울숲길 43,seongsu,true,https://www.instagram.com/meshcoffee/,높음,미확인
+성수동 리얼 로스팅 커피&디저트,,서울특별시 성동구 성수동2가 277-129,seongsu,true,https://www.diningcode.com/profile.php?rid=H5QW8lJVx5kq,중간,미확인
+피어커피 로스터스,Peer Coffee Roasters,서울특별시 성동구 광나루로4가길 24 1층,seongsu,true,http://peercoffee.co.kr/,높음,미확인
+마일스톤 커피 로스터스 서울숲,Milestone Coffee Roasters,서울특별시 성동구 서울숲4길 15 1층,seongsu,true,https://milestonecoffee.kr/,높음,미확인
+히트커피로스터스 한남,Hit Coffee Roasters,서울특별시 용산구 이태원로 258,hannam,true,https://bakerynews.co.kr/article/1065594659585523,높음,미확인
+트래버틴 한남,Travertine,"서울특별시 용산구 독서당로14길 24, 브라이튼한남 1층",hannam,true,https://the-edit.co.kr/80858,중간,미확인
+피어커피 바 한남,Peer Coffee Bar,서울특별시 용산구 한남대로10길 36 1층,hannam,true,https://www.instagram.com/peer_coffee_bar/,중간,미확인
+콘하스,Conhas,서울특별시 용산구 이태원로55나길 22,hannam,true,https://www.instagram.com/conhascoffee_co.ltd,중간,미확인
+마일스톤 커피 로스터스 한남,Milestone Coffee Roasters,서울특별시 용산구 한남대로27가길 26 1층,hannam,true,https://milestonecoffee.kr/,높음,미확인
+커피리브레 연남,Coffee Libre,서울 마포구 성미산로32길 20-5,yeonnam,true,https://coffeelibre.kr/,높음,미확인
+커피냅로스터스 연남,Coffee Nap Roasters,서울 마포구 성미산로27길 70,yeonnam,true,https://www.coffeenaproasters.com/,높음,미확인
+리이슈 커피로스터스,Reissue Coffee Roasters,"서울 마포구 연남로 35, 2층",yeonnam,true,https://www.esquirekorea.co.kr/article/47844,높음,미확인
+모닝캄 커피랩 연남,Morning Calm Coffee Lab,서울 마포구 성미산로 192,yeonnam,true,https://bwissue.com/searchjob/2626281,중간,미확인
+궤도 커피 로스터스 연남,Gwehdo Coffee Roasters,서울 마포구 연남로 19 1층,yeonnam,true,https://polle.com/place/3VPu6k,중간,미확인
+테일러커피 연남1호점,Tailor Coffee,서울 마포구 성미산로 189 1층,yeonnam,true,https://tailorcoffee.com/,중간,미확인
+앤트러사이트 커피 합정,Anthracite Coffee Roasters,서울 마포구 토정로5길 10,hapjeong,true,https://anthracitecoffee.com/hapjeong,높음,미확인
+빈브라더스 합정,Bean Brothers,서울 마포구 합정동 368-3,hapjeong,true,https://beanbrothers.co.kr/,중간,미확인
+커피랩스 로스터리 합정,Coffee Labs Roastery,"서울 마포구 양화로6길 27, 1·2층",hapjeong,true,https://m.coffeelabs.co.kr/store.html,높음,미확인
+180커피로스터스 합정,180 Coffee Roasters,"서울 마포구 토정로 8-7, 3층",hapjeong,true,https://180coffee.com/,높음,미확인
+레드플랜트 본점,Red Plant,서울 마포구 양화로7길 6,hapjeong,true,http://redplant.co.kr/about-redplant/,중간,미확인
+빌리프커피로스터스,Belief Coffee Roasters,서울 마포구 양화로11길 50,hapjeong,true,https://coffeexplorer.com/323,낮음-중간,미확인
+딥블루레이크,Deep Blue Lake Coffee & Roasters,서울특별시 마포구 포은로6길 11,mangwon,true,https://bwissue.com/cafetour/156709,중간,미확인
+포트레이트 커피(바),Portrait Coffee(bar),서울특별시 마포구 포은로8길 32,mangwon,true,https://the-edit.co.kr/50624,중간,미확인
+올웨이즈어거스트 로스터스,Always August Roasters,서울 마포구 망원로6길 19,mangwon,true,https://alwaysau8ust.co.kr/about.html,중간,미확인
+센토브(트래피 커피),Sentov (Trafe Coffee),서울 마포구 희우정로 98,mangwon,true,https://bwissue.com/cafetour/156709,중간,미확인
+오랑오랑,OrangOrang,서울 용산구 소월로20길 26-14,haebangchon,true,https://bwissue.com/cafetour/159946,중간,미확인
+프릳츠 커피 컴퍼니 도화점,Fritz Coffee Company,서울시 마포구 새창로2길 17,dohwa,true,https://fritz.co.kr/,높음,미확인
+Coffee ARCO,Coffee ARCO,서울 강남구 신사동 519-17,sinsa,true,https://bwissue.com/cafeinfo/211167,중간,미확인
+마일스톤 커피 로스터스 신사,Milestone Coffee Roasters,서울 강남구 논현로159길 49 1층,sinsa,true,https://milestonecoffee.kr/,높음,미확인
+테일러커피 신사,Tailor Coffee,서울 강남구 강남대로160길 31,sinsa,true,https://www.instagram.com/tailor_coffee/,높음,미확인
+히트커피 로스터스 신사,Heat Coffee Roasters,서울 강남구 도산대로17길 34,sinsa,true,https://www.diningcode.com/profile.php?rid=W8MA4dJjqVbX,중간,미확인
+커피휘엘 신사역점,Coffee Fiel,서울 강남구 논현로149길 62,sinsa,true,https://coffeefiel.com/contact,중간,미확인
+마크레인 커피로스터스,Mark Lane Coffee Roasters,서울 강남구 선릉로157길 23-5,apgujeong,true,https://bwissue.com/cafetour/140721,중간-높음,미확인
+벙커컴퍼니 압구정,Bunker Company,서울 강남구 압구정로42길 10,apgujeong,true,https://bunkercompany.co.kr/,높음,미확인
+카멜커피 도산2호점,Camel Coffee,서울 강남구 언주로164길 14-1,apgujeong,true,https://cmlandco.kr/,높음,미확인
+리플렉트커피 로스팅 랩,Reflect Coffee Roasting Lab,서울 서초구 남부순환로347길 53 104호,yangjae,true,https://reflect-coffee.co.kr/,높음,미확인
+프릳츠커피컴퍼니 양재점,Fritz Coffee Company,서울 서초구 강남대로37길 24-11,yangjae,true,https://fritz.co.kr/,높음,미확인
+테라로사 양재역점,Terarosa,서울 서초구 강남대로 206 엔스빌딩 1층,yangjae,true,https://terarosa.com/,높음,미확인
+커피플랜트 양재,Coffee Plant,서울 서초구 양재동,yangjae,true,https://coffeeplant.co.kr/,중간,미확인
+커피한약방,Coffee Hanyakbang,서울 중구 삼일대로12길 16-6,euljiro,true,https://coffeehanyakbang.com/,높음,미확인
+리사르커피 을지로점,LEESAR Coffee,"서울 중구 창경궁로28-24, 1층",euljiro,true,https://leesarcoffee.com/offline-store/,높음,미확인
+챔프커피 을지로점,Champ Coffee,서울 중구 을지로 157 라열 3층 381호,euljiro,true,https://champcoffee.kr/,높음,미확인
+연흔 로스터스,Yeonhun Roasters,서울 종로구 자하문로7길 29,seochon,true,https://kr.trip.com/moments/detail/jongno-gu-2016460-130030469/,중간,미확인
+아키비스트,Archivist,서울 종로구 효자로13길 52,seochon,true,https://archivist.kr/,높음,미확인
+통인동커피공방 위켄드,Tongin-dong Coffee Workshop Weekend,"서울 종로구 자하문로9길 16, 1층",seochon,true,https://www.diningcode.com/profile.php?rid=MHUgbDtqIUKF,중간,미확인
+커피투어 광화문점,Coffee Tour Roasters,"서울 종로구 사직로10길 12, 신우빌딩 1층",seochon,true,https://coffeexplorer.com/204,중간,미확인
