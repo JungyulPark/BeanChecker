@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BottomNav } from "@/components/BottomNav";
+import { ReportButton } from "@/components/ReportButton";
 import { beansByRoaster, findCafe, MOCK_CAFES } from "@/lib/mock/seed";
 
 /**
@@ -97,6 +98,10 @@ export default async function CafePage({
         >
           여기서 체크인하기
         </Link>
+
+        <div className="mt-6 flex justify-center">
+          <ReportButton targetType="cafe" targetId={cafe.id} targetLabel={cafe.name} />
+        </div>
       </main>
       <BottomNav />
     </div>

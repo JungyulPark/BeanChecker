@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BottomNav } from "@/components/BottomNav";
 import { RadarChart } from "@/components/RadarChart";
+import { ReportButton } from "@/components/ReportButton";
 import { FLAVOR_TAGS } from "@/lib/flavorTags";
 import { findBean, MOCK_BEANS, MOCK_CAFES } from "@/lib/mock/seed";
 
@@ -111,6 +112,10 @@ export default async function BeanPage({
         >
           이 원두로 체크인하기
         </Link>
+
+        <div className="mt-6 flex justify-center">
+          <ReportButton targetType="bean" targetId={bean.id} targetLabel={bean.name} />
+        </div>
       </main>
       <BottomNav />
     </div>

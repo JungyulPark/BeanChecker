@@ -28,6 +28,7 @@ export type LocalCheckin = {
   gpsVerified: boolean;
   memo?: string;
   isPublic: boolean;
+  hidden: boolean; // 신고 임시조치 (TECHNICAL_SPEC §1 checkins.hidden)
   createdAt: string; // ISO
 };
 
@@ -56,14 +57,78 @@ export async function listCheckins(): Promise<LocalCheckin[]> {
 }
 
 export async function addCheckin(
-  checkin: Omit<LocalCheckin, "id" | "createdAt">,
+  checkin: Omit<LocalCheckin, "id" | "createdAt" | "hidden">,
 ): Promise<LocalCheckin> {
   const record: LocalCheckin = {
     ...checkin,
     id: crypto.randomUUID(),
+    hidden: false,
     createdAt: new Date().toISOString(),
   };
   const all = (await get<LocalCheckin[]>(CHECKINS_KEY)) ?? [];
   await set(CHECKINS_KEY, [...all, record]);
   return record;
+}
+
+export async function updateCheckinHidden(id: string, hidden: boolean): Promise<void> {
+  const all = (await get<LocalCheckin[]>(CHECKINS_KEY)) ?? [];
+  await set(
+    CHECKINS_KEY,
+    all.map((c) => (c.id === id ? { ...c, hidden } : c)),
+  );
+}
+
+/**
+ * 신고/제보 — TECHNICAL_SPEC §1 reports 테이블의 로컬 스톱갭.
+ * insert는 누구나(로그인 유저), select/update는 admin만 — 지금은 실 Auth가 없어
+ * /admin이 게이트 없이 열려 있다(주석·배너로 명시). Supabase 연결 시 RLS로 대체.
+ */
+export type ReportReason =
+  | "spam"
+  | "inappropriate_photo"
+  | "defamation"
+  | "wrong_info"
+  | "other";
+
+export type LocalReport = {
+  id: string;
+  targetType: "checkin" | "bean" | "cafe";
+  targetId: string;
+  targetLabel: string; // 표시용 — 로컬 스토어라 join이 없어 신고 시점 라벨을 같이 저장
+  reason: ReportReason;
+  memo?: string;
+  status: "open" | "resolved" | "dismissed";
+  createdAt: string;
+};
+
+const REPORTS_KEY = "reports";
+
+export async function listReports(): Promise<LocalReport[]> {
+  const all = (await get<LocalReport[]>(REPORTS_KEY)) ?? [];
+  return all.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+}
+
+export async function addReport(
+  report: Omit<LocalReport, "id" | "status" | "createdAt">,
+): Promise<LocalReport> {
+  const record: LocalReport = {
+    ...report,
+    id: crypto.randomUUID(),
+    status: "open",
+    createdAt: new Date().toISOString(),
+  };
+  const all = (await get<LocalReport[]>(REPORTS_KEY)) ?? [];
+  await set(REPORTS_KEY, [...all, record]);
+  return record;
+}
+
+export async function updateReportStatus(
+  id: string,
+  status: LocalReport["status"],
+): Promise<void> {
+  const all = (await get<LocalReport[]>(REPORTS_KEY)) ?? [];
+  await set(
+    REPORTS_KEY,
+    all.map((r) => (r.id === id ? { ...r, status } : r)),
+  );
 }

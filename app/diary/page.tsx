@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { BottomNav } from "@/components/BottomNav";
 import { RadarChart } from "@/components/RadarChart";
+import { ReportButton } from "@/components/ReportButton";
 import { listCheckins, type LocalCheckin } from "@/lib/data/local";
 import { FLAVOR_TAGS } from "@/lib/flavorTags";
 import type { FlavorProfile } from "@/types/domain";
@@ -173,6 +174,7 @@ export default function DiaryPage() {
                   <p className="mt-0.5 truncate text-caption text-crema-400">
                     {c.context === "home" ? "홈브루" : c.cafeName}
                     {c.gpsVerified && " · 인증됨"}
+                    {c.hidden && " · 숨김 처리됨"}
                     {" · "}
                     <span className="font-mono">
                       {new Date(c.createdAt).toLocaleDateString("ko-KR", {
@@ -181,7 +183,7 @@ export default function DiaryPage() {
                       })}
                     </span>
                   </p>
-                  <div className="mt-1.5 flex flex-wrap gap-1">
+                  <div className="mt-1.5 flex flex-wrap items-center gap-1">
                     {c.flavorTags.map((t) => (
                       <span
                         key={t}
@@ -190,6 +192,9 @@ export default function DiaryPage() {
                         {tagLabel(t)}
                       </span>
                     ))}
+                  </div>
+                  <div className="mt-1.5">
+                    <ReportButton targetType="checkin" targetId={c.id} targetLabel={c.beanName} />
                   </div>
                 </div>
               </article>
