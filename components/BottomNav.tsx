@@ -18,7 +18,15 @@ export function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky bottom-0 z-10 border-t border-roast-700 bg-roast-950/95 backdrop-blur">
+    <nav
+      className="sticky bottom-0 z-10 border-t"
+      style={{
+        borderColor: "var(--glass-border)",
+        background: "var(--glass-bg-strong)",
+        backdropFilter: "blur(var(--glass-blur))",
+        WebkitBackdropFilter: "blur(var(--glass-blur))",
+      }}
+    >
       <ul className="mx-auto flex max-w-md items-center justify-around px-2 py-2">
         {ITEMS.map(({ href, label, icon: Icon }) => {
           const active =

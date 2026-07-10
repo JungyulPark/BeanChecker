@@ -2,15 +2,16 @@
 
 /*
  * BEAN. 디자인 토큰 — 단일 출처: DESIGN_DIRECTION.md §2
- * 다크 단일 테마. 토큰 밖 임의 색/폰트 사용 금지.
+ * "Roast Glass" — 다크 단일 테마 + 글래스모피즘 (2026-07-09 개정, 근거는 §2 하단 참조).
+ * 토큰 밖 임의 색/폰트 사용 금지.
  */
 @theme {
-  --color-roast-950: #120c09; /* 페이지 배경 */
-  --color-roast-900: #1c1310; /* 카드/서피스 */
-  --color-roast-700: #3b2a20; /* 보더, 분리선 */
+  --color-roast-950: #120c09; /* 페이지 배경 (순검정 아님 — 글래스 레퍼런스도 순검정 금지) */
+  --color-roast-900: #1c1310; /* 카드/서피스 베이스(글래스는 이 색의 반투명 버전) */
+  --color-roast-700: #3b2a20; /* 보더, 분리선 (비-글래스 요소용) */
   --color-crema-100: #f1e7db; /* 본문 텍스트 */
   --color-crema-400: #b9a48f; /* 보조 텍스트 */
-  --color-amber-glow: #d98e32; /* 액센트: 별점, CTA, 레이더 스트로크, 배지 */
+  --color-amber-glow: #d98e32; /* 액센트: 별점, CTA, 레이더 스트로크, 배지 — 유일한 유채색 */
   --color-aura: #7a4a24; /* 아우라 그라데이션 시작색 */
 
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, sans-serif;
@@ -27,11 +28,40 @@
   --text-caption: 12px;
 }
 
+/* 글래스 서피스 전용 토큰 — Tailwind 유틸리티가 아니라 직접 참조하는 원시 값 */
+:root {
+  --glass-bg: rgba(28, 19, 16, 0.55);
+  --glass-bg-strong: rgba(28, 19, 16, 0.72);
+  --glass-border: rgba(241, 231, 219, 0.1);
+  --glass-highlight: rgba(255, 255, 255, 0.05);
+  --glass-blur: 20px;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 24px rgba(217, 142, 50, 0.06);
+}
+
 body {
+  position: relative;
   background: var(--color-roast-950);
   color: var(--color-crema-100);
   font-family: var(--font-sans);
   letter-spacing: -0.01em; /* 국문 자간 -1% 기본 */
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+/*
+ * 앰비언트 글로우 — "납작한 매트 블랙" 대신 빛이 스며드는 배경.
+ * 고정 배경이라 스크롤과 무관하게 항상 같은 자리에 떠 있다 (뒤에 카드들이 유리처럼 겹침).
+ */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 40% at 15% -5%, rgba(217, 142, 50, 0.14), transparent 60%),
+    radial-gradient(ellipse 50% 35% at 100% 20%, rgba(122, 74, 36, 0.18), transparent 60%),
+    radial-gradient(ellipse 55% 45% at 20% 100%, rgba(122, 74, 36, 0.12), transparent 65%);
 }
 
 /* 히어로/공유카드 배경 아우라 */
@@ -41,6 +71,34 @@ body {
     var(--color-aura) 0%,
     transparent 70%
   );
+}
+
+/*
+ * 글래스 카드 — DESIGN_DIRECTION §2 "워드마크 로고타입" 옆에 정식 등록된 두 번째 표면 규칙.
+ * bg-roast-900 + border-roast-700 조합을 대체한다 (12개 파일 일괄 적용, 2026-07-09).
+ * @layer components에 둬서 함께 쓰이는 Tailwind 유틸리티(focus:border-* 등)가 항상 이긴다.
+ */
+@layer components {
+  .glass-card {
+    border-radius: var(--radius-card);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    box-shadow:
+      inset 0 1px 0 var(--glass-highlight),
+      var(--glass-shadow);
+  }
+  .glass-card-strong {
+    border-radius: var(--radius-card);
+    background: var(--glass-bg-strong);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    box-shadow:
+      inset 0 1px 0 var(--glass-highlight),
+      var(--glass-shadow);
+  }
 }
 
 /* 향미 5축 슬라이더 */

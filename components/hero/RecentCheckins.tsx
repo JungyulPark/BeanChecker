@@ -45,7 +45,7 @@ export function RecentCheckins() {
         {SAMPLES.map((s) => (
           <article
             key={s.bean}
-            className="w-64 shrink-0 snap-start rounded-card border border-roast-700 bg-roast-900 p-4"
+            className="w-64 shrink-0 snap-start glass-card p-4"
           >
             <div className="flex items-center justify-between">
               <span className="font-mono text-body text-amber-glow">

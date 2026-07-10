@@ -42,7 +42,7 @@ export function StepPhoto({
       <button
         type="button"
         onClick={() => inputRef.current?.click()}
-        className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-card border border-dashed border-roast-700 bg-roast-900"
+        className="glass-card relative flex aspect-square w-full items-center justify-center overflow-hidden border-dashed"
       >
         {photoDataUrl ? (
           <Image

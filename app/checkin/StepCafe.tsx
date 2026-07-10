@@ -61,7 +61,7 @@ export function StepCafe({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="카페 이름 검색"
-        className="w-full rounded-card border border-roast-700 bg-roast-900 px-4 py-3 text-body text-crema-100 placeholder:text-crema-400/60 focus:border-amber-glow focus:outline-none"
+        className="w-full glass-card px-4 py-3 text-body text-crema-100 placeholder:text-crema-400/60 focus:border-amber-glow focus:outline-none"
       />
 
       {suggestHome && (
@@ -83,7 +83,7 @@ export function StepCafe({
               <button
                 type="button"
                 onClick={() => onSelectCafe(cafe, verifiable)}
-                className="flex w-full items-center justify-between rounded-card border border-roast-700 bg-roast-900 px-4 py-3 text-left"
+                className="flex w-full items-center justify-between glass-card px-4 py-3 text-left"
               >
                 <span>
                   <span className="block text-body font-semibold text-crema-100">

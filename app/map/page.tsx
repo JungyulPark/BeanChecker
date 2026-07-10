@@ -49,7 +49,7 @@ export default function MapPage() {
                 <Link
                   key={c.id}
                   href="/diary"
-                  className="w-40 shrink-0 snap-start rounded-card border border-roast-700 bg-roast-900 p-2.5"
+                  className="w-40 shrink-0 snap-start glass-card p-2.5"
                 >
                   <div className="relative aspect-square w-full overflow-hidden rounded-[8px]">
                     <Image src={c.photoDataUrl} alt="" fill unoptimized className="object-cover" />
@@ -68,14 +68,14 @@ export default function MapPage() {
         <section className="mb-8 grid grid-cols-2 gap-3">
           <Link
             href="/best/seongsu"
-            className="rounded-card border border-roast-700 bg-roast-900 p-4"
+            className="glass-card p-4"
           >
             <p className="text-body font-semibold text-crema-100">지역 베스트</p>
             <p className="mt-1 text-caption text-crema-400">평점 높은 카페·로스터리</p>
           </Link>
           <Link
             href="/flavor/berry"
-            className="rounded-card border border-roast-700 bg-roast-900 p-4"
+            className="glass-card p-4"
           >
             <p className="text-body font-semibold text-crema-100">향미로 찾기</p>
             <p className="mt-1 text-caption text-crema-400">베리, 초콜릿, 플로럴…</p>
@@ -92,7 +92,7 @@ export default function MapPage() {
               <li key={cafe.id}>
                 <Link
                   href={`/cafe/${cafe.district}/${cafe.slug}`}
-                  className="flex items-center justify-between rounded-card border border-roast-700 bg-roast-900 px-4 py-3"
+                  className="flex items-center justify-between glass-card px-4 py-3"
                 >
                   <span>
                     <span className="block text-body font-semibold text-crema-100">

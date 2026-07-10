@@ -67,7 +67,7 @@ export default async function BestPage({
                 <li key={cafe.id}>
                   <Link
                     href={`/cafe/${cafe.district}/${cafe.slug}`}
-                    className="flex items-center gap-3 rounded-card border border-roast-700 bg-roast-900 px-4 py-3"
+                    className="flex items-center gap-3 glass-card px-4 py-3"
                   >
                     <span className="font-mono w-6 shrink-0 text-h2 text-amber-glow">
                       {i + 1}
@@ -98,7 +98,7 @@ export default async function BestPage({
                 <li key={cafe.id}>
                   <Link
                     href={`/cafe/${cafe.district}/${cafe.slug}`}
-                    className="flex items-center justify-between rounded-card border border-roast-700 bg-roast-900 px-4 py-3"
+                    className="flex items-center justify-between glass-card px-4 py-3"
                   >
                     <span className="text-body text-crema-100">{cafe.name}</span>
                     <span className="text-caption text-crema-400">평가 수집 중</span>

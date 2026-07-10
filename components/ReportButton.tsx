@@ -46,7 +46,7 @@ export function ReportButton({
   }
 
   return (
-    <div className="rounded-card border border-roast-700 bg-roast-900 p-3">
+    <div className="glass-card p-3">
       <p className="mb-2 text-caption text-crema-400">무엇이 문제인가요?</p>
       <div className="flex flex-wrap gap-1.5">
         {REASONS.map((r) => (

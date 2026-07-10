@@ -116,7 +116,7 @@ export function StepRate({ onSubmit }: { onSubmit: (r: RateResult) => void }) {
                 setRegistering(false);
               }}
               placeholder="원두 이름 검색"
-              className="w-full rounded-card border border-roast-700 bg-roast-900 px-4 py-3 text-body text-crema-100 placeholder:text-crema-400/60 focus:border-amber-glow focus:outline-none"
+              className="w-full glass-card px-4 py-3 text-body text-crema-100 placeholder:text-crema-400/60 focus:border-amber-glow focus:outline-none"
             />
             <ul className="flex flex-col gap-1.5">
               {matches.slice(0, 5).map((b) => (
@@ -124,7 +124,7 @@ export function StepRate({ onSubmit }: { onSubmit: (r: RateResult) => void }) {
                   <button
                     type="button"
                     onClick={() => selectBean(b)}
-                    className="flex w-full items-center justify-between rounded-card border border-roast-700 bg-roast-900 px-4 py-2.5 text-left"
+                    className="flex w-full items-center justify-between glass-card px-4 py-2.5 text-left"
                   >
                     <span className="text-body text-crema-100">{b.name}</span>
                     <span className="text-caption text-crema-400">
@@ -138,13 +138,13 @@ export function StepRate({ onSubmit }: { onSubmit: (r: RateResult) => void }) {
               <button
                 type="button"
                 onClick={() => setRegistering(true)}
-                className="rounded-card border border-dashed border-roast-700 px-4 py-2.5 text-body text-crema-400"
+                className="glass-card border-dashed px-4 py-2.5 text-body text-crema-400"
               >
                 &ldquo;{beanQuery.trim()}&rdquo; 새 원두로 등록
               </button>
             )}
             {registering && (
-              <div className="flex items-center gap-2 rounded-card border border-roast-700 bg-roast-900 p-3">
+              <div className="flex items-center gap-2 glass-card p-3">
                 <select
                   value={newOrigin}
                   onChange={(e) => setNewOrigin(e.target.value)}
@@ -217,7 +217,7 @@ export function StepRate({ onSubmit }: { onSubmit: (r: RateResult) => void }) {
           onChange={(e) => setMemo(e.target.value.slice(0, 140))}
           placeholder="메모 (선택, 140자)"
           rows={2}
-          className="w-full rounded-card border border-roast-700 bg-roast-900 px-4 py-3 text-body text-crema-100 placeholder:text-crema-400/60 focus:border-amber-glow focus:outline-none"
+          className="w-full glass-card px-4 py-3 text-body text-crema-100 placeholder:text-crema-400/60 focus:border-amber-glow focus:outline-none"
         />
         <label className="mt-1 flex items-center gap-2 text-body text-crema-400">
           <input

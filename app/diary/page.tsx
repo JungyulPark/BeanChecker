@@ -105,13 +105,13 @@ export default function DiaryPage() {
         <>
           {/* 통계 */}
           <section className="mt-5 grid grid-cols-2 gap-3">
-            <div className="rounded-card border border-roast-700 bg-roast-900 p-4">
+            <div className="glass-card p-4">
               <p className="text-caption text-crema-400">기록한 잔</p>
               <p className="font-mono mt-1 text-h2 text-crema-100">
                 {checkins.length}
               </p>
             </div>
-            <div className="rounded-card border border-roast-700 bg-roast-900 p-4">
+            <div className="glass-card p-4">
               <p className="text-caption text-crema-400">평균 별점</p>
               <p className="font-mono mt-1 text-h2 text-amber-glow">
                 ★ {stats!.avgRating.toFixed(1)}
@@ -120,7 +120,7 @@ export default function DiaryPage() {
           </section>
 
           {/* 취향 레이더 — 10건 룰 */}
-          <section className="mt-3 rounded-card border border-roast-700 bg-roast-900 p-4">
+          <section className="mt-3 glass-card p-4">
             <p className="text-caption text-crema-400">나의 취향 레이더</p>
             {checkins.length >= RADAR_MIN_CHECKINS && stats!.profile ? (
               <div className="mt-2 flex flex-col items-center">
@@ -151,7 +151,7 @@ export default function DiaryPage() {
             {checkins.map((c) => (
               <article
                 key={c.id}
-                className="flex gap-3 rounded-card border border-roast-700 bg-roast-900 p-3"
+                className="flex gap-3 glass-card p-3"
               >
                 <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-[10px]">
                   <Image

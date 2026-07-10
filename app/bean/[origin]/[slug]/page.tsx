@@ -65,7 +65,7 @@ export default async function BeanPage({
           </span>
         </section>
 
-        <section className="mt-6 flex flex-col items-center rounded-card border border-roast-700 bg-roast-900 p-5">
+        <section className="mt-6 flex flex-col items-center glass-card p-5">
           {bean.avgProfile ? (
             <>
               <RadarChart profile={bean.avgProfile} size={220} />

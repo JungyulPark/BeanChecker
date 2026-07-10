@@ -44,7 +44,7 @@ export default async function CafePage({
         </header>
 
         <section className="mt-6 grid grid-cols-2 gap-3">
-          <div className="rounded-card border border-roast-700 bg-roast-900 p-4">
+          <div className="glass-card p-4">
             <p className="text-caption text-crema-400">평점</p>
             {cafe.avgRating !== null ? (
               <p className="font-mono mt-1 text-h2 text-amber-glow">
@@ -54,7 +54,7 @@ export default async function CafePage({
               <p className="mt-1 text-body text-crema-400">평가 수집 중</p>
             )}
           </div>
-          <div className="rounded-card border border-roast-700 bg-roast-900 p-4">
+          <div className="glass-card p-4">
             <p className="text-caption text-crema-400">체크인</p>
             <p className="font-mono mt-1 text-h2 text-crema-100">{cafe.checkinCount}</p>
           </div>
@@ -68,7 +68,7 @@ export default async function CafePage({
                 <li key={bean.id}>
                   <Link
                     href={`/bean/${bean.origin}/${bean.slug}`}
-                    className="flex items-center justify-between rounded-card border border-roast-700 bg-roast-900 px-4 py-3"
+                    className="flex items-center justify-between glass-card px-4 py-3"
                   >
                     <span>
                       <span className="block text-body font-semibold text-crema-100">

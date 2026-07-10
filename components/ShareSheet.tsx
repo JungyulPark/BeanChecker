@@ -103,7 +103,7 @@ export function ShareSheet({ data }: { data: ShareCardData }) {
         ))}
       </div>
 
-      <div className="mx-auto w-full max-w-[280px] overflow-hidden rounded-card border border-roast-700 bg-roast-900">
+      <div className="mx-auto w-full max-w-[280px] overflow-hidden glass-card">
         <canvas
           ref={canvasRef}
           className={`w-full ${aspect === "story" ? "aspect-[9/16]" : "aspect-square"} ${

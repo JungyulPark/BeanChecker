@@ -68,7 +68,7 @@ export default async function FlavorPage({
                 <li key={bean.id}>
                   <Link
                     href={`/bean/${bean.origin}/${bean.slug}`}
-                    className="flex items-center justify-between rounded-card border border-roast-700 bg-roast-900 px-4 py-3"
+                    className="flex items-center justify-between glass-card px-4 py-3"
                   >
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-body font-semibold text-crema-100">

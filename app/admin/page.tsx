@@ -82,7 +82,7 @@ export default function AdminPage() {
       ) : (
         <ul className="mt-4 flex flex-col gap-2">
           {filtered.map((r) => (
-            <li key={r.id} className="rounded-card border border-roast-700 bg-roast-900 p-4">
+            <li key={r.id} className="glass-card p-4">
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
                   <p className="text-caption text-crema-400">
@@ -130,7 +130,7 @@ export default function AdminPage() {
         </ul>
       )}
 
-      <section className="mt-10 rounded-card border border-dashed border-roast-700 p-4">
+      <section className="mt-10 glass-card border-dashed p-4">
         <p className="text-body font-semibold text-crema-100">verified · 병합 처리</p>
         <p className="mt-1 text-caption text-crema-400">
           Supabase 연결 후 구현 — cafes/beans의 verified·hidden·merged_into는 admin/service
