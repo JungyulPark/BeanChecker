@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { BottomNav } from "@/components/BottomNav";
+import { KakaoMap } from "@/components/KakaoMap";
 import { Wordmark } from "@/components/Wordmark";
 import { listCheckins, type LocalCheckin } from "@/lib/data/local";
 import { MOCK_CAFES } from "@/lib/mock/seed";
@@ -27,7 +28,7 @@ export default function MapPage() {
           <Wordmark size="sm" underline={false} />
           <Link
             href="/checkin"
-            className="rounded-full bg-amber-glow px-4 py-2 text-caption font-semibold text-roast-950"
+            className="pressable rounded-full bg-amber-glow px-4 py-2 text-caption font-semibold text-roast-950"
           >
             + 체크인
           </Link>
@@ -68,19 +69,22 @@ export default function MapPage() {
         <section className="mb-8 grid grid-cols-2 gap-3">
           <Link
             href="/best/seongsu"
-            className="glass-card p-4"
+            className="glass-card pressable p-4"
           >
             <p className="text-body font-semibold text-crema-100">지역 베스트</p>
             <p className="mt-1 text-caption text-crema-400">평점 높은 카페·로스터리</p>
           </Link>
           <Link
             href="/flavor/berry"
-            className="glass-card p-4"
+            className="glass-card pressable p-4"
           >
             <p className="text-body font-semibold text-crema-100">향미로 찾기</p>
             <p className="mt-1 text-caption text-crema-400">베리, 초콜릿, 플로럴…</p>
           </Link>
         </section>
+
+        {/* 실지도 — 카카오 JS 키가 설정된 환경에서만 렌더 (없으면 아래 리스트만) */}
+        <KakaoMap cafes={MOCK_CAFES} />
 
         {/* 근처 카페/로스터리 (지역 브라우징) */}
         <section>
@@ -88,17 +92,21 @@ export default function MapPage() {
             로스터리·카페
           </h2>
           <ul className="flex flex-col gap-2">
-            {MOCK_CAFES.map((cafe) => (
-              <li key={cafe.id}>
+            {MOCK_CAFES.map((cafe, i) => (
+              <li
+                key={cafe.id}
+                className="stagger-item"
+                style={{ "--stagger-i": i } as CSSProperties}
+              >
                 <Link
                   href={`/cafe/${cafe.district}/${cafe.slug}`}
-                  className="flex items-center justify-between glass-card px-4 py-3"
+                  className="flex items-center justify-between glass-card pressable px-4 py-3"
                 >
-                  <span>
-                    <span className="block text-body font-semibold text-crema-100">
+                  <span className="min-w-0 flex-1 pr-3">
+                    <span className="block truncate text-body font-semibold text-crema-100">
                       {cafe.name}
                     </span>
-                    <span className="block text-caption text-crema-400">
+                    <span className="block truncate text-caption text-crema-400">
                       {cafe.districtKo} · {cafe.address}
                     </span>
                   </span>
