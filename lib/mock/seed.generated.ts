@@ -1,0 +1,1277 @@
+/**
+ * 자동 생성 파일 — 직접 수정 금지.
+ * 원본: launch/seed-cafes.csv, launch/seed-beans.csv
+ * 재생성: node scripts/generate-seed.mjs
+ * 규칙(집계 자리표시자·좌표 근사·태그 매핑)은 scripts/generate-seed.mjs 상단 주석 참조.
+ */
+import type { MockCafe, MockBean } from "./seed";
+
+export const SEED_CAFES: MockCafe[] = [
+  {
+    "id": "cafe-seongsu-center-coffee",
+    "name": "센터커피 서울숲점",
+    "slug": "center-coffee",
+    "district": "seongsu",
+    "districtKo": "성수",
+    "address": "서울특별시 성동구 서울숲2길 28-11",
+    "isRoastery": true,
+    "lat": 37.544,
+    "lng": 127.056,
+    "avgRating": 4.6,
+    "checkinCount": 128
+  },
+  {
+    "id": "cafe-seongsu-lowkey",
+    "name": "로우키",
+    "slug": "lowkey",
+    "district": "seongsu",
+    "districtKo": "성수",
+    "address": "서울특별시 성동구 연무장3길 6",
+    "isRoastery": true,
+    "lat": 37.544,
+    "lng": 127.056,
+    "avgRating": null,
+    "checkinCount": 3
+  },
+  {
+    "id": "cafe-seongsu-coffee-nap-roasters",
+    "name": "커피냅로스터스 성수",
+    "slug": "coffee-nap-roasters",
+    "district": "seongsu",
+    "districtKo": "성수",
+    "address": "서울특별시 성동구 성수일로4길 35-11",
+    "isRoastery": true,
+    "lat": 37.544,
+    "lng": 127.056,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-seongsu-mesh-coffee",
+    "name": "메쉬커피",
+    "slug": "mesh-coffee",
+    "district": "seongsu",
+    "districtKo": "성수",
+    "address": "서울특별시 성동구 서울숲길 43",
+    "isRoastery": true,
+    "lat": 37.544,
+    "lng": 127.056,
+    "avgRating": 4.3,
+    "checkinCount": 61
+  },
+  {
+    "id": "cafe-seongsu-real-roasting",
+    "name": "성수동 리얼 로스팅 커피&디저트",
+    "slug": "real-roasting",
+    "district": "seongsu",
+    "districtKo": "성수",
+    "address": "서울특별시 성동구 성수동2가 277-129",
+    "isRoastery": true,
+    "lat": 37.544,
+    "lng": 127.056,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-seongsu-peer-coffee-roasters",
+    "name": "피어커피 로스터스",
+    "slug": "peer-coffee-roasters",
+    "district": "seongsu",
+    "districtKo": "성수",
+    "address": "서울특별시 성동구 광나루로4가길 24 1층",
+    "isRoastery": true,
+    "lat": 37.544,
+    "lng": 127.056,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-seongsu-milestone-coffee-roasters",
+    "name": "마일스톤 커피 로스터스 서울숲",
+    "slug": "milestone-coffee-roasters",
+    "district": "seongsu",
+    "districtKo": "성수",
+    "address": "서울특별시 성동구 서울숲4길 15 1층",
+    "isRoastery": true,
+    "lat": 37.544,
+    "lng": 127.056,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-hannam-hit-coffee-roasters",
+    "name": "히트커피로스터스 한남",
+    "slug": "hit-coffee-roasters",
+    "district": "hannam",
+    "districtKo": "한남",
+    "address": "서울특별시 용산구 이태원로 258",
+    "isRoastery": true,
+    "lat": 37.534,
+    "lng": 127.001,
+    "avgRating": 4.5,
+    "checkinCount": 29
+  },
+  {
+    "id": "cafe-hannam-travertine",
+    "name": "트래버틴 한남",
+    "slug": "travertine",
+    "district": "hannam",
+    "districtKo": "한남",
+    "address": "서울특별시 용산구 독서당로14길 24, 브라이튼한남 1층",
+    "isRoastery": true,
+    "lat": 37.534,
+    "lng": 127.001,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-hannam-peer-coffee-bar",
+    "name": "피어커피 바 한남",
+    "slug": "peer-coffee-bar",
+    "district": "hannam",
+    "districtKo": "한남",
+    "address": "서울특별시 용산구 한남대로10길 36 1층",
+    "isRoastery": true,
+    "lat": 37.534,
+    "lng": 127.001,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-hannam-conhas",
+    "name": "콘하스",
+    "slug": "conhas",
+    "district": "hannam",
+    "districtKo": "한남",
+    "address": "서울특별시 용산구 이태원로55나길 22",
+    "isRoastery": true,
+    "lat": 37.534,
+    "lng": 127.001,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-hannam-milestone-coffee-roasters",
+    "name": "마일스톤 커피 로스터스 한남",
+    "slug": "milestone-coffee-roasters",
+    "district": "hannam",
+    "districtKo": "한남",
+    "address": "서울특별시 용산구 한남대로27가길 26 1층",
+    "isRoastery": true,
+    "lat": 37.534,
+    "lng": 127.001,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-yeonnam-coffee-libre",
+    "name": "커피리브레 연남",
+    "slug": "coffee-libre",
+    "district": "yeonnam",
+    "districtKo": "연남",
+    "address": "서울 마포구 성미산로32길 20-5",
+    "isRoastery": true,
+    "lat": 37.562,
+    "lng": 126.925,
+    "avgRating": 4.8,
+    "checkinCount": 302
+  },
+  {
+    "id": "cafe-yeonnam-coffee-nap-roasters",
+    "name": "커피냅로스터스 연남",
+    "slug": "coffee-nap-roasters",
+    "district": "yeonnam",
+    "districtKo": "연남",
+    "address": "서울 마포구 성미산로27길 70",
+    "isRoastery": true,
+    "lat": 37.562,
+    "lng": 126.925,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-yeonnam-reissue-coffee-roasters",
+    "name": "리이슈 커피로스터스",
+    "slug": "reissue-coffee-roasters",
+    "district": "yeonnam",
+    "districtKo": "연남",
+    "address": "서울 마포구 연남로 35, 2층",
+    "isRoastery": true,
+    "lat": 37.562,
+    "lng": 126.925,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-yeonnam-morning-calm-coffee-lab",
+    "name": "모닝캄 커피랩 연남",
+    "slug": "morning-calm-coffee-lab",
+    "district": "yeonnam",
+    "districtKo": "연남",
+    "address": "서울 마포구 성미산로 192",
+    "isRoastery": true,
+    "lat": 37.562,
+    "lng": 126.925,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-yeonnam-gwehdo-coffee-roasters",
+    "name": "궤도 커피 로스터스 연남",
+    "slug": "gwehdo-coffee-roasters",
+    "district": "yeonnam",
+    "districtKo": "연남",
+    "address": "서울 마포구 연남로 19 1층",
+    "isRoastery": true,
+    "lat": 37.562,
+    "lng": 126.925,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-yeonnam-tailor-coffee",
+    "name": "테일러커피 연남1호점",
+    "slug": "tailor-coffee",
+    "district": "yeonnam",
+    "districtKo": "연남",
+    "address": "서울 마포구 성미산로 189 1층",
+    "isRoastery": true,
+    "lat": 37.562,
+    "lng": 126.925,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-hapjeong-anthracite-coffee-roasters",
+    "name": "앤트러사이트 커피 합정",
+    "slug": "anthracite-coffee-roasters",
+    "district": "hapjeong",
+    "districtKo": "합정",
+    "address": "서울 마포구 토정로5길 10",
+    "isRoastery": true,
+    "lat": 37.549,
+    "lng": 126.913,
+    "avgRating": 4.5,
+    "checkinCount": 214
+  },
+  {
+    "id": "cafe-hapjeong-bean-brothers",
+    "name": "빈브라더스 합정",
+    "slug": "bean-brothers",
+    "district": "hapjeong",
+    "districtKo": "합정",
+    "address": "서울 마포구 합정동 368-3",
+    "isRoastery": true,
+    "lat": 37.549,
+    "lng": 126.913,
+    "avgRating": null,
+    "checkinCount": 4
+  },
+  {
+    "id": "cafe-hapjeong-coffee-labs-roastery",
+    "name": "커피랩스 로스터리 합정",
+    "slug": "coffee-labs-roastery",
+    "district": "hapjeong",
+    "districtKo": "합정",
+    "address": "서울 마포구 양화로6길 27, 1·2층",
+    "isRoastery": true,
+    "lat": 37.549,
+    "lng": 126.913,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-hapjeong-180-coffee-roasters",
+    "name": "180커피로스터스 합정",
+    "slug": "180-coffee-roasters",
+    "district": "hapjeong",
+    "districtKo": "합정",
+    "address": "서울 마포구 토정로 8-7, 3층",
+    "isRoastery": true,
+    "lat": 37.549,
+    "lng": 126.913,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-hapjeong-red-plant",
+    "name": "레드플랜트 본점",
+    "slug": "red-plant",
+    "district": "hapjeong",
+    "districtKo": "합정",
+    "address": "서울 마포구 양화로7길 6",
+    "isRoastery": true,
+    "lat": 37.549,
+    "lng": 126.913,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-hapjeong-belief-coffee-roasters",
+    "name": "빌리프커피로스터스",
+    "slug": "belief-coffee-roasters",
+    "district": "hapjeong",
+    "districtKo": "합정",
+    "address": "서울 마포구 양화로11길 50",
+    "isRoastery": true,
+    "lat": 37.549,
+    "lng": 126.913,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-mangwon-deep-blue-lake-coffee-roasters",
+    "name": "딥블루레이크",
+    "slug": "deep-blue-lake-coffee-roasters",
+    "district": "mangwon",
+    "districtKo": "망원",
+    "address": "서울특별시 마포구 포은로6길 11",
+    "isRoastery": true,
+    "lat": 37.556,
+    "lng": 126.902,
+    "avgRating": 4.7,
+    "checkinCount": 89
+  },
+  {
+    "id": "cafe-mangwon-portrait-coffee-bar",
+    "name": "포트레이트 커피(바)",
+    "slug": "portrait-coffee-bar",
+    "district": "mangwon",
+    "districtKo": "망원",
+    "address": "서울특별시 마포구 포은로8길 32",
+    "isRoastery": true,
+    "lat": 37.556,
+    "lng": 126.902,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-mangwon-always-august-roasters",
+    "name": "올웨이즈어거스트 로스터스",
+    "slug": "always-august-roasters",
+    "district": "mangwon",
+    "districtKo": "망원",
+    "address": "서울 마포구 망원로6길 19",
+    "isRoastery": true,
+    "lat": 37.556,
+    "lng": 126.902,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-mangwon-sentov-trafe-coffee",
+    "name": "센토브(트래피 커피)",
+    "slug": "sentov-trafe-coffee",
+    "district": "mangwon",
+    "districtKo": "망원",
+    "address": "서울 마포구 희우정로 98",
+    "isRoastery": true,
+    "lat": 37.556,
+    "lng": 126.902,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-haebangchon-orangorang",
+    "name": "오랑오랑",
+    "slug": "orangorang",
+    "district": "haebangchon",
+    "districtKo": "해방촌",
+    "address": "서울 용산구 소월로20길 26-14",
+    "isRoastery": true,
+    "lat": 37.545,
+    "lng": 126.988,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-dohwa-fritz-coffee-company",
+    "name": "프릳츠 커피 컴퍼니 도화점",
+    "slug": "fritz-coffee-company",
+    "district": "dohwa",
+    "districtKo": "도화",
+    "address": "서울시 마포구 새창로2길 17",
+    "isRoastery": true,
+    "lat": 37.54,
+    "lng": 126.949,
+    "avgRating": 4.6,
+    "checkinCount": 187
+  },
+  {
+    "id": "cafe-sinsa-coffee-arco",
+    "name": "Coffee ARCO",
+    "slug": "coffee-arco",
+    "district": "sinsa",
+    "districtKo": "신사",
+    "address": "서울 강남구 신사동 519-17",
+    "isRoastery": true,
+    "lat": 37.516,
+    "lng": 127.02,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-sinsa-milestone-coffee-roasters",
+    "name": "마일스톤 커피 로스터스 신사",
+    "slug": "milestone-coffee-roasters",
+    "district": "sinsa",
+    "districtKo": "신사",
+    "address": "서울 강남구 논현로159길 49 1층",
+    "isRoastery": true,
+    "lat": 37.516,
+    "lng": 127.02,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-sinsa-tailor-coffee",
+    "name": "테일러커피 신사",
+    "slug": "tailor-coffee",
+    "district": "sinsa",
+    "districtKo": "신사",
+    "address": "서울 강남구 강남대로160길 31",
+    "isRoastery": true,
+    "lat": 37.516,
+    "lng": 127.02,
+    "avgRating": 4.3,
+    "checkinCount": 52
+  },
+  {
+    "id": "cafe-sinsa-heat-coffee-roasters",
+    "name": "히트커피 로스터스 신사",
+    "slug": "heat-coffee-roasters",
+    "district": "sinsa",
+    "districtKo": "신사",
+    "address": "서울 강남구 도산대로17길 34",
+    "isRoastery": true,
+    "lat": 37.516,
+    "lng": 127.02,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-sinsa-coffee-fiel",
+    "name": "커피휘엘 신사역점",
+    "slug": "coffee-fiel",
+    "district": "sinsa",
+    "districtKo": "신사",
+    "address": "서울 강남구 논현로149길 62",
+    "isRoastery": true,
+    "lat": 37.516,
+    "lng": 127.02,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-apgujeong-mark-lane-coffee-roasters",
+    "name": "마크레인 커피로스터스",
+    "slug": "mark-lane-coffee-roasters",
+    "district": "apgujeong",
+    "districtKo": "압구정",
+    "address": "서울 강남구 선릉로157길 23-5",
+    "isRoastery": true,
+    "lat": 37.527,
+    "lng": 127.028,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-apgujeong-bunker-company",
+    "name": "벙커컴퍼니 압구정",
+    "slug": "bunker-company",
+    "district": "apgujeong",
+    "districtKo": "압구정",
+    "address": "서울 강남구 압구정로42길 10",
+    "isRoastery": true,
+    "lat": 37.527,
+    "lng": 127.028,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-apgujeong-camel-coffee",
+    "name": "카멜커피 도산2호점",
+    "slug": "camel-coffee",
+    "district": "apgujeong",
+    "districtKo": "압구정",
+    "address": "서울 강남구 언주로164길 14-1",
+    "isRoastery": true,
+    "lat": 37.527,
+    "lng": 127.028,
+    "avgRating": 4.2,
+    "checkinCount": 77
+  },
+  {
+    "id": "cafe-yangjae-reflect-coffee-roasting-lab",
+    "name": "리플렉트커피 로스팅 랩",
+    "slug": "reflect-coffee-roasting-lab",
+    "district": "yangjae",
+    "districtKo": "양재",
+    "address": "서울 서초구 남부순환로347길 53 104호",
+    "isRoastery": true,
+    "lat": 37.484,
+    "lng": 127.034,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-yangjae-fritz-coffee-company",
+    "name": "프릳츠커피컴퍼니 양재점",
+    "slug": "fritz-coffee-company",
+    "district": "yangjae",
+    "districtKo": "양재",
+    "address": "서울 서초구 강남대로37길 24-11",
+    "isRoastery": true,
+    "lat": 37.484,
+    "lng": 127.034,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-yangjae-terarosa",
+    "name": "테라로사 양재역점",
+    "slug": "terarosa",
+    "district": "yangjae",
+    "districtKo": "양재",
+    "address": "서울 서초구 강남대로 206 엔스빌딩 1층",
+    "isRoastery": true,
+    "lat": 37.484,
+    "lng": 127.034,
+    "avgRating": 4.4,
+    "checkinCount": 96
+  },
+  {
+    "id": "cafe-yangjae-coffee-plant",
+    "name": "커피플랜트 양재",
+    "slug": "coffee-plant",
+    "district": "yangjae",
+    "districtKo": "양재",
+    "address": "서울 서초구 양재동",
+    "isRoastery": true,
+    "lat": 37.484,
+    "lng": 127.034,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-euljiro-coffee-hanyakbang",
+    "name": "커피한약방",
+    "slug": "coffee-hanyakbang",
+    "district": "euljiro",
+    "districtKo": "을지로",
+    "address": "서울 중구 삼일대로12길 16-6",
+    "isRoastery": true,
+    "lat": 37.566,
+    "lng": 126.991,
+    "avgRating": 4.5,
+    "checkinCount": 143
+  },
+  {
+    "id": "cafe-euljiro-leesar-coffee",
+    "name": "리사르커피 을지로점",
+    "slug": "leesar-coffee",
+    "district": "euljiro",
+    "districtKo": "을지로",
+    "address": "서울 중구 창경궁로28-24, 1층",
+    "isRoastery": true,
+    "lat": 37.566,
+    "lng": 126.991,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-euljiro-champ-coffee",
+    "name": "챔프커피 을지로점",
+    "slug": "champ-coffee",
+    "district": "euljiro",
+    "districtKo": "을지로",
+    "address": "서울 중구 을지로 157 라열 3층 381호",
+    "isRoastery": true,
+    "lat": 37.566,
+    "lng": 126.991,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-seochon-yeonhun-roasters",
+    "name": "연흔 로스터스",
+    "slug": "yeonhun-roasters",
+    "district": "seochon",
+    "districtKo": "서촌",
+    "address": "서울 종로구 자하문로7길 29",
+    "isRoastery": true,
+    "lat": 37.579,
+    "lng": 126.97,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-seochon-archivist",
+    "name": "아키비스트",
+    "slug": "archivist",
+    "district": "seochon",
+    "districtKo": "서촌",
+    "address": "서울 종로구 효자로13길 52",
+    "isRoastery": true,
+    "lat": 37.579,
+    "lng": 126.97,
+    "avgRating": 4.4,
+    "checkinCount": 38
+  },
+  {
+    "id": "cafe-seochon-tongin-dong-coffee-workshop-weekend",
+    "name": "통인동커피공방 위켄드",
+    "slug": "tongin-dong-coffee-workshop-weekend",
+    "district": "seochon",
+    "districtKo": "서촌",
+    "address": "서울 종로구 자하문로9길 16, 1층",
+    "isRoastery": true,
+    "lat": 37.579,
+    "lng": 126.97,
+    "avgRating": null,
+    "checkinCount": 0
+  },
+  {
+    "id": "cafe-seochon-coffee-tour-roasters",
+    "name": "커피투어 광화문점",
+    "slug": "coffee-tour-roasters",
+    "district": "seochon",
+    "districtKo": "서촌",
+    "address": "서울 종로구 사직로10길 12, 신우빌딩 1층",
+    "isRoastery": true,
+    "lat": 37.579,
+    "lng": 126.97,
+    "avgRating": null,
+    "checkinCount": 0
+  }
+];
+
+export const SEED_BEANS: MockBean[] = [
+  {
+    "id": "bean-old-dog",
+    "name": "올드독",
+    "slug": "old-dog",
+    "normalizedName": "올드독olddog",
+    "roasterId": "cafe-dohwa-fritz-coffee-company",
+    "roasterName": "프릳츠 커피 컴퍼니 도화점",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "코스타리카40%/인도35%/과테말라25%",
+    "process": "washed",
+    "roastLevel": null,
+    "officialNotes": [
+      "다크초콜릿",
+      "흑당",
+      "로스티드 피칸"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "chocolate",
+      "brown-sugar",
+      "nutty"
+    ]
+  },
+  {
+    "id": "bean-seoul-cinema",
+    "name": "서울 시네마",
+    "slug": "seoul-cinema",
+    "normalizedName": "서울시네마",
+    "roasterId": "cafe-dohwa-fritz-coffee-company",
+    "roasterName": "프릳츠 커피 컴퍼니 도화점",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "밝은 산미와 깨끗한 단맛"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": []
+  },
+  {
+    "id": "bean-natsume-soseki",
+    "name": "나쓰메 소세키",
+    "slug": "natsume-soseki",
+    "normalizedName": "나쓰메소세키",
+    "roasterId": "cafe-hapjeong-anthracite-coffee-roasters",
+    "roasterName": "앤트러사이트 커피 합정",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "에티오피아 아리차·콜롬비아 후일라·과테말라 와이칸",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "시트러스",
+      "아몬드",
+      "밀크초콜릿"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "chocolate",
+      "citrus",
+      "nutty"
+    ]
+  },
+  {
+    "id": "bean-air-and-dream",
+    "name": "공기와 꿈",
+    "slug": "air-and-dream",
+    "normalizedName": "공기와꿈",
+    "roasterId": "cafe-hapjeong-anthracite-coffee-roasters",
+    "roasterName": "앤트러사이트 커피 합정",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "에티오피아 코케·케냐 키리냐가·과테말라 와이칸",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "복합 플로럴",
+      "레드커런트",
+      "자몽",
+      "캐슈넛"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "berry",
+      "citrus",
+      "floral"
+    ]
+  },
+  {
+    "id": "bean-pablo-neruda",
+    "name": "파블로 네루다",
+    "slug": "pablo-neruda",
+    "normalizedName": "파블로네루다",
+    "roasterId": "cafe-hapjeong-anthracite-coffee-roasters",
+    "roasterName": "앤트러사이트 커피 합정",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "과테말라 와이칸·에티오피아 아리차",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "크랜베리",
+      "스트로베리",
+      "헤이즐넛",
+      "브라운슈가"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "brown-sugar",
+      "berry",
+      "nutty"
+    ]
+  },
+  {
+    "id": "bean-bad-blood",
+    "name": "배드 블러드",
+    "slug": "bad-blood",
+    "normalizedName": "배드블러드",
+    "roasterId": "cafe-yeonnam-coffee-libre",
+    "roasterName": "커피리브레 연남",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "에티오피아30%/코스타리카40%/니카라과30%",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "과일 시럽의 단맛"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": []
+  },
+  {
+    "id": "bean-no-surprise",
+    "name": "노 서프라이즈",
+    "slug": "no-surprise",
+    "normalizedName": "노서프라이즈",
+    "roasterId": "cafe-yeonnam-coffee-libre",
+    "roasterName": "커피리브레 연남",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "인도40%/온두라스40%/에티오피아20%",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "농밀한 과일의 단맛"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": []
+  },
+  {
+    "id": "bean-dark-libre",
+    "name": "다크 리브레",
+    "slug": "dark-libre",
+    "normalizedName": "다크리브레",
+    "roasterId": "cafe-yeonnam-coffee-libre",
+    "roasterName": "커피리브레 연남",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "인도50%/온두라스20%/콜롬비아30%",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "다크초콜릿",
+      "견과의 고소함"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "chocolate",
+      "nutty"
+    ]
+  },
+  {
+    "id": "bean-black-suit",
+    "name": "블랙수트",
+    "slug": "black-suit",
+    "normalizedName": "블랙수트",
+    "roasterId": "cafe-hapjeong-bean-brothers",
+    "roasterName": "빈브라더스 합정",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "브라질60%/콜롬비아25%/에티오피아15%",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "풍부한 초콜릿향"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "chocolate"
+    ]
+  },
+  {
+    "id": "bean-velvet-white",
+    "name": "벨벳화이트",
+    "slug": "velvet-white",
+    "normalizedName": "벨벳화이트",
+    "roasterId": "cafe-hapjeong-bean-brothers",
+    "roasterName": "빈브라더스 합정",
+    "origin": "ethiopia",
+    "originKo": "에티오피아",
+    "region": "",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "싱그러운 시트러스향"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "citrus"
+    ]
+  },
+  {
+    "id": "bean-altos-del-paraiso",
+    "name": "콜롬비아 알토스 델 파라이소",
+    "slug": "altos-del-paraiso",
+    "normalizedName": "콜롬비아알토스델파라이소",
+    "roasterId": "cafe-hapjeong-bean-brothers",
+    "roasterName": "빈브라더스 합정",
+    "origin": "colombia",
+    "originKo": "콜롬비아",
+    "region": "",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "과일잼",
+      "야생꿀",
+      "레드커런트"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "honey",
+      "berry"
+    ]
+  },
+  {
+    "id": "bean-violet-blend",
+    "name": "바이올렛 블렌드",
+    "slug": "violet-blend",
+    "normalizedName": "바이올렛블렌드",
+    "roasterId": "cafe-hapjeong-180-coffee-roasters",
+    "roasterName": "180커피로스터스 합정",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "에티오피아 내추럴+콜롬비아 워시드",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "과일의 단맛과 산미"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": []
+  },
+  {
+    "id": "bean-el-renacer-ombligon",
+    "name": "콜롬비아 엘 레나세르 옴블리곤",
+    "slug": "el-renacer-ombligon",
+    "normalizedName": "콜롬비아엘레나세르옴블리곤",
+    "roasterId": "cafe-hapjeong-180-coffee-roasters",
+    "roasterName": "180커피로스터스 합정",
+    "origin": "colombia",
+    "originKo": "콜롬비아",
+    "region": "",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "다크체리",
+      "오렌지필",
+      "벨벳 같은 다크초콜릿 피니시"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "chocolate",
+      "citrus",
+      "stone-fruit"
+    ]
+  },
+  {
+    "id": "bean-el-silencio",
+    "name": "콜롬비아 엘 실렌시오",
+    "slug": "el-silencio",
+    "normalizedName": "콜롬비아엘실렌시오",
+    "roasterId": "cafe-yangjae-reflect-coffee-roasting-lab",
+    "roasterName": "리플렉트커피 로스팅 랩",
+    "origin": "colombia",
+    "originKo": "콜롬비아",
+    "region": "",
+    "process": "washed",
+    "roastLevel": null,
+    "officialNotes": [
+      "망고 등 열대과일향"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "tropical"
+    ]
+  },
+  {
+    "id": "bean-el-rosario",
+    "name": "콜롬비아 엘 로사리오",
+    "slug": "el-rosario",
+    "normalizedName": "콜롬비아엘로사리오",
+    "roasterId": "cafe-yangjae-reflect-coffee-roasting-lab",
+    "roasterName": "리플렉트커피 로스팅 랩",
+    "origin": "colombia",
+    "originKo": "콜롬비아",
+    "region": "",
+    "process": "other",
+    "roastLevel": null,
+    "officialNotes": [
+      "수박향"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": []
+  },
+  {
+    "id": "bean-el-encanto",
+    "name": "콜롬비아 엘 엔칸토",
+    "slug": "el-encanto",
+    "normalizedName": "콜롬비아엘엔칸토",
+    "roasterId": "cafe-yangjae-reflect-coffee-roasting-lab",
+    "roasterName": "리플렉트커피 로스팅 랩",
+    "origin": "colombia",
+    "originKo": "콜롬비아",
+    "region": "",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "딸기 등 베리향"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "berry"
+    ]
+  },
+  {
+    "id": "bean-all-day-blend",
+    "name": "올데이 블렌드",
+    "slug": "all-day-blend",
+    "normalizedName": "올데이블렌드",
+    "roasterId": "cafe-yangjae-terarosa",
+    "roasterName": "테라로사 양재역점",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "과테말라·브라질 베이스+르완다·케냐·에티오피아",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "진한 초콜릿",
+      "농후한 단맛",
+      "부드러운 목넘김"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "chocolate"
+    ]
+  },
+  {
+    "id": "bean-buttery",
+    "name": "버터리",
+    "slug": "buttery",
+    "normalizedName": "버터리",
+    "roasterId": "cafe-apgujeong-bunker-company",
+    "roasterName": "벙커컴퍼니 압구정",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "에티오피아 시다모/콜롬비아 마이크로랏/인도 카피 로얄",
+    "process": null,
+    "roastLevel": 5,
+    "officialNotes": [
+      "진하고 고소한 맛"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "nutty"
+    ]
+  },
+  {
+    "id": "bean-gotige",
+    "name": "고티지",
+    "slug": "gotige",
+    "normalizedName": "고티지",
+    "roasterId": "cafe-apgujeong-camel-coffee",
+    "roasterName": "카멜커피 도산2호점",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "구성 비공개",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "균형잡힌 풍미"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": []
+  },
+  {
+    "id": "bean-new-tendency",
+    "name": "뉴텐던시",
+    "slug": "new-tendency",
+    "normalizedName": "뉴텐던시",
+    "roasterId": "cafe-apgujeong-camel-coffee",
+    "roasterName": "카멜커피 도산2호점",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "구성 비공개",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "조화로운 과일향"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": []
+  },
+  {
+    "id": "bean-black-in-seoul",
+    "name": "블랙 인 서울",
+    "slug": "black-in-seoul",
+    "normalizedName": "블랙인서울",
+    "roasterId": "cafe-euljiro-champ-coffee",
+    "roasterName": "챔프커피 을지로점",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "구성 비공개",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "너트",
+      "카라멜",
+      "초콜릿"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "chocolate",
+      "caramel",
+      "nutty"
+    ]
+  },
+  {
+    "id": "bean-brown-in-seoul",
+    "name": "브라운 인 서울",
+    "slug": "brown-in-seoul",
+    "normalizedName": "브라운인서울",
+    "roasterId": "cafe-euljiro-champ-coffee",
+    "roasterName": "챔프커피 을지로점",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "구성 비공개",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "허니",
+      "카라멜",
+      "딸기"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "caramel",
+      "honey",
+      "berry"
+    ]
+  },
+  {
+    "id": "bean-el-socorro-gesha",
+    "name": "과테말라 엘 소코로 게이샤",
+    "slug": "el-socorro-gesha",
+    "normalizedName": "과테말라엘소코로게이샤",
+    "roasterId": "cafe-seongsu-lowkey",
+    "roasterName": "로우키",
+    "origin": "guatemala",
+    "originKo": "과테말라",
+    "region": "",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": []
+  },
+  {
+    "id": "bean-consaca",
+    "name": "콜롬비아 콘사카",
+    "slug": "consaca",
+    "normalizedName": "콜롬비아콘사카",
+    "roasterId": "cafe-seongsu-lowkey",
+    "roasterName": "로우키",
+    "origin": "colombia",
+    "originKo": "콜롬비아",
+    "region": "",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": []
+  },
+  {
+    "id": "bean-aricha",
+    "name": "에티오피아 아리차",
+    "slug": "aricha",
+    "normalizedName": "에티오피아아리차",
+    "roasterId": "cafe-seongsu-lowkey",
+    "roasterName": "로우키",
+    "origin": "ethiopia",
+    "originKo": "에티오피아",
+    "region": "",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": []
+  },
+  {
+    "id": "bean-deep-blending",
+    "name": "Deep 블렌딩",
+    "slug": "deep-blending",
+    "normalizedName": "deep블렌딩",
+    "roasterId": "cafe-mangwon-deep-blue-lake-coffee-roasters",
+    "roasterName": "딥블루레이크",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "구성 비공개",
+    "process": null,
+    "roastLevel": 2,
+    "officialNotes": [
+      "고소한 향미와 깔끔한 산미"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "nutty"
+    ]
+  },
+  {
+    "id": "bean-blue-blending",
+    "name": "Blue 블렌딩",
+    "slug": "blue-blending",
+    "normalizedName": "blue블렌딩",
+    "roasterId": "cafe-mangwon-deep-blue-lake-coffee-roasters",
+    "roasterName": "딥블루레이크",
+    "origin": "blend",
+    "originKo": "블렌드",
+    "region": "구성 비공개",
+    "process": null,
+    "roastLevel": 2,
+    "officialNotes": [
+      "복합적인 베리류 향미"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "berry"
+    ]
+  },
+  {
+    "id": "bean-travertine-kenya",
+    "name": "케냐 싱글오리진",
+    "slug": "travertine-kenya",
+    "normalizedName": "케냐싱글오리진",
+    "roasterId": "cafe-hannam-travertine",
+    "roasterName": "트래버틴 한남",
+    "origin": "kenya",
+    "originKo": "케냐",
+    "region": "",
+    "process": null,
+    "roastLevel": null,
+    "officialNotes": [
+      "레몬 껍질을 씹은 듯한 산미"
+    ],
+    "avgRating": null,
+    "checkinCount": 0,
+    "avgProfile": null,
+    "topFlavorTags": [
+      "citrus"
+    ]
+  }
+];

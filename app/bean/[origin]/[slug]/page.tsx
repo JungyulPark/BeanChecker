@@ -43,7 +43,8 @@ export default async function BeanPage({
 
         <header className="mt-4">
           <span className="text-caption text-crema-400">
-            {bean.originKo} · {bean.region}
+            {bean.originKo}
+            {bean.region && ` · ${bean.region}`}
           </span>
           <h1 className="font-display mt-1 text-display text-crema-100">{bean.name}</h1>
           {roaster && (
@@ -56,14 +57,20 @@ export default async function BeanPage({
           )}
         </header>
 
-        <section className="mt-6 flex flex-wrap gap-2">
-          <span className="rounded-full border border-roast-700 px-3 py-1 text-caption text-crema-400">
-            {PROCESS_LABEL[bean.process ?? "other"]}
-          </span>
-          <span className="rounded-full border border-roast-700 px-3 py-1 text-caption text-crema-400">
-            로스팅 레벨 {bean.roastLevel}
-          </span>
-        </section>
+        {(bean.process !== null || bean.roastLevel !== null) && (
+          <section className="mt-6 flex flex-wrap gap-2">
+            {bean.process !== null && (
+              <span className="rounded-full border border-roast-700 px-3 py-1 text-caption text-crema-400">
+                {PROCESS_LABEL[bean.process]}
+              </span>
+            )}
+            {bean.roastLevel !== null && (
+              <span className="rounded-full border border-roast-700 px-3 py-1 text-caption text-crema-400">
+                로스팅 레벨 {bean.roastLevel}
+              </span>
+            )}
+          </section>
+        )}
 
         <section className="mt-6 flex flex-col items-center glass-card p-5">
           {bean.avgProfile ? (
@@ -108,7 +115,7 @@ export default async function BeanPage({
 
         <Link
           href="/checkin"
-          className="mt-8 block rounded-full bg-amber-glow px-8 py-3.5 text-center text-body font-semibold text-roast-950"
+          className="pressable mt-8 block rounded-full bg-amber-glow px-8 py-3.5 text-center text-body font-semibold text-roast-950"
         >
           이 원두로 체크인하기
         </Link>
