@@ -44,7 +44,7 @@ export function Hero() {
 
         <Link
           href="/checkin"
-          className="mt-10 rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950"
+          className="mt-10 pressable rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950"
         >
           첫 잔 기록하기
         </Link>

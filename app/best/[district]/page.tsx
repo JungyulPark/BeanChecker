@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BottomNav } from "@/components/BottomNav";
@@ -58,16 +59,29 @@ export default async function BestPage({
 
         <section className="mt-6">
           {ranked.length === 0 ? (
-            <p className="text-body text-crema-400">
-              아직 랭킹에 오른 카페가 없어요 — 5건의 체크인이 모이면 순위가 열려요
-            </p>
+            <div className="glass-card border-dashed p-8 text-center">
+              <p className="text-body text-crema-100">아직 랭킹에 오른 카페가 없어요</p>
+              <p className="mt-1 text-caption text-crema-400">
+                5건의 체크인이 모이면 순위가 열려요 — 첫 잔을 기록해보세요
+              </p>
+              <Link
+                href="/checkin"
+                className="pressable mt-4 inline-block rounded-full bg-amber-glow px-6 py-2.5 text-caption font-semibold text-roast-950"
+              >
+                체크인하기
+              </Link>
+            </div>
           ) : (
             <ol className="flex flex-col gap-2">
               {ranked.map((cafe, i) => (
-                <li key={cafe.id}>
+                <li
+                  key={cafe.id}
+                  className="stagger-item"
+                  style={{ "--stagger-i": i } as CSSProperties}
+                >
                   <Link
                     href={`/cafe/${cafe.district}/${cafe.slug}`}
-                    className="flex items-center gap-3 glass-card px-4 py-3"
+                    className="flex items-center gap-3 glass-card pressable px-4 py-3"
                   >
                     <span className="font-mono w-6 shrink-0 text-h2 text-amber-glow">
                       {i + 1}
@@ -94,11 +108,15 @@ export default async function BestPage({
           <section className="mt-8">
             <h2 className="mb-2 text-caption tracking-[0.08em] text-crema-400">신규 카페</h2>
             <ul className="flex flex-col gap-2">
-              {fresh.map((cafe) => (
-                <li key={cafe.id}>
+              {fresh.map((cafe, i) => (
+                <li
+                  key={cafe.id}
+                  className="stagger-item"
+                  style={{ "--stagger-i": i } as CSSProperties}
+                >
                   <Link
                     href={`/cafe/${cafe.district}/${cafe.slug}`}
-                    className="flex items-center justify-between glass-card px-4 py-3"
+                    className="flex items-center justify-between glass-card pressable px-4 py-3"
                   >
                     <span className="text-body text-crema-100">{cafe.name}</span>
                     <span className="text-caption text-crema-400">평가 수집 중</span>

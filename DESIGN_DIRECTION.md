@@ -45,6 +45,11 @@
 - 근거: ui-ux-pro-max skill의 "Modern Dark (Cinema Mobile)" 스타일 — 다크+글래스모피즘+앰비언트 글로우 조합, "순검정(#000) 회피" 원칙(우리 roast-950 `#120C09`와 이미 부합), `blur 20`/`radius 16`/`hairline border rgba(255,255,255,.08)` 파라미터를 그대로 채택
 - 접근성: 텍스트는 전부 crema-100/crema-400이며 유리 서피스 아래 배경이 항상 roast-950 계열 어두운 톤이라 4.5:1 대비 유지 (밝은 배경 위 글래스가 아니므로 대비 리스크 낮음)
 
+### 모션 규칙 (2026-07-12 추가 — 디자인 폴리시 1차)
+- `.pressable`: 탭 가능한 카드·CTA 전부에 부착. active에서 scale 0.98, 150ms ease-out (HIG/MD scale-feedback). hover 없는 터치 환경의 즉각 반응용
+- `.stagger-item` + 인라인 `--stagger-i`: 리스트 진입 시 항목당 40ms 지연 fade-up(280ms). 지연 상한은 8번째 항목 — 긴 리스트 아래쪽이 한없이 늦지 않게
+- 둘 다 `prefers-reduced-motion: reduce`에서 완전 비활성. 새 모션 추가 시 이 두 유틸리티를 먼저 재사용하고, 새 패턴이 필요하면 여기 등록 후 사용
+
 ### 워드마크 로고타입 (2026-07-09 추가 — FAMIMA 레퍼런스 캘리브레이션)
 - 서체: **Space Grotesk 700** (라틴 전용 — 국문 본문 Pretendard, 국문 디스플레이 Nanum Myeongjo는 그대로 유지, 워드마크에만 예외 적용)
 - 투톤 분리: `BEAN`은 crema-100, 마지막 마침표(`.`)만 amber-glow — 국문 말장난("빈.")과도 자연스럽게 맞물림

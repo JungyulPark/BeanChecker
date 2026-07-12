@@ -80,7 +80,7 @@ export function StepPhoto({
         type="button"
         disabled={!photoDataUrl || busy}
         onClick={onNext}
-        className="mt-2 rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950 disabled:opacity-40"
+        className="mt-2 pressable rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950 disabled:opacity-40"
       >
         다음
       </button>

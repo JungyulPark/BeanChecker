@@ -79,7 +79,7 @@ export default async function SharedCheckinPage({
       <div className="relative mt-12 flex flex-col items-center gap-3">
         <Link
           href="/checkin"
-          className="rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950"
+          className="pressable rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950"
         >
           내 커피 취향도 차트로
         </Link>

@@ -159,7 +159,7 @@ export function StepRate({ onSubmit }: { onSubmit: (r: RateResult) => void }) {
                 <button
                   type="button"
                   onClick={registerBean}
-                  className="rounded-full bg-amber-glow px-4 py-2 text-body font-semibold text-roast-950"
+                  className="pressable rounded-full bg-amber-glow px-4 py-2 text-body font-semibold text-roast-950"
                 >
                   등록
                 </button>
@@ -237,7 +237,7 @@ export function StepRate({ onSubmit }: { onSubmit: (r: RateResult) => void }) {
           bean &&
           onSubmit({ bean, brewMethod, rating, profile, flavorTags: tags, memo, isPublic })
         }
-        className="rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950 disabled:opacity-40"
+        className="pressable rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950 disabled:opacity-40"
       >
         기록 완료
       </button>

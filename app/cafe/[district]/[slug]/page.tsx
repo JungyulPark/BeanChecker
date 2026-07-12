@@ -94,7 +94,7 @@ export default async function CafePage({
 
         <Link
           href="/checkin"
-          className="mt-8 block rounded-full bg-amber-glow px-8 py-3.5 text-center text-body font-semibold text-roast-950"
+          className="pressable mt-8 block rounded-full bg-amber-glow px-8 py-3.5 text-center text-body font-semibold text-roast-950"
         >
           여기서 체크인하기
         </Link>

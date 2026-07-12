@@ -78,7 +78,7 @@ export function ReportButton({
             await addReport({ targetType, targetId, targetLabel, reason, memo: memo || undefined });
             setDone(true);
           }}
-          className="rounded-full bg-amber-glow px-4 py-1.5 text-caption font-semibold text-roast-950"
+          className="pressable rounded-full bg-amber-glow px-4 py-1.5 text-caption font-semibold text-roast-950"
         >
           제출
         </button>

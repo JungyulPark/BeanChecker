@@ -109,7 +109,7 @@ export default function AdminPage() {
                       await updateReportStatus(r.id, "resolved");
                       reload();
                     }}
-                    className="rounded-full bg-amber-glow px-4 py-1.5 text-caption font-semibold text-roast-950"
+                    className="pressable rounded-full bg-amber-glow px-4 py-1.5 text-caption font-semibold text-roast-950"
                   >
                     {r.targetType === "checkin" ? "숨기고 처리완료" : "처리완료"}
                   </button>

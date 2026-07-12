@@ -130,7 +130,7 @@ export default function CheckinPage() {
             <button
               type="button"
               onClick={() => setShowShare(true)}
-              className="rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950"
+              className="pressable rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950"
             >
               공유카드 만들기
             </button>

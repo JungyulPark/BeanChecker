@@ -35,7 +35,7 @@ export function BottomNav() {
             <li key={href}>
               <Link
                 href={href}
-                className={`flex flex-col items-center gap-1 rounded-card px-4 py-1.5 text-caption ${
+                className={`pressable flex flex-col items-center gap-1 rounded-card px-4 py-1.5 text-caption ${
                   active ? "text-amber-glow" : "text-crema-400"
                 }`}
               >

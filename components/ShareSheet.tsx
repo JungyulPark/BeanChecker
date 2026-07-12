@@ -116,7 +116,7 @@ export function ShareSheet({ data }: { data: ShareCardData }) {
         <button
           type="button"
           onClick={handleShare}
-          className="rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950"
+          className="pressable rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950"
         >
           {canWebShareFiles ? "공유하기" : "이미지 저장"}
         </button>
