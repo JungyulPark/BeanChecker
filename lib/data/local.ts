@@ -24,7 +24,7 @@ export type LocalCheckin = {
   rating: number;
   profile: FlavorProfile;
   flavorTags: FlavorTagId[];
-  photoDataUrl: string;
+  photoDataUrl: string | null; // 사진은 선택 — 인증은 보상이지 게이트가 아니다 (CLAUDE.md §1)
   gpsVerified: boolean;
   memo?: string;
   isPublic: boolean;

@@ -79,7 +79,6 @@ export default function CheckinPage() {
   };
 
   const handleSubmit = async (r: RateResult) => {
-    if (!photoDataUrl) return;
     const record = await addCheckin({
       context,
       cafeId: cafe?.id ?? null,
@@ -204,7 +203,13 @@ export default function CheckinPage() {
           onNext={() => setStep(3)}
         />
       )}
-      {step === 3 && <StepRate onSubmit={handleSubmit} />}
+      {step === 3 && (
+        <StepRate
+          cafeId={cafe?.id ?? null}
+          cafeName={cafe?.name ?? null}
+          onSubmit={handleSubmit}
+        />
+      )}
 
       {step > 1 && (
         <button

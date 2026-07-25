@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState, type CSSProperties } from "react";
 import { BottomNav } from "@/components/BottomNav";
 import { KakaoMap } from "@/components/KakaoMap";
+import { RadarChart } from "@/components/RadarChart";
 import { Wordmark } from "@/components/Wordmark";
 import { listCheckins, type LocalCheckin } from "@/lib/data/local";
 import { listCafes } from "@/lib/data/catalog";
@@ -56,8 +57,12 @@ export default function MapPage() {
                   href="/diary"
                   className="w-40 shrink-0 snap-start glass-card p-2.5"
                 >
-                  <div className="relative aspect-square w-full overflow-hidden rounded-[8px]">
-                    <Image src={c.photoDataUrl} alt="" fill unoptimized className="object-cover" />
+                  <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-[8px]">
+                    {c.photoDataUrl ? (
+                      <Image src={c.photoDataUrl} alt="" fill unoptimized className="object-cover" />
+                    ) : (
+                      <RadarChart profile={c.profile} size={120} showLabels={false} />
+                    )}
                   </div>
                   <p className="mt-2 truncate text-caption font-semibold text-crema-100">
                     {c.beanName}

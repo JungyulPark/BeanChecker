@@ -72,17 +72,19 @@ export function StepPhoto({
       />
 
       <p className="text-caption text-crema-400">
-        다른 손님의 얼굴이 나오지 않게 찍어주세요.
+        {photoDataUrl
+          ? "다른 손님의 얼굴이 나오지 않게 찍어주세요."
+          : "사진은 선택이에요 — 없어도 기록은 남습니다. 있으면 공유카드가 예뻐져요."}
       </p>
       {error && <p className="text-caption text-amber-glow">{error}</p>}
 
       <button
         type="button"
-        disabled={!photoDataUrl || busy}
+        disabled={busy}
         onClick={onNext}
         className="mt-2 pressable rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950 disabled:opacity-40"
       >
-        다음
+        {photoDataUrl ? "다음" : "사진 없이 계속"}
       </button>
     </div>
   );

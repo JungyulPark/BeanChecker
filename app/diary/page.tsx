@@ -10,7 +10,14 @@ import { listCheckins, type LocalCheckin } from "@/lib/data/local";
 import { FLAVOR_TAGS } from "@/lib/flavorTags";
 import type { FlavorProfile } from "@/types/domain";
 
-const RADAR_MIN_CHECKINS = 10; // user_stats avg_profile 10건 룰 (TECHNICAL_SPEC §1)
+/**
+ * 내 기록은 1잔부터 레이더를 연다.
+ * 5건·10건 룰은 **공개 집계**(원두·카페 평균, user_stats)에 적용되는 정책이지
+ * 내 개인 기록에 적용할 이유가 없다 — 그동안 이걸 과하게 적용해서
+ * 제품의 시그니처(레이더)를 스스로 가리고 있었다 (DESIGN_DIRECTION §2).
+ * 대신 표본 수를 함께 표시해 "몇 잔 기준인지"를 정직하게 알린다.
+ */
+const RADAR_SETTLED_CHECKINS = 10; // 이 이상이면 "취향이 잡혔다"고 표현
 
 function tagLabel(id: string) {
   return FLAVOR_TAGS.find((t) => t.id === id)?.label ?? id;
@@ -119,10 +126,15 @@ export default function DiaryPage() {
             </div>
           </section>
 
-          {/* 취향 레이더 — 10건 룰 */}
+          {/* 취향 레이더 — 내 기록은 1잔부터 (공개 집계 룰과 별개) */}
           <section className="mt-3 glass-card p-4">
-            <p className="text-caption text-crema-400">나의 취향 레이더</p>
-            {checkins.length >= RADAR_MIN_CHECKINS && stats!.profile ? (
+            <div className="flex items-baseline justify-between">
+              <p className="text-caption text-crema-400">나의 취향 레이더</p>
+              <p className="font-mono text-caption text-crema-400">
+                {checkins.length}잔 기준
+              </p>
+            </div>
+            {stats!.profile && (
               <div className="mt-2 flex flex-col items-center">
                 <RadarChart profile={stats!.profile} size={220} />
                 <div className="mt-2 flex gap-1.5">
@@ -135,14 +147,16 @@ export default function DiaryPage() {
                     </span>
                   ))}
                 </div>
+                {checkins.length < RADAR_SETTLED_CHECKINS && (
+                  <p className="mt-3 text-center text-caption text-crema-400">
+                    아직 표본이 적어요 —{" "}
+                    <span className="font-mono text-crema-100">
+                      {checkins.length}/{RADAR_SETTLED_CHECKINS}
+                    </span>
+                    잔이 쌓이면 취향의 윤곽이 뚜렷해져요
+                  </p>
+                )}
               </div>
-            ) : (
-              <p className="mt-2 text-body text-crema-400">
-                {RADAR_MIN_CHECKINS}잔이 쌓이면 취향 레이더가 열려요 — 지금{" "}
-                <span className="font-mono text-crema-100">
-                  {checkins.length}/{RADAR_MIN_CHECKINS}
-                </span>
-              </p>
             )}
           </section>
 
@@ -153,14 +167,20 @@ export default function DiaryPage() {
                 key={c.id}
                 className="flex gap-3 glass-card p-3"
               >
-                <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-[10px]">
-                  <Image
-                    src={c.photoDataUrl}
-                    alt=""
-                    fill
-                    unoptimized
-                    className="object-cover"
-                  />
+                {/* 사진이 없으면 향미 레이더가 썸네일 자리를 대신한다 —
+                    사진 없는 기록도 시각적으로 비지 않게(시그니처 노출) */}
+                <div className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-[10px]">
+                  {c.photoDataUrl ? (
+                    <Image
+                      src={c.photoDataUrl}
+                      alt=""
+                      fill
+                      unoptimized
+                      className="object-cover"
+                    />
+                  ) : (
+                    <RadarChart profile={c.profile} size={78} showLabels={false} />
+                  )}
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-baseline justify-between gap-2">

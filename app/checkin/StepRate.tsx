@@ -2,7 +2,13 @@
 
 import { useMemo, useState } from "react";
 import { StarRating } from "@/components/StarRating";
-import { FlavorSliders, DEFAULT_PROFILE } from "@/components/FlavorSliders";
+import {
+  FlavorSliders,
+  EMPTY_PROFILE,
+  ratedAxisCount,
+  toFlavorProfile,
+  type DraftFlavorProfile,
+} from "@/components/FlavorSliders";
 import { TagPicker } from "@/components/TagPicker";
 import { MOCK_BEANS, type MockBean } from "@/lib/mock/seed";
 import type { FlavorProfile } from "@/types/domain";
@@ -40,8 +46,19 @@ function normalize(name: string) {
 
 /**
  * 스텝3: 원두 선택(검색 우선, 없을 때만 신규 등록 2필드 — 중복 방지) + 평가.
+ *
+ * cafeId가 있으면 그 로스터리의 원두를 검색 전에 먼저 보여준다 —
+ * 실제 장면("카운터 앞에서 오늘의 원두를 고른다")에서 타이핑을 없애는 게 핵심 (P6).
  */
-export function StepRate({ onSubmit }: { onSubmit: (r: RateResult) => void }) {
+export function StepRate({
+  cafeId,
+  cafeName,
+  onSubmit,
+}: {
+  cafeId?: string | null;
+  cafeName?: string | null;
+  onSubmit: (r: RateResult) => void;
+}) {
   const [beanQuery, setBeanQuery] = useState("");
   const [bean, setBean] = useState<RateResult["bean"] | null>(null);
   const [registering, setRegistering] = useState(false);
@@ -49,16 +66,26 @@ export function StepRate({ onSubmit }: { onSubmit: (r: RateResult) => void }) {
 
   const [brewMethod, setBrewMethod] = useState<RateResult["brewMethod"]>("filter");
   const [rating, setRating] = useState(0);
-  const [profile, setProfile] = useState<FlavorProfile>(DEFAULT_PROFILE);
+  const [profile, setProfile] = useState<DraftFlavorProfile>(EMPTY_PROFILE);
   const [tags, setTags] = useState<FlavorTagId[]>([]);
   const [memo, setMemo] = useState("");
   const [isPublic, setIsPublic] = useState(true);
 
+  // 이 카페(로스터리)의 원두 — 검색 없이 바로 고를 수 있는 기본 선택지
+  const cafeBeans = useMemo(
+    () => (cafeId ? MOCK_BEANS.filter((b) => b.roasterId === cafeId) : []),
+    [cafeId],
+  );
+
   const matches = useMemo(() => {
-    if (!beanQuery) return MOCK_BEANS;
+    if (!beanQuery) {
+      // 검색 전에는 이 카페 원두를 위로, 나머지는 아래로
+      const rest = MOCK_BEANS.filter((b) => !cafeBeans.includes(b));
+      return [...cafeBeans, ...rest];
+    }
     const q = normalize(beanQuery);
     return MOCK_BEANS.filter((b) => b.normalizedName.includes(q));
-  }, [beanQuery]);
+  }, [beanQuery, cafeBeans]);
 
   const exactDup = useMemo(
     () => MOCK_BEANS.find((b) => b.normalizedName === normalize(beanQuery)),
@@ -79,7 +106,11 @@ export function StepRate({ onSubmit }: { onSubmit: (r: RateResult) => void }) {
     setRegistering(false);
   };
 
-  const valid = bean !== null && rating > 0 && tags.length >= 1;
+  const showCafeBeans = cafeBeans.length > 0 && !beanQuery;
+  const completeProfile = toFlavorProfile(profile);
+  const ratedAxes = ratedAxisCount(profile);
+  const valid =
+    bean !== null && rating > 0 && tags.length >= 1 && completeProfile !== null;
 
   return (
     <div className="flex flex-col gap-7">
@@ -108,6 +139,33 @@ export function StepRate({ onSubmit }: { onSubmit: (r: RateResult) => void }) {
           </div>
         ) : (
           <div className="flex flex-col gap-2">
+            {/* 이 카페의 원두 — 검색 전 기본 선택지 (타이핑 없이 한 탭) */}
+            {showCafeBeans && (
+              <>
+                <p className="text-caption text-crema-400">
+                  {cafeName ? `${cafeName}의 원두` : "이 카페의 원두"}
+                </p>
+                <ul className="flex flex-col gap-1.5">
+                  {cafeBeans.map((b) => (
+                    <li key={b.id}>
+                      <button
+                        type="button"
+                        onClick={() => selectBean(b)}
+                        className="flex w-full items-center justify-between glass-card pressable border-amber-glow/40 px-4 py-2.5 text-left"
+                      >
+                        <span className="text-body text-crema-100">{b.name}</span>
+                        <span className="shrink-0 text-caption text-crema-400">
+                          {b.originKo}
+                        </span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-1 text-caption text-crema-400">
+                  찾는 원두가 없나요? 아래에서 검색하세요
+                </p>
+              </>
+            )}
             <input
               type="search"
               value={beanQuery}
@@ -119,20 +177,25 @@ export function StepRate({ onSubmit }: { onSubmit: (r: RateResult) => void }) {
               className="w-full glass-card px-4 py-3 text-body text-crema-100 placeholder:text-crema-400/60 focus:border-amber-glow focus:outline-none"
             />
             <ul className="flex flex-col gap-1.5">
-              {matches.slice(0, 5).map((b) => (
-                <li key={b.id}>
-                  <button
-                    type="button"
-                    onClick={() => selectBean(b)}
-                    className="flex w-full items-center justify-between glass-card px-4 py-2.5 text-left"
-                  >
-                    <span className="text-body text-crema-100">{b.name}</span>
-                    <span className="text-caption text-crema-400">
-                      {b.roasterName}
-                    </span>
-                  </button>
-                </li>
-              ))}
+              {(showCafeBeans
+                ? matches.filter((b) => !cafeBeans.includes(b))
+                : matches
+              )
+                .slice(0, 5)
+                .map((b) => (
+                  <li key={b.id}>
+                    <button
+                      type="button"
+                      onClick={() => selectBean(b)}
+                      className="flex w-full items-center justify-between glass-card pressable px-4 py-2.5 text-left"
+                    >
+                      <span className="text-body text-crema-100">{b.name}</span>
+                      <span className="shrink-0 text-caption text-crema-400">
+                        {b.roasterName}
+                      </span>
+                    </button>
+                  </li>
+                ))}
             </ul>
             {beanQuery.trim().length >= 2 && !exactDup && !registering && (
               <button
@@ -196,9 +259,17 @@ export function StepRate({ onSubmit }: { onSubmit: (r: RateResult) => void }) {
         <StarRating value={rating} onChange={setRating} />
       </section>
 
-      {/* 5축 슬라이더 */}
+      {/* 5축 슬라이더 — 손대지 않은 축은 "–"(미평가). 5축을 다 평가해야 기록 완료 */}
       <section>
-        <h2 className="mb-3 text-body font-semibold text-crema-100">향미 프로필</h2>
+        <h2 className="mb-1 text-body font-semibold text-crema-100">
+          향미 프로필{" "}
+          <span className="font-mono font-normal text-crema-400">
+            {ratedAxes}/5
+          </span>
+        </h2>
+        <p className="mb-3 text-caption text-crema-400">
+          슬라이더를 움직여 평가하세요 — 이 다섯 축이 당신의 취향 레이더가 됩니다
+        </p>
         <FlavorSliders value={profile} onChange={setProfile} />
       </section>
 
@@ -230,17 +301,39 @@ export function StepRate({ onSubmit }: { onSubmit: (r: RateResult) => void }) {
         </label>
       </section>
 
-      <button
-        type="button"
-        disabled={!valid}
-        onClick={() =>
-          bean &&
-          onSubmit({ bean, brewMethod, rating, profile, flavorTags: tags, memo, isPublic })
-        }
-        className="pressable rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950 disabled:opacity-40"
-      >
-        기록 완료
-      </button>
+      <div className="flex flex-col gap-2">
+        {!valid && (
+          <p className="text-caption text-crema-400">
+            {bean === null
+              ? "원두를 선택하면 기록할 수 있어요"
+              : rating === 0
+                ? "별점을 남겨주세요"
+                : completeProfile === null
+                  ? `향미 5축을 모두 평가해주세요 (${ratedAxes}/5)`
+                  : "향미 태그를 1개 이상 골라주세요"}
+          </p>
+        )}
+        <button
+          type="button"
+          disabled={!valid}
+          onClick={() =>
+            bean &&
+            completeProfile &&
+            onSubmit({
+              bean,
+              brewMethod,
+              rating,
+              profile: completeProfile,
+              flavorTags: tags,
+              memo,
+              isPublic,
+            })
+          }
+          className="pressable rounded-full bg-amber-glow px-8 py-3.5 text-body font-semibold text-roast-950 disabled:opacity-40"
+        >
+          기록 완료
+        </button>
+      </div>
     </div>
   );
 }
