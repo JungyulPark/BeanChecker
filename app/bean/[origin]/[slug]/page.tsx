@@ -4,7 +4,8 @@ import { BottomNav } from "@/components/BottomNav";
 import { RadarChart } from "@/components/RadarChart";
 import { ReportButton } from "@/components/ReportButton";
 import { FLAVOR_TAGS } from "@/lib/flavorTags";
-import { findBean, MOCK_BEANS, MOCK_CAFES } from "@/lib/mock/seed";
+import { findBean, findCafeById } from "@/lib/data/catalog";
+import { MOCK_BEANS } from "@/lib/mock/seed";
 
 const PROCESS_LABEL: Record<string, string> = {
   washed: "워시드",
@@ -19,6 +20,8 @@ const PROCESS_LABEL: Record<string, string> = {
  * 이 제품의 핵심 차별화: 카페가 아니라 원두가 1차 개체 (CLAUDE.md §1).
  * avgProfile은 5건 룰 미달 시 null — 레이더 대신 "평가 수집 중" 안내.
  */
+export const revalidate = 300;
+
 export function generateStaticParams() {
   return MOCK_BEANS.map((b) => ({ origin: b.origin, slug: b.slug }));
 }
@@ -29,10 +32,10 @@ export default async function BeanPage({
   params: Promise<{ origin: string; slug: string }>;
 }) {
   const { origin, slug } = await params;
-  const bean = findBean(origin, slug);
+  const bean = await findBean(origin, slug);
   if (!bean) notFound();
 
-  const roaster = MOCK_CAFES.find((c) => c.id === bean.roasterId);
+  const roaster = bean.roasterId ? await findCafeById(bean.roasterId) : null;
 
   return (
     <div className="flex min-h-dvh flex-col">

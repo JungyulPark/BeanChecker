@@ -3,12 +3,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BottomNav } from "@/components/BottomNav";
 import { FLAVOR_TAG_GROUPS, FLAVOR_TAGS } from "@/lib/flavorTags";
-import { beansByFlavorTag } from "@/lib/mock/seed";
+import { beansByFlavorTag } from "@/lib/data/catalog";
 
 /**
  * /flavor/[tag] — ISR, 태그별 원두 (TECHNICAL_SPEC §4).
  * P4(다음 잔 막막함) 타겟: "베리 계열 원두 잘하는 곳" 같은 검색이 성립하게 하는 페이지.
  */
+export const revalidate = 300;
+
 export function generateStaticParams() {
   return FLAVOR_TAGS.map((t) => ({ tag: t.id }));
 }
@@ -22,7 +24,7 @@ export default async function FlavorPage({
   const tagInfo = FLAVOR_TAGS.find((t) => t.id === tag);
   if (!tagInfo) notFound();
 
-  const beans = beansByFlavorTag(tagInfo.id).sort(
+  const beans = (await beansByFlavorTag(tagInfo.id)).sort(
     (a, b) => (b.avgRating ?? 0) - (a.avgRating ?? 0),
   );
 

@@ -7,7 +7,8 @@ import { BottomNav } from "@/components/BottomNav";
 import { KakaoMap } from "@/components/KakaoMap";
 import { Wordmark } from "@/components/Wordmark";
 import { listCheckins, type LocalCheckin } from "@/lib/data/local";
-import { MOCK_CAFES } from "@/lib/mock/seed";
+import { listCafes } from "@/lib/data/catalog";
+import { MOCK_CAFES, type MockCafe } from "@/lib/mock/seed";
 
 /**
  * /map — 로그인 후 기본 진입점 (TECHNICAL_SPEC §4).
@@ -16,9 +17,12 @@ import { MOCK_CAFES } from "@/lib/mock/seed";
  */
 export default function MapPage() {
   const [recent, setRecent] = useState<LocalCheckin[] | null>(null);
+  const [cafes, setCafes] = useState<MockCafe[]>(MOCK_CAFES);
 
   useEffect(() => {
     listCheckins().then((all) => setRecent(all.slice(0, 3)));
+    // DB 연결 환경이면 실데이터로 교체 (미연결이면 listCafes가 시드를 그대로 반환)
+    listCafes().then(setCafes);
   }, []);
 
   return (
@@ -84,7 +88,7 @@ export default function MapPage() {
         </section>
 
         {/* 실지도 — 카카오 JS 키가 설정된 환경에서만 렌더 (없으면 아래 리스트만) */}
-        <KakaoMap cafes={MOCK_CAFES} />
+        <KakaoMap cafes={cafes} />
 
         {/* 근처 카페/로스터리 (지역 브라우징) */}
         <section>
@@ -92,7 +96,7 @@ export default function MapPage() {
             로스터리·카페
           </h2>
           <ul className="flex flex-col gap-2">
-            {MOCK_CAFES.map((cafe, i) => (
+            {cafes.map((cafe, i) => (
               <li
                 key={cafe.id}
                 className="stagger-item"

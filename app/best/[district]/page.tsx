@@ -2,12 +2,15 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BottomNav } from "@/components/BottomNav";
-import { cafesByDistrict, DISTRICTS } from "@/lib/mock/seed";
+import { cafesByDistrict } from "@/lib/data/catalog";
+import { DISTRICTS } from "@/lib/mock/seed";
 
 /**
  * /best/[district] — ISR, 지역 랭킹 (TECHNICAL_SPEC §4).
  * 5건 미달 카페는 랭킹에서 빼고 "신규 카페" 섹션으로 분리 (평점 노출 정책 확정 사항).
  */
+export const revalidate = 300;
+
 export function generateStaticParams() {
   return DISTRICTS.map((d) => ({ district: d.id }));
 }
@@ -21,7 +24,7 @@ export default async function BestPage({
   const districtInfo = DISTRICTS.find((d) => d.id === district);
   if (!districtInfo) notFound();
 
-  const cafes = cafesByDistrict(district);
+  const cafes = await cafesByDistrict(district);
   const ranked = cafes
     .filter((c) => c.avgRating !== null)
     .sort((a, b) => (b.avgRating ?? 0) - (a.avgRating ?? 0));

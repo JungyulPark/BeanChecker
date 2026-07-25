@@ -2,13 +2,17 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BottomNav } from "@/components/BottomNav";
 import { ReportButton } from "@/components/ReportButton";
-import { beansByRoaster, findCafe, MOCK_CAFES } from "@/lib/mock/seed";
+import { beansByRoaster, findCafe } from "@/lib/data/catalog";
+import { MOCK_CAFES } from "@/lib/mock/seed";
 
 /**
  * /cafe/[district]/[slug] — ISR (TECHNICAL_SPEC §4).
- * 평점은 5건 룰: avgRating null이면 "평가 수집 중", 개별 체크인은 항상 노출(여기선 목데이터라 생략).
- * 실 데이터 연결 시 이 페이지의 fetch를 Supabase 쿼리로 교체하고 revalidate: 3600 유지.
+ * 평점은 5건 룰: avgRating null이면 "평가 수집 중".
+ * 읽기는 lib/data/catalog.ts — Supabase 우선, env 미설정 시 시드 폴백.
+ * 사전 렌더는 시드 slug 기준, DB에만 있는 항목은 요청 시 렌더(dynamicParams).
  */
+export const revalidate = 300;
+
 export function generateStaticParams() {
   return MOCK_CAFES.map((c) => ({ district: c.district, slug: c.slug }));
 }
@@ -19,10 +23,10 @@ export default async function CafePage({
   params: Promise<{ district: string; slug: string }>;
 }) {
   const { district, slug } = await params;
-  const cafe = findCafe(district, slug);
+  const cafe = await findCafe(district, slug);
   if (!cafe) notFound();
 
-  const beans = beansByRoaster(cafe.id);
+  const beans = await beansByRoaster(cafe.id);
 
   return (
     <div className="flex min-h-dvh flex-col">
