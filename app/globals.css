@@ -6,8 +6,8 @@
  * 토큰 밖 임의 색/폰트 사용 금지.
  */
 @theme {
-  --color-roast-950: #120c09; /* 페이지 배경 (순검정 아님 — 글래스 레퍼런스도 순검정 금지) */
-  --color-roast-900: #1c1310; /* 카드/서피스 베이스(글래스는 이 색의 반투명 버전) */
+  --color-roast-950: #1d130d; /* 페이지 배경 — "저녁의 로스터리" (2026-07-13 반계조 상승, "너무 어둡다" 피드백 반영. 순검정 금지 원칙 유지) */
+  --color-roast-900: #1c1310; /* 카드/서피스 베이스(글래스는 이보다 밝은 웜브라운 반투명 — 아래 --glass-bg) */
   --color-roast-700: #3b2a20; /* 보더, 분리선 (비-글래스 요소용) */
   --color-crema-100: #f1e7db; /* 본문 텍스트 */
   --color-crema-400: #b9a48f; /* 보조 텍스트 */
@@ -30,10 +30,11 @@
 
 /* 글래스 서피스 전용 토큰 — Tailwind 유틸리티가 아니라 직접 참조하는 원시 값 */
 :root {
-  --glass-bg: rgba(28, 19, 16, 0.55);
-  --glass-bg-strong: rgba(28, 19, 16, 0.72);
-  --glass-border: rgba(241, 231, 219, 0.1);
-  --glass-highlight: rgba(255, 255, 255, 0.05);
+  /* 2026-07-13 "저녁의 로스터리" 조정: 유리를 더 밝은 웜브라운으로 올려 배경과의 분리감 확보 */
+  --glass-bg: rgba(58, 40, 28, 0.5);
+  --glass-bg-strong: rgba(48, 33, 24, 0.78);
+  --glass-border: rgba(241, 231, 219, 0.17);
+  --glass-highlight: rgba(255, 255, 255, 0.09);
   --glass-blur: 20px;
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 24px rgba(217, 142, 50, 0.06);
 }
@@ -59,9 +60,9 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 60% 40% at 15% -5%, rgba(217, 142, 50, 0.14), transparent 60%),
-    radial-gradient(ellipse 50% 35% at 100% 20%, rgba(122, 74, 36, 0.18), transparent 60%),
-    radial-gradient(ellipse 55% 45% at 20% 100%, rgba(122, 74, 36, 0.12), transparent 65%);
+    radial-gradient(ellipse 70% 45% at 15% -5%, rgba(217, 142, 50, 0.26), transparent 62%),
+    radial-gradient(ellipse 55% 40% at 100% 20%, rgba(140, 88, 44, 0.3), transparent 62%),
+    radial-gradient(ellipse 60% 50% at 20% 100%, rgba(140, 88, 44, 0.22), transparent 66%);
 }
 
 /* 히어로/공유카드 배경 아우라 */

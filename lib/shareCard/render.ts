@@ -9,7 +9,7 @@ import type { ShareCardData } from "@/lib/shareCard";
  */
 
 const COLOR = {
-  roast950: "#120C09",
+  roast950: "#1D130D",
   roast900: "#1C1310",
   roast700: "#3B2A20",
   crema100: "#F1E7DB",

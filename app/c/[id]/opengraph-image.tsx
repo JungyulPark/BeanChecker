@@ -8,7 +8,7 @@ export const size = { width: 1080, height: 1080 };
 export const contentType = "image/png";
 
 const COLOR = {
-  roast950: "#120C09",
+  roast950: "#1D130D",
   roast700: "#3B2A20",
   crema100: "#F1E7DB",
   crema400: "#B9A48F",
