@@ -27,8 +27,16 @@ const wordmarkFont = Space_Grotesk({
 export const metadata: Metadata = {
   // 도메인 미확정(NAMING.md) — Vercel 배포 시 NEXT_PUBLIC_SITE_URL env로 실 도메인 주입
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  title: `${BRAND.name} — ${BRAND.tagline}`,
+  title: {
+    default: `${BRAND.name} — ${BRAND.tagline}`,
+    template: `%s | ${BRAND.name}`, // SEO 페이지들의 generateMetadata title에 브랜드 접미 자동 부착
+  },
   description: BRAND.description,
+  openGraph: {
+    siteName: BRAND.name,
+    locale: "ko_KR",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

@@ -15,6 +15,21 @@ export function generateStaticParams() {
   return DISTRICTS.map((d) => ({ district: d.id }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ district: string }>;
+}) {
+  const { district } = await params;
+  const d = DISTRICTS.find((x) => x.id === district);
+  if (!d) return {};
+  return {
+    title: `${d.ko} 스페셜티 카페·로스터리 베스트`,
+    description: `${d.ko}에서 커피 맛으로 평가받은 스페셜티 카페 랭킹. 분위기·주차 점수가 아닌, 실제 마신 잔의 향미 평가로 만든 순위입니다.`,
+    alternates: { canonical: `/best/${district}` },
+  };
+}
+
 export default async function BestPage({
   params,
 }: {

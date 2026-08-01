@@ -26,6 +26,22 @@ export function generateStaticParams() {
   return MOCK_BEANS.map((b) => ({ origin: b.origin, slug: b.slug }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ origin: string; slug: string }>;
+}) {
+  const { origin, slug } = await params;
+  const bean = await findBean(origin, slug);
+  if (!bean) return {};
+  const notes = bean.officialNotes.length > 0 ? ` 컵노트: ${bean.officialNotes.join(", ")}.` : "";
+  return {
+    title: `${bean.name} — ${bean.roasterName ?? bean.originKo} 원두 정보·향미 평가`,
+    description: `${bean.originKo}${bean.region ? ` ${bean.region}` : ""} 원두.${notes} 커피인들의 실제 향미 프로필을 확인하세요.`,
+    alternates: { canonical: `/bean/${origin}/${slug}` },
+  };
+}
+
 export default async function BeanPage({
   params,
 }: {
@@ -37,8 +53,30 @@ export default async function BeanPage({
 
   const roaster = bean.roasterId ? await findCafeById(bean.roasterId) : null;
 
+  // 구조화 데이터 — 원두가 1차 개체라는 우리 모델을 검색엔진에도 그대로 전달
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: bean.name,
+    category: "Specialty Coffee Beans",
+    ...(bean.roasterName && { brand: { "@type": "Brand", name: bean.roasterName } }),
+    ...(bean.officialNotes.length > 0 && { description: bean.officialNotes.join(", ") }),
+    ...(bean.avgRating !== null && {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: bean.avgRating,
+        reviewCount: bean.checkinCount,
+        bestRating: 5,
+      },
+    }),
+  };
+
   return (
     <div className="flex min-h-dvh flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <main className="mx-auto w-full max-w-md flex-1 px-6 py-8">
         <Link href="/map" className="text-caption text-crema-400">
           ← 홈

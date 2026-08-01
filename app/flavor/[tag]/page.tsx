@@ -15,6 +15,21 @@ export function generateStaticParams() {
   return FLAVOR_TAGS.map((t) => ({ tag: t.id }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ tag: string }>;
+}) {
+  const { tag } = await params;
+  const t = FLAVOR_TAGS.find((x) => x.id === tag);
+  if (!t) return {};
+  return {
+    title: `${t.label} 향미 원두 찾기`,
+    description: `${t.label} 계열 향미로 기록된 스페셜티 원두 목록. 로스터 컵노트와 커피인들의 실제 평가로 다음 잔을 고르세요.`,
+    alternates: { canonical: `/flavor/${tag}` },
+  };
+}
+
 export default async function FlavorPage({
   params,
 }: {

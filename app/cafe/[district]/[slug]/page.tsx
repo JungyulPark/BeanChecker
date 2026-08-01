@@ -18,6 +18,22 @@ export function generateStaticParams() {
   return MOCK_CAFES.map((c) => ({ district: c.district, slug: c.slug }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ district: string; slug: string }>;
+}) {
+  const { district, slug } = await params;
+  const cafe = await findCafe(district, slug);
+  if (!cafe) return {};
+  const rating = cafe.avgRating !== null ? ` 평점 ★${cafe.avgRating.toFixed(1)}.` : "";
+  return {
+    title: `${cafe.name} — ${cafe.districtKo} 스페셜티 ${cafe.isRoastery ? "로스터리" : "카페"}`,
+    description: `${cafe.address}.${rating} ${cafe.name}의 원두와 커피인들의 향미 평가를 확인하세요.`,
+    alternates: { canonical: `/cafe/${district}/${slug}` },
+  };
+}
+
 export default async function CafePage({
   params,
 }: {
@@ -34,8 +50,29 @@ export default async function CafePage({
     .filter((c) => c.id !== cafe.id)
     .slice(0, 5);
 
+  // 구조화 데이터 — 카카오맵에 없는 "커피 맛" 정보의 검색 노출이 우리 SEO 차별점
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    name: cafe.name,
+    address: { "@type": "PostalAddress", streetAddress: cafe.address, addressCountry: "KR" },
+    servesCuisine: "Specialty Coffee",
+    ...(cafe.avgRating !== null && {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: cafe.avgRating,
+        reviewCount: cafe.checkinCount,
+        bestRating: 5,
+      },
+    }),
+  };
+
   return (
     <div className="flex min-h-dvh flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <main className="mx-auto w-full max-w-md flex-1 px-6 py-8">
         <Link href="/map" className="text-caption text-crema-400">
           ← 홈
