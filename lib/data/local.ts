@@ -79,6 +79,41 @@ export async function updateCheckinHidden(id: string, hidden: boolean): Promise<
 }
 
 /**
+ * 유저 등록 카페 — 데이터 신선도 전략의 1차 채널 (PRODUCT.md §4):
+ * 새 카페는 운영자가 아니라 마시는 사람이 가장 먼저 안다.
+ * 시딩에 없는 카페를 체크인 스텝1에서 즉석 등록하고, 이후 검색에도 노출한다.
+ * Supabase 연결 시 cafes 테이블(created_by, verified=false)로 마이그레이션 —
+ * verified 배지·admin 검수 파이프라인은 이미 스키마에 준비돼 있다.
+ */
+export type LocalCafe = {
+  id: string; // "local-cafe-…" 접두 — 시드/DB id와 충돌 방지
+  name: string;
+  district: string;
+  districtKo: string;
+  address: string; // 선택 입력 — 비어 있을 수 있음
+  createdAt: string;
+};
+
+const LOCAL_CAFES_KEY = "local-cafes";
+
+export async function listLocalCafes(): Promise<LocalCafe[]> {
+  return (await get<LocalCafe[]>(LOCAL_CAFES_KEY)) ?? [];
+}
+
+export async function addLocalCafe(
+  cafe: Omit<LocalCafe, "id" | "createdAt">,
+): Promise<LocalCafe> {
+  const record: LocalCafe = {
+    ...cafe,
+    id: `local-cafe-${crypto.randomUUID()}`,
+    createdAt: new Date().toISOString(),
+  };
+  const all = (await get<LocalCafe[]>(LOCAL_CAFES_KEY)) ?? [];
+  await set(LOCAL_CAFES_KEY, [...all, record]);
+  return record;
+}
+
+/**
  * 신고/제보 — TECHNICAL_SPEC §1 reports 테이블의 로컬 스톱갭.
  * insert는 누구나(로그인 유저), select/update는 admin만 — 지금은 실 Auth가 없어
  * /admin이 게이트 없이 열려 있다(주석·배너로 명시). Supabase 연결 시 RLS로 대체.
