@@ -18,7 +18,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.544,
     "lng": 127.056,
     "avgRating": 4.6,
-    "checkinCount": 128
+    "checkinCount": 128,
+    "websiteUrl": "https://www.centercoffee.co.kr/whereweare"
   },
   {
     "id": "cafe-seongsu-lowkey",
@@ -31,7 +32,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.544,
     "lng": 127.056,
     "avgRating": null,
-    "checkinCount": 3
+    "checkinCount": 3,
+    "websiteUrl": "https://lowkeycoffee.com/shop/list-cf10"
   },
   {
     "id": "cafe-seongsu-coffee-nap-roasters",
@@ -44,7 +46,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.544,
     "lng": 127.056,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://www.coffeenaproasters.com/"
   },
   {
     "id": "cafe-seongsu-mesh-coffee",
@@ -57,7 +60,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.544,
     "lng": 127.056,
     "avgRating": 4.3,
-    "checkinCount": 61
+    "checkinCount": 61,
+    "websiteUrl": "https://www.instagram.com/meshcoffee/"
   },
   {
     "id": "cafe-seongsu-real-roasting",
@@ -70,7 +74,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.544,
     "lng": 127.056,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": null
   },
   {
     "id": "cafe-seongsu-peer-coffee-roasters",
@@ -83,7 +88,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.544,
     "lng": 127.056,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "http://peercoffee.co.kr/"
   },
   {
     "id": "cafe-seongsu-milestone-coffee-roasters",
@@ -96,7 +102,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.544,
     "lng": 127.056,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://milestonecoffee.kr/"
   },
   {
     "id": "cafe-hannam-hit-coffee-roasters",
@@ -109,7 +116,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.534,
     "lng": 127.001,
     "avgRating": 4.5,
-    "checkinCount": 29
+    "checkinCount": 29,
+    "websiteUrl": null
   },
   {
     "id": "cafe-hannam-travertine",
@@ -122,7 +130,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.534,
     "lng": 127.001,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": null
   },
   {
     "id": "cafe-hannam-peer-coffee-bar",
@@ -135,7 +144,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.534,
     "lng": 127.001,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://www.instagram.com/peer_coffee_bar/"
   },
   {
     "id": "cafe-hannam-conhas",
@@ -148,7 +158,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.534,
     "lng": 127.001,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://www.instagram.com/conhascoffee_co.ltd"
   },
   {
     "id": "cafe-hannam-milestone-coffee-roasters",
@@ -161,7 +172,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.534,
     "lng": 127.001,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://milestonecoffee.kr/"
   },
   {
     "id": "cafe-yeonnam-coffee-libre",
@@ -174,7 +186,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.562,
     "lng": 126.925,
     "avgRating": 4.8,
-    "checkinCount": 302
+    "checkinCount": 302,
+    "websiteUrl": "https://coffeelibre.kr/"
   },
   {
     "id": "cafe-yeonnam-coffee-nap-roasters",
@@ -187,7 +200,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.562,
     "lng": 126.925,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://www.coffeenaproasters.com/"
   },
   {
     "id": "cafe-yeonnam-reissue-coffee-roasters",
@@ -200,7 +214,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.562,
     "lng": 126.925,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": null
   },
   {
     "id": "cafe-yeonnam-morning-calm-coffee-lab",
@@ -213,7 +228,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.562,
     "lng": 126.925,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": null
   },
   {
     "id": "cafe-yeonnam-gwehdo-coffee-roasters",
@@ -226,7 +242,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.562,
     "lng": 126.925,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": null
   },
   {
     "id": "cafe-yeonnam-tailor-coffee",
@@ -239,7 +256,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.562,
     "lng": 126.925,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://tailorcoffee.com/"
   },
   {
     "id": "cafe-hapjeong-anthracite-coffee-roasters",
@@ -252,7 +270,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.549,
     "lng": 126.913,
     "avgRating": 4.5,
-    "checkinCount": 214
+    "checkinCount": 214,
+    "websiteUrl": "https://anthracitecoffee.com/hapjeong"
   },
   {
     "id": "cafe-hapjeong-bean-brothers",
@@ -265,7 +284,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.549,
     "lng": 126.913,
     "avgRating": null,
-    "checkinCount": 4
+    "checkinCount": 4,
+    "websiteUrl": "https://beanbrothers.co.kr/"
   },
   {
     "id": "cafe-hapjeong-coffee-labs-roastery",
@@ -278,7 +298,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.549,
     "lng": 126.913,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://m.coffeelabs.co.kr/store.html"
   },
   {
     "id": "cafe-hapjeong-180-coffee-roasters",
@@ -291,7 +312,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.549,
     "lng": 126.913,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://180coffee.com/"
   },
   {
     "id": "cafe-hapjeong-red-plant",
@@ -304,7 +326,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.549,
     "lng": 126.913,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "http://redplant.co.kr/about-redplant/"
   },
   {
     "id": "cafe-hapjeong-belief-coffee-roasters",
@@ -317,7 +340,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.549,
     "lng": 126.913,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": null
   },
   {
     "id": "cafe-mangwon-deep-blue-lake-coffee-roasters",
@@ -330,7 +354,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.556,
     "lng": 126.902,
     "avgRating": 4.7,
-    "checkinCount": 89
+    "checkinCount": 89,
+    "websiteUrl": null
   },
   {
     "id": "cafe-mangwon-portrait-coffee-bar",
@@ -343,7 +368,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.556,
     "lng": 126.902,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": null
   },
   {
     "id": "cafe-mangwon-always-august-roasters",
@@ -356,7 +382,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.556,
     "lng": 126.902,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://alwaysau8ust.co.kr/about.html"
   },
   {
     "id": "cafe-mangwon-sentov-trafe-coffee",
@@ -369,7 +396,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.556,
     "lng": 126.902,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": null
   },
   {
     "id": "cafe-haebangchon-orangorang",
@@ -382,7 +410,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.545,
     "lng": 126.988,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": null
   },
   {
     "id": "cafe-dohwa-fritz-coffee-company",
@@ -395,7 +424,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.54,
     "lng": 126.949,
     "avgRating": 4.6,
-    "checkinCount": 187
+    "checkinCount": 187,
+    "websiteUrl": "https://fritz.co.kr/"
   },
   {
     "id": "cafe-sinsa-coffee-arco",
@@ -408,7 +438,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.516,
     "lng": 127.02,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": null
   },
   {
     "id": "cafe-sinsa-milestone-coffee-roasters",
@@ -421,7 +452,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.516,
     "lng": 127.02,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://milestonecoffee.kr/"
   },
   {
     "id": "cafe-sinsa-tailor-coffee",
@@ -434,7 +466,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.516,
     "lng": 127.02,
     "avgRating": 4.3,
-    "checkinCount": 52
+    "checkinCount": 52,
+    "websiteUrl": "https://www.instagram.com/tailor_coffee/"
   },
   {
     "id": "cafe-sinsa-heat-coffee-roasters",
@@ -447,7 +480,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.516,
     "lng": 127.02,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": null
   },
   {
     "id": "cafe-sinsa-coffee-fiel",
@@ -460,7 +494,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.516,
     "lng": 127.02,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://coffeefiel.com/contact"
   },
   {
     "id": "cafe-apgujeong-mark-lane-coffee-roasters",
@@ -473,7 +508,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.527,
     "lng": 127.028,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": null
   },
   {
     "id": "cafe-apgujeong-bunker-company",
@@ -486,7 +522,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.527,
     "lng": 127.028,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://bunkercompany.co.kr/"
   },
   {
     "id": "cafe-apgujeong-camel-coffee",
@@ -499,7 +536,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.527,
     "lng": 127.028,
     "avgRating": 4.2,
-    "checkinCount": 77
+    "checkinCount": 77,
+    "websiteUrl": "https://cmlandco.kr/"
   },
   {
     "id": "cafe-yangjae-reflect-coffee-roasting-lab",
@@ -512,7 +550,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.484,
     "lng": 127.034,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://reflect-coffee.co.kr/"
   },
   {
     "id": "cafe-yangjae-fritz-coffee-company",
@@ -525,7 +564,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.484,
     "lng": 127.034,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://fritz.co.kr/"
   },
   {
     "id": "cafe-yangjae-terarosa",
@@ -538,7 +578,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.484,
     "lng": 127.034,
     "avgRating": 4.4,
-    "checkinCount": 96
+    "checkinCount": 96,
+    "websiteUrl": "https://terarosa.com/"
   },
   {
     "id": "cafe-yangjae-coffee-plant",
@@ -551,7 +592,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.484,
     "lng": 127.034,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://coffeeplant.co.kr/"
   },
   {
     "id": "cafe-euljiro-coffee-hanyakbang",
@@ -564,7 +606,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.566,
     "lng": 126.991,
     "avgRating": 4.5,
-    "checkinCount": 143
+    "checkinCount": 143,
+    "websiteUrl": "https://coffeehanyakbang.com/"
   },
   {
     "id": "cafe-euljiro-leesar-coffee",
@@ -577,7 +620,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.566,
     "lng": 126.991,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://leesarcoffee.com/offline-store/"
   },
   {
     "id": "cafe-euljiro-champ-coffee",
@@ -590,7 +634,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.566,
     "lng": 126.991,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": "https://champcoffee.kr/"
   },
   {
     "id": "cafe-seochon-yeonhun-roasters",
@@ -603,7 +648,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.579,
     "lng": 126.97,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": null
   },
   {
     "id": "cafe-seochon-archivist",
@@ -616,7 +662,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.579,
     "lng": 126.97,
     "avgRating": 4.4,
-    "checkinCount": 38
+    "checkinCount": 38,
+    "websiteUrl": "https://archivist.kr/"
   },
   {
     "id": "cafe-seochon-tongin-dong-coffee-workshop-weekend",
@@ -629,7 +676,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.579,
     "lng": 126.97,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": null
   },
   {
     "id": "cafe-seochon-coffee-tour-roasters",
@@ -642,7 +690,8 @@ export const SEED_CAFES: MockCafe[] = [
     "lat": 37.579,
     "lng": 126.97,
     "avgRating": null,
-    "checkinCount": 0
+    "checkinCount": 0,
+    "websiteUrl": null
   }
 ];
 
@@ -671,7 +720,8 @@ export const SEED_BEANS: MockBean[] = [
       "chocolate",
       "brown-sugar",
       "nutty"
-    ]
+    ],
+    "purchaseUrl": "https://fritz.co.kr/product/%ED%94%84%EB%A6%B3%EC%B8%A0-old-dog-fritz-blend-coffee-bean/91/"
   },
   {
     "id": "bean-seoul-cinema",
@@ -691,7 +741,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgRating": null,
     "checkinCount": 0,
     "avgProfile": null,
-    "topFlavorTags": []
+    "topFlavorTags": [],
+    "purchaseUrl": "https://fritz.co.kr/"
   },
   {
     "id": "bean-natsume-soseki",
@@ -717,7 +768,8 @@ export const SEED_BEANS: MockBean[] = [
       "chocolate",
       "citrus",
       "nutty"
-    ]
+    ],
+    "purchaseUrl": "https://anthracitecoffee.com/20"
   },
   {
     "id": "bean-air-and-dream",
@@ -744,7 +796,8 @@ export const SEED_BEANS: MockBean[] = [
       "berry",
       "citrus",
       "floral"
-    ]
+    ],
+    "purchaseUrl": "https://anthracitecoffee.com/20"
   },
   {
     "id": "bean-pablo-neruda",
@@ -771,7 +824,8 @@ export const SEED_BEANS: MockBean[] = [
       "brown-sugar",
       "berry",
       "nutty"
-    ]
+    ],
+    "purchaseUrl": "https://anthracitecoffee.com/20"
   },
   {
     "id": "bean-bad-blood",
@@ -791,7 +845,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgRating": null,
     "checkinCount": 0,
     "avgProfile": null,
-    "topFlavorTags": []
+    "topFlavorTags": [],
+    "purchaseUrl": "https://coffeelibre.kr/"
   },
   {
     "id": "bean-no-surprise",
@@ -811,7 +866,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgRating": null,
     "checkinCount": 0,
     "avgProfile": null,
-    "topFlavorTags": []
+    "topFlavorTags": [],
+    "purchaseUrl": "https://coffeelibre.kr/"
   },
   {
     "id": "bean-dark-libre",
@@ -835,7 +891,8 @@ export const SEED_BEANS: MockBean[] = [
     "topFlavorTags": [
       "chocolate",
       "nutty"
-    ]
+    ],
+    "purchaseUrl": "https://coffeelibre.kr/"
   },
   {
     "id": "bean-black-suit",
@@ -857,7 +914,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgProfile": null,
     "topFlavorTags": [
       "chocolate"
-    ]
+    ],
+    "purchaseUrl": "https://beanbrothers.co.kr/"
   },
   {
     "id": "bean-velvet-white",
@@ -879,7 +937,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgProfile": null,
     "topFlavorTags": [
       "citrus"
-    ]
+    ],
+    "purchaseUrl": "https://beanbrothers.co.kr/"
   },
   {
     "id": "bean-altos-del-paraiso",
@@ -904,7 +963,8 @@ export const SEED_BEANS: MockBean[] = [
     "topFlavorTags": [
       "honey",
       "berry"
-    ]
+    ],
+    "purchaseUrl": "https://beanbrothers.co.kr/"
   },
   {
     "id": "bean-violet-blend",
@@ -924,7 +984,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgRating": null,
     "checkinCount": 0,
     "avgProfile": null,
-    "topFlavorTags": []
+    "topFlavorTags": [],
+    "purchaseUrl": "https://180coffee.com/"
   },
   {
     "id": "bean-el-renacer-ombligon",
@@ -950,7 +1011,8 @@ export const SEED_BEANS: MockBean[] = [
       "chocolate",
       "citrus",
       "stone-fruit"
-    ]
+    ],
+    "purchaseUrl": "https://m.180coffee.com/product/list.html?cate_no=42"
   },
   {
     "id": "bean-el-silencio",
@@ -972,7 +1034,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgProfile": null,
     "topFlavorTags": [
       "tropical"
-    ]
+    ],
+    "purchaseUrl": "https://reflect-coffee.co.kr/"
   },
   {
     "id": "bean-el-rosario",
@@ -992,7 +1055,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgRating": null,
     "checkinCount": 0,
     "avgProfile": null,
-    "topFlavorTags": []
+    "topFlavorTags": [],
+    "purchaseUrl": "https://reflect-coffee.co.kr/"
   },
   {
     "id": "bean-el-encanto",
@@ -1014,7 +1078,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgProfile": null,
     "topFlavorTags": [
       "berry"
-    ]
+    ],
+    "purchaseUrl": "https://reflect-coffee.co.kr/"
   },
   {
     "id": "bean-all-day-blend",
@@ -1038,7 +1103,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgProfile": null,
     "topFlavorTags": [
       "chocolate"
-    ]
+    ],
+    "purchaseUrl": "https://terarosa.com/"
   },
   {
     "id": "bean-buttery",
@@ -1060,7 +1126,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgProfile": null,
     "topFlavorTags": [
       "nutty"
-    ]
+    ],
+    "purchaseUrl": null
   },
   {
     "id": "bean-gotige",
@@ -1080,7 +1147,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgRating": null,
     "checkinCount": 0,
     "avgProfile": null,
-    "topFlavorTags": []
+    "topFlavorTags": [],
+    "purchaseUrl": "https://cmlandco.kr/"
   },
   {
     "id": "bean-new-tendency",
@@ -1100,7 +1168,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgRating": null,
     "checkinCount": 0,
     "avgProfile": null,
-    "topFlavorTags": []
+    "topFlavorTags": [],
+    "purchaseUrl": "https://cmlandco.kr/"
   },
   {
     "id": "bean-black-in-seoul",
@@ -1126,7 +1195,8 @@ export const SEED_BEANS: MockBean[] = [
       "chocolate",
       "caramel",
       "nutty"
-    ]
+    ],
+    "purchaseUrl": "https://champcoffee.kr/"
   },
   {
     "id": "bean-brown-in-seoul",
@@ -1152,7 +1222,8 @@ export const SEED_BEANS: MockBean[] = [
       "caramel",
       "honey",
       "berry"
-    ]
+    ],
+    "purchaseUrl": "https://champcoffee.kr/"
   },
   {
     "id": "bean-el-socorro-gesha",
@@ -1170,7 +1241,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgRating": null,
     "checkinCount": 0,
     "avgProfile": null,
-    "topFlavorTags": []
+    "topFlavorTags": [],
+    "purchaseUrl": "https://lowkeycoffee.com/shop/list-cf10"
   },
   {
     "id": "bean-consaca",
@@ -1188,7 +1260,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgRating": null,
     "checkinCount": 0,
     "avgProfile": null,
-    "topFlavorTags": []
+    "topFlavorTags": [],
+    "purchaseUrl": "https://lowkeycoffee.com/shop/list-cf10"
   },
   {
     "id": "bean-aricha",
@@ -1206,7 +1279,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgRating": null,
     "checkinCount": 0,
     "avgProfile": null,
-    "topFlavorTags": []
+    "topFlavorTags": [],
+    "purchaseUrl": "https://lowkeycoffee.com/shop/list-cf10"
   },
   {
     "id": "bean-deep-blending",
@@ -1228,7 +1302,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgProfile": null,
     "topFlavorTags": [
       "nutty"
-    ]
+    ],
+    "purchaseUrl": "https://dblcoffee.com/"
   },
   {
     "id": "bean-blue-blending",
@@ -1250,7 +1325,8 @@ export const SEED_BEANS: MockBean[] = [
     "avgProfile": null,
     "topFlavorTags": [
       "berry"
-    ]
+    ],
+    "purchaseUrl": "https://dblcoffee.com/"
   },
   {
     "id": "bean-travertine-kenya",
@@ -1272,6 +1348,7 @@ export const SEED_BEANS: MockBean[] = [
     "avgProfile": null,
     "topFlavorTags": [
       "citrus"
-    ]
+    ],
+    "purchaseUrl": null
   }
 ];

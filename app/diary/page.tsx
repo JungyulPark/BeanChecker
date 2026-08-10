@@ -220,6 +220,18 @@ export default function DiaryPage() {
               </article>
             ))}
           </section>
+
+          {/* 후원 — NEXT_PUBLIC_SUPPORT_URL 설정 시에만 노출 (토스아이디·Buy Me a Coffee 등) */}
+          {process.env.NEXT_PUBLIC_SUPPORT_URL && (
+            <a
+              href={process.env.NEXT_PUBLIC_SUPPORT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-10 block text-center text-caption text-crema-400 underline underline-offset-4"
+            >
+              BEAN.이 마음에 드셨나요? 개발자에게 커피 한 잔 ☕
+            </a>
+          )}
         </>
       )}
     </main>

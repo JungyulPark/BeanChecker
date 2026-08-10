@@ -79,6 +79,31 @@ const DEMO_AGGREGATES = {
   "히트커피로스터스 한남": { avgRating: 4.5, checkinCount: 29 },
 };
 
+// 수익 동선: source_url 중 로스터리 "공식" 도메인만 구매/공식채널 링크로 승격.
+// 기사·리뷰·디렉토리 출처는 데이터 근거로만 남기고 유저에게 노출하지 않는다 (신뢰 원칙).
+const NON_OFFICIAL_DOMAINS = [
+  "the-edit.co.kr",
+  "bwissue.com",
+  "esquirekorea.co.kr",
+  "diningcode.com",
+  "beanprofiler.com",
+  "trip.com",
+  "bakerynews.co.kr",
+  "coffeexplorer.com",
+  "polle.com",
+];
+function officialUrl(url, { allowInstagram }) {
+  if (!url || !url.startsWith("http")) return null;
+  try {
+    const host = new URL(url).hostname;
+    if (NON_OFFICIAL_DOMAINS.some((d) => host === d || host.endsWith("." + d))) return null;
+    if (!allowInstagram && /(^|\.)instagram\.com$/.test(host)) return null;
+    return url;
+  } catch {
+    return null;
+  }
+}
+
 function slugify(en) {
   return en
     .toLowerCase()
@@ -108,6 +133,8 @@ const cafes = cafesCsv.map((r) => {
     lng: d.lng,
     avgRating: demo ? demo.avgRating : null,
     checkinCount: demo ? demo.checkinCount : 0,
+    // 카페 공식 채널 — 인스타그램은 카페의 공식 채널로 인정
+    websiteUrl: officialUrl(r.source_url, { allowInstagram: true }),
   };
 });
 
@@ -239,6 +266,8 @@ const beans = beansCsv.map((r) => {
     checkinCount: 0,
     avgProfile: null,
     topFlavorTags,
+    // 구매 동선 — 로스터 공식몰만 (인스타 제외: 구매 페이지가 아님)
+    purchaseUrl: officialUrl(r.source_url, { allowInstagram: false }),
   };
 });
 

@@ -36,6 +36,7 @@ function localCafeToMock(c: LocalCafe): MockCafe {
     lng: seedDistrict?.lng ?? 126.986,
     avgRating: null,
     checkinCount: 0,
+    websiteUrl: null,
   };
 }
 

@@ -21,6 +21,7 @@ export type MockCafe = {
   lng: number;
   avgRating: number | null; // null = 5건 미달
   checkinCount: number;
+  websiteUrl: string | null; // 카페 공식 채널 (공식 도메인·인스타만 — 기사 출처 비노출)
 };
 
 export type MockBean = {
@@ -40,6 +41,7 @@ export type MockBean = {
   checkinCount: number;
   avgProfile: FlavorProfile | null; // null = 5건 미달
   topFlavorTags: FlavorTagId[];
+  purchaseUrl: string | null; // 로스터 공식몰 구매 링크 — Phase 3 어필리에이트·파트너십의 선행 동선
 };
 
 const DEMO_BEANS: MockBean[] = [
@@ -52,6 +54,7 @@ const DEMO_BEANS: MockBean[] = [
     avgRating: 4.6, checkinCount: 47,
     avgProfile: { acidity: 8, sweetness: 7, body: 4, bitterness: 2, aftertaste: 7 },
     topFlavorTags: ["berry", "floral", "black-tea"],
+    purchaseUrl: null,
   },
   {
     id: "bean-gesha", name: "파나마 게이샤 에스메랄다", slug: "gesha-esmeralda",
@@ -62,6 +65,7 @@ const DEMO_BEANS: MockBean[] = [
     avgRating: 4.9, checkinCount: 22,
     avgProfile: { acidity: 9, sweetness: 8, body: 3, bitterness: 1, aftertaste: 8 },
     topFlavorTags: ["floral", "stone-fruit", "black-tea"],
+    purchaseUrl: null,
   },
   {
     id: "bean-huila", name: "콜롬비아 우일라 수프리모", slug: "huila-supremo",
@@ -72,6 +76,7 @@ const DEMO_BEANS: MockBean[] = [
     avgRating: 4.2, checkinCount: 58,
     avgProfile: { acidity: 4, sweetness: 7, body: 8, bitterness: 5, aftertaste: 6 },
     topFlavorTags: ["chocolate", "caramel", "nutty"],
+    purchaseUrl: null,
   },
   {
     id: "bean-yirg", name: "에티오피아 예가체프 G1", slug: "yirgacheffe-g1",
@@ -82,6 +87,7 @@ const DEMO_BEANS: MockBean[] = [
     avgRating: 4.7, checkinCount: 91,
     avgProfile: { acidity: 7, sweetness: 8, body: 5, bitterness: 2, aftertaste: 7 },
     topFlavorTags: ["berry", "winey", "honey"],
+    purchaseUrl: null,
   },
   {
     id: "bean-kenya", name: "케냐 니에리 AA", slug: "nyeri-aa",
@@ -92,6 +98,7 @@ const DEMO_BEANS: MockBean[] = [
     avgRating: null, checkinCount: 4,
     avgProfile: null,
     topFlavorTags: ["citrus", "winey"],
+    purchaseUrl: null,
   },
 ];
 

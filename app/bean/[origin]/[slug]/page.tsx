@@ -161,6 +161,19 @@ export default async function BeanPage({
           이 원두로 체크인하기
         </Link>
 
+        {/* 구매 동선 — 로스터 공식몰로 보낸다 (Phase 3 파트너십·어필리에이트의 선행).
+            UTM으로 우리 경유 트래픽을 로스터리 측 애널리틱스에 남긴다 — 파트너십 영업의 증거 데이터 */}
+        {bean.purchaseUrl && (
+          <a
+            href={`${bean.purchaseUrl}${bean.purchaseUrl.includes("?") ? "&" : "?"}utm_source=bean_app&utm_medium=referral&utm_campaign=bean_page`}
+            target="_blank"
+            rel="noopener"
+            className="pressable mt-3 block rounded-full border border-amber-glow/60 px-8 py-3.5 text-center text-body font-semibold text-amber-glow"
+          >
+            로스터 공식몰에서 구매 ↗
+          </a>
+        )}
+
         <div className="mt-6 flex justify-center">
           <ReportButton targetType="bean" targetId={bean.id} targetLabel={bean.name} />
         </div>

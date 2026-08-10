@@ -88,19 +88,32 @@ export default async function CafePage({
           <p className="mt-1 text-body text-crema-400">
             {cafe.districtKo} · {cafe.address}
           </p>
-          {/* 길찾기 — 키 없이 동작하는 카카오맵 공개 검색 URL (크롤링 아님) */}
-          <a
-            href={`https://map.kakao.com/?q=${encodeURIComponent(cafe.address)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="pressable mt-3 inline-flex items-center gap-1.5 rounded-full border border-roast-700 px-3.5 py-1.5 text-caption text-crema-100"
-          >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
-              <path d="M20 10c0 5-8 12-8 12s-8-7-8-12a8 8 0 1 1 16 0Z" strokeLinejoin="round" />
-              <circle cx="12" cy="10" r="2.6" />
-            </svg>
-            길찾기
-          </a>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {/* 길찾기 — 키 없이 동작하는 카카오맵 공개 검색 URL (크롤링 아님) */}
+            <a
+              href={`https://map.kakao.com/?q=${encodeURIComponent(cafe.address)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pressable inline-flex items-center gap-1.5 rounded-full border border-roast-700 px-3.5 py-1.5 text-caption text-crema-100"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
+                <path d="M20 10c0 5-8 12-8 12s-8-7-8-12a8 8 0 1 1 16 0Z" strokeLinejoin="round" />
+                <circle cx="12" cy="10" r="2.6" />
+              </svg>
+              길찾기
+            </a>
+            {/* 공식 채널 — 리서치 출처 중 공식 도메인·인스타만 노출 (기사·리뷰 사이트 제외) */}
+            {cafe.websiteUrl && (
+              <a
+                href={`${cafe.websiteUrl}${cafe.websiteUrl.includes("?") ? "&" : "?"}utm_source=bean_app&utm_medium=referral`}
+                target="_blank"
+                rel="noopener"
+                className="pressable inline-flex items-center gap-1.5 rounded-full border border-roast-700 px-3.5 py-1.5 text-caption text-crema-100"
+              >
+                공식 채널 ↗
+              </a>
+            )}
+          </div>
         </header>
 
         {/* 체크인 0인 카페에 "평가 수집 중 / 0" 두 개를 띄우면 죽은 화면이 된다 —
