@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- VEANN 앱 아이콘 — 크림 라이트 방향(DESIGN_BRIEF_CREAM.md): 크림 바탕 + 테라코타 원두 -->
+  <rect width="512" height="512" rx="115" fill="#F2EAE0"/>
+  <g transform="rotate(-24 256 256)">
+    <ellipse cx="256" cy="256" rx="128" ry="182" fill="#C4622D"/>
+    <path d="M 256 84 C 186 150, 322 224, 256 256 C 190 288, 326 362, 256 428"
+          fill="none" stroke="#F2EAE0" stroke-width="30" stroke-linecap="round"/>
+  </g>
+  <!-- 워드마크의 앰버 점 장치 계승 -->
+  <circle cx="404" cy="404" r="26" fill="#C4622D"/>
+</svg>

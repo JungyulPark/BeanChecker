@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { BottomNav } from "@/components/BottomNav";
+import { BRAND } from "@/lib/brand";
+import { GearSection } from "@/components/GearSection";
 import { RadarChart } from "@/components/RadarChart";
 import { ReportButton } from "@/components/ReportButton";
 import { listCheckins, type LocalCheckin } from "@/lib/data/local";
@@ -221,6 +223,9 @@ export default function DiaryPage() {
             ))}
           </section>
 
+          {/* 홈브루 장비 (쿠팡 파트너스) — 링크 미설정 시 자동 숨김, lib/gear.ts 참조 */}
+          <GearSection />
+
           {/* 후원 — NEXT_PUBLIC_SUPPORT_URL 설정 시에만 노출 (토스아이디·Buy Me a Coffee 등) */}
           {process.env.NEXT_PUBLIC_SUPPORT_URL && (
             <a
@@ -229,7 +234,7 @@ export default function DiaryPage() {
               rel="noopener noreferrer"
               className="mt-10 block text-center text-caption text-crema-400 underline underline-offset-4"
             >
-              BEAN.이 마음에 드셨나요? 개발자에게 커피 한 잔 ☕
+              {BRAND.name}이 마음에 드셨나요? 개발자에게 커피 한 잔 ☕
             </a>
           )}
         </>

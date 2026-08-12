@@ -4,6 +4,7 @@ import { BottomNav } from "@/components/BottomNav";
 import { RadarChart } from "@/components/RadarChart";
 import { ReportButton } from "@/components/ReportButton";
 import { FLAVOR_TAGS } from "@/lib/flavorTags";
+import { BRAND } from "@/lib/brand";
 import { findBean, findCafeById } from "@/lib/data/catalog";
 import { MOCK_BEANS } from "@/lib/mock/seed";
 
@@ -165,7 +166,7 @@ export default async function BeanPage({
             UTM으로 우리 경유 트래픽을 로스터리 측 애널리틱스에 남긴다 — 파트너십 영업의 증거 데이터 */}
         {bean.purchaseUrl && (
           <a
-            href={`${bean.purchaseUrl}${bean.purchaseUrl.includes("?") ? "&" : "?"}utm_source=bean_app&utm_medium=referral&utm_campaign=bean_page`}
+            href={`${bean.purchaseUrl}${bean.purchaseUrl.includes("?") ? "&" : "?"}utm_source=${BRAND.appId}&utm_medium=referral&utm_campaign=bean_page`}
             target="_blank"
             rel="noopener"
             className="pressable mt-3 block rounded-full border border-amber-glow/60 px-8 py-3.5 text-center text-body font-semibold text-amber-glow"

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BottomNav } from "@/components/BottomNav";
+import { BRAND } from "@/lib/brand";
 import { CafeCheckins } from "@/components/CafeCheckins";
 import { ReportButton } from "@/components/ReportButton";
 import { beansByRoaster, cafesByDistrict, findCafe } from "@/lib/data/catalog";
@@ -105,7 +106,7 @@ export default async function CafePage({
             {/* 공식 채널 — 리서치 출처 중 공식 도메인·인스타만 노출 (기사·리뷰 사이트 제외) */}
             {cafe.websiteUrl && (
               <a
-                href={`${cafe.websiteUrl}${cafe.websiteUrl.includes("?") ? "&" : "?"}utm_source=bean_app&utm_medium=referral`}
+                href={`${cafe.websiteUrl}${cafe.websiteUrl.includes("?") ? "&" : "?"}utm_source=${BRAND.appId}&utm_medium=referral`}
                 target="_blank"
                 rel="noopener"
                 className="pressable inline-flex items-center gap-1.5 rounded-full border border-roast-700 px-3.5 py-1.5 text-caption text-crema-100"
