@@ -1,11 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <!-- BUNNA 앱 아이콘 — 크림 라이트 방향(DESIGN_BRIEF_CREAM.md): 크림 바탕 + 테라코타 원두 -->
-  <rect width="512" height="512" rx="115" fill="#F2EAE0"/>
-  <g transform="rotate(-24 256 256)">
-    <ellipse cx="256" cy="256" rx="128" ry="182" fill="#C4622D"/>
-    <path d="M 256 84 C 186 150, 322 224, 256 256 C 190 288, 326 362, 256 428"
-          fill="none" stroke="#F2EAE0" stroke-width="30" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="BUNNA">
+  <!--
+    BUNNA 앱 아이콘 — 힉스필드 생성 후보 ②(기하 추상: 마주 보는 초승달 2개 + 크림 갭)를
+    벡터로 재구성. 래스터 대신 SVG인 이유: 16px 파비콘~512px 스토어 아이콘까지 선명,
+    브랜드 색 정확(크림 #F2EAE0 / 테라코타 #C4622D), 파일 1KB 미만.
+    형태: 테라코타 원두를 일정 폭의 크림 S자 크리스가 관통해 두 초승달로 가른다.
+    (좌우 대칭 곡선이 아니라 등간격 오프셋이어야 크리스 폭이 일정해 원두로 읽힌다.)
+    색은 DESIGN_BRIEF_CREAM.md 크림 라이트 방향.
+  -->
+  <rect width="512" height="512" rx="114" fill="#F2EAE0"/>
+  <g transform="translate(256 256) rotate(-18)">
+    <ellipse rx="128" ry="180" fill="#C4622D"/>
+    <path d="M 0 -180 C 58 -114, -58 -58, 0 0 C 58 58, -58 114, 0 180"
+          fill="none" stroke="#F2EAE0" stroke-width="34" stroke-linecap="round"/>
   </g>
-  <!-- 워드마크의 앰버 점 장치 계승 -->
-  <circle cx="404" cy="404" r="26" fill="#C4622D"/>
 </svg>
