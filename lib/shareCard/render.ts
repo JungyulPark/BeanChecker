@@ -8,14 +8,19 @@ import type { ShareCardData } from "@/lib/shareCard";
  * 사진은 카드에 넣지 않는다 — 스펙이 정의한 카드 구성 요소가 아니다(사진은 체크인 자체의 것).
  */
 
+/**
+ * 2026-08-13 크림 라이트 전환. 카드를 다크로 남기는 안도 검토했으나(스토리에서 드라마틱),
+ * /c 랜딩이 크림이라 카드→랜딩 전환 순간(= 전환 퍼널의 핵심 지점)에 이질감이 생긴다.
+ * 브랜드 일관성을 택했다. 값은 globals.css @theme와 동일 — 한쪽만 바뀌면 안 된다.
+ */
 const COLOR = {
-  roast950: "#1D130D",
-  roast900: "#1C1310",
-  roast700: "#3B2A20",
-  crema100: "#F1E7DB",
-  crema400: "#B9A48F",
-  amberGlow: "#D98E32",
-  aura: "#7A4A24",
+  roast950: "#EFE7DA", // 카드 바탕(크림)
+  roast900: "#FDFAF4", // 내부 서피스
+  roast700: "#C9B69C", // 레이더 격자 (크림 위 가독 확보 — UI 보더보다 진하게)
+  crema100: "#2A1C12", // 주 텍스트
+  crema400: "#6B5A48", // 보조 텍스트
+  amberGlow: "#8F5D14", // 액센트(별점·레이더 스트로크)
+  aura: "rgba(217,162,78,0.30)", // 상단 햇살 글로우 (크림에선 약하게 — 강하면 텍스트가 씻긴다)
 } as const;
 
 const AXES: { key: keyof ShareCardData["profile"]; label: string }[] = [
@@ -185,7 +190,7 @@ function drawRadar(
     else ctx.lineTo(x, y);
   });
   ctx.closePath();
-  ctx.fillStyle = "rgba(217, 142, 50, 0.12)";
+  ctx.fillStyle = "rgba(143, 93, 20, 0.14)"; // amberGlow 알파 — 크림 위 형태가 읽히는 최소치
   ctx.fill();
   ctx.strokeStyle = COLOR.amberGlow;
   ctx.lineWidth = 3;
@@ -224,17 +229,19 @@ export async function renderShareCard(
   const auraR = w * 0.85;
   const gradient = ctx.createRadialGradient(w / 2, auraCy, 0, w / 2, auraCy, auraR);
   gradient.addColorStop(0, COLOR.aura);
-  gradient.addColorStop(1, "rgba(122,74,36,0)");
+  gradient.addColorStop(1, "rgba(217,162,78,0)");
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, w, h);
 
   const cx = w / 2;
 
   // 정사각형은 세로 공간이 스토리의 56%뿐 — 폰트 크기·간격을 별도로 잡는다 (겹침 방지).
+  // startY는 콘텐츠 블록을 세로 중앙에 앉히는 값 (2026-08-13 조정). 스토리는 인스타 UI가
+  // 상·하단 약 250px를 덮으므로 중앙 배치가 곧 안전영역 배치다.
   const L =
     aspect === "story"
-      ? { startY: 150, wordmark: 28, gapSub: 90, sub: 30, gapTitle: 76, title: 76, titleLine: 86, gapRating: 90, rating: 56, radarR: 300, gapRadar: 130, gapChip: 90, chip: 30, gapLogo: 70, gapUrl: 40, logo: 26, url: 24 }
-      : { startY: 96, wordmark: 24, gapSub: 56, sub: 26, gapTitle: 54, title: 58, titleLine: 66, gapRating: 54, rating: 40, radarR: 190, gapRadar: 76, gapChip: 76, chip: 24, gapLogo: 60, gapUrl: 34, logo: 22, url: 18 };
+      ? { startY: 300, wordmark: 28, gapSub: 90, sub: 30, gapTitle: 76, title: 76, titleLine: 86, gapRating: 90, rating: 56, radarR: 300, gapRadar: 130, gapChip: 90, chip: 30, gapLogo: 70, gapUrl: 40, logo: 26, url: 24 }
+      : { startY: 125, wordmark: 24, gapSub: 56, sub: 26, gapTitle: 54, title: 58, titleLine: 66, gapRating: 54, rating: 40, radarR: 190, gapRadar: 76, gapChip: 76, chip: 24, gapLogo: 60, gapUrl: 34, logo: 22, url: 18 };
 
   let y = L.startY;
 

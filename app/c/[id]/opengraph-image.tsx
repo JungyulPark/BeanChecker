@@ -7,12 +7,13 @@ export const alt = `${BRAND.name} 공유카드`;
 export const size = { width: 1080, height: 1080 };
 export const contentType = "image/png";
 
+// 크림 라이트 전환 — globals.css @theme 및 shareCard/render.ts와 동일 값 유지
 const COLOR = {
-  roast950: "#1D130D",
-  roast700: "#3B2A20",
-  crema100: "#F1E7DB",
-  crema400: "#B9A48F",
-  amberGlow: "#D98E32",
+  roast950: "#EFE7DA",
+  roast700: "#DCCDBA",
+  crema100: "#2A1C12",
+  crema400: "#6B5A48",
+  amberGlow: "#8F5D14",
 } as const;
 
 const AXES: { key: keyof ShareCardData["profile"] }[] = [

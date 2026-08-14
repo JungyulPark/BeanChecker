@@ -17,14 +17,18 @@ const ITEMS = [
 export function BottomNav() {
   const pathname = usePathname();
 
+  // 크림 라이트 전환(2026-08-13): 다크용 반투명 유리는 라이트에서 콘텐츠가 비쳐 읽히지 않는다.
+  // 거의 불투명한 크림 + 상단 헤어라인 + 위로 퍼지는 그림자로 "떠 있는 바"를 만든다.
+  // blur는 고정 요소에만 허용(supanova §6 성능 가드레일)이라 sticky인 여기는 안전.
   return (
     <nav
       className="sticky bottom-0 z-10 border-t"
       style={{
-        borderColor: "var(--glass-border)",
-        background: "var(--glass-bg-strong)",
-        backdropFilter: "blur(var(--glass-blur))",
-        WebkitBackdropFilter: "blur(var(--glass-blur))",
+        borderColor: "var(--surface-ring)",
+        background: "rgba(253, 250, 244, 0.92)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        boxShadow: "0 -8px 24px -12px rgba(70, 45, 20, 0.18)",
       }}
     >
       <ul className="mx-auto flex max-w-md items-center justify-around px-2 py-2">

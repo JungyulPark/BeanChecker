@@ -1,18 +1,26 @@
 @import "tailwindcss";
 
 /*
- * BEAN. 디자인 토큰 — 단일 출처: DESIGN_DIRECTION.md §2
- * "Roast Glass" — 다크 단일 테마 + 글래스모피즘 (2026-07-09 개정, 근거는 §2 하단 참조).
+ * BUNNA 디자인 토큰 — 단일 출처: DESIGN_DIRECTION.md §2
+ * "Morning Roastery" — 크림 라이트 단일 테마 (2026-08-13 개정).
+ * 다크 로스트에서 전환: 갈색 위 갈색이라 위계가 안 생기고 탁하다는 피드백 3회 누적.
+ * 액센트는 테라코타(= AI 기본값 1번, frontend-design 스킬 금지)가 아니라
+ * 기존 브랜드 자산인 **로스트 앰버**를 승계해 고유성을 지킨다.
  * 토큰 밖 임의 색/폰트 사용 금지.
+ *
+ * ⚠️ 토큰 이름은 다크 시절의 것을 유지한다(roast-950이 가장 어두웠으나 지금은 배경=크림).
+ *    대규모 리네임의 회귀 위험보다 문서화가 낫다고 판단 — 이름이 아니라 아래 역할 주석을 따를 것.
+ *    모든 값은 WCAG AA(4.5:1) 실측 통과 조합이다.
  */
 @theme {
-  --color-roast-950: #1d130d; /* 페이지 배경 — "저녁의 로스터리" (2026-07-13 반계조 상승, "너무 어둡다" 피드백 반영. 순검정 금지 원칙 유지) */
-  --color-roast-900: #1c1310; /* 카드/서피스 베이스(글래스는 이보다 밝은 웜브라운 반투명 — 아래 --glass-bg) */
-  --color-roast-700: #3b2a20; /* 보더, 분리선 (비-글래스 요소용) */
-  --color-crema-100: #f1e7db; /* 본문 텍스트 */
-  --color-crema-400: #b9a48f; /* 보조 텍스트 */
-  --color-amber-glow: #d98e32; /* 액센트: 별점, CTA, 레이더 스트로크, 배지 — 유일한 유채색 */
-  --color-aura: #7a4a24; /* 아우라 그라데이션 시작색 */
+  --color-roast-950: #efe7da; /* [역할] 페이지 배경 — 웜 크림. 순백 금지 */
+  --color-roast-900: #fdfaf4; /* [역할] 카드 내부 서피스 (배경보다 밝게 떠오름) */
+  --color-roast-700: #dccdba; /* [역할] 보더, 분리선 */
+  --color-crema-100: #2a1c12; /* [역할] 본문 텍스트 — 에스프레소. 크림 위 13.6:1 */
+  --color-crema-400: #6b5a48; /* [역할] 보조 텍스트 — 크림 위 5.35:1 */
+  --color-amber-glow: #8f5d14; /* [역할] 액센트(별점·CTA배경·레이더). 크림 위 4.54:1,
+                                  이 색을 배경으로 쓸 때 위에 얹는 크림 텍스트는 5.5:1 — 양방향 AA */
+  --color-aura: #d9a24e; /* [역할] 장식 그라데이션 전용 (텍스트에 쓰지 않음) */
 
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, sans-serif;
   --font-display: var(--font-nanum-myeongjo), "Nanum Myeongjo", serif;
@@ -28,15 +36,21 @@
   --text-caption: 12px;
 }
 
-/* 글래스 서피스 전용 토큰 — Tailwind 유틸리티가 아니라 직접 참조하는 원시 값 */
+/*
+ * 서피스 토큰 — "더블베젤"(supanova soft-skill §4.A): 카드는 평평한 사각형이 아니라
+ * "알루미늄 트레이에 앉은 유리판". 라이트 테마에서 카드가 배경에 묻히던 문제의 해법이며,
+ * DOM 중첩 없이 box-shadow 레이어(트레이 → 링 → 내부 하이라이트 → 앰비언트)로 구현한다.
+ */
 :root {
-  /* 2026-07-13 "저녁의 로스터리" 조정: 유리를 더 밝은 웜브라운으로 올려 배경과의 분리감 확보 */
-  --glass-bg: rgba(58, 40, 28, 0.5);
-  --glass-bg-strong: rgba(48, 33, 24, 0.78);
-  --glass-border: rgba(241, 231, 219, 0.17);
-  --glass-highlight: rgba(255, 255, 255, 0.09);
-  --glass-blur: 20px;
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 24px rgba(217, 142, 50, 0.06);
+  --surface-inner: var(--color-roast-900); /* 유리판(카드 내부) */
+  --surface-tray: rgba(42, 28, 18, 0.05); /* 트레이(카드를 감싸는 한 겹) */
+  --surface-ring: rgba(42, 28, 18, 0.08); /* 트레이 테두리 헤어라인 */
+  --surface-highlight: rgba(255, 255, 255, 0.95); /* 상단 1px 광택 */
+  --surface-shadow: 0 12px 32px -14px rgba(70, 45, 20, 0.22); /* 확산 앰비언트 */
+  --tray-width: 6px;
+
+  /* 모션 시그니처 — 스프링 감(supanova soft-skill §5.A). linear/ease-in-out 금지 */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 body {
@@ -45,13 +59,14 @@ body {
   color: var(--color-crema-100);
   font-family: var(--font-sans);
   letter-spacing: -0.01em; /* 국문 자간 -1% 기본 */
+  word-break: keep-all; /* 국문 어절 단위 줄바꿈 — 낱글자 끊김 방지 */
   min-height: 100dvh;
   overflow-x: hidden;
 }
 
 /*
- * 앰비언트 글로우 — "납작한 매트 블랙" 대신 빛이 스며드는 배경.
- * 고정 배경이라 스크롤과 무관하게 항상 같은 자리에 떠 있다 (뒤에 카드들이 유리처럼 겹침).
+ * 앰비언트 글로우 — 크림이 "납작한 색면"이 아니라 빛이 스며든 지면으로 읽히게.
+ * 고정 배경이라 스크롤과 무관하게 항상 같은 자리에 떠 있다.
  */
 body::before {
   content: "";
@@ -60,9 +75,23 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 70% 45% at 15% -5%, rgba(217, 142, 50, 0.26), transparent 62%),
-    radial-gradient(ellipse 55% 40% at 100% 20%, rgba(140, 88, 44, 0.3), transparent 62%),
-    radial-gradient(ellipse 60% 50% at 20% 100%, rgba(140, 88, 44, 0.22), transparent 66%);
+    radial-gradient(ellipse 75% 50% at 12% -8%, rgba(217, 162, 78, 0.28), transparent 64%),
+    radial-gradient(ellipse 60% 45% at 100% 15%, rgba(58, 38, 26, 0.07), transparent 62%),
+    radial-gradient(ellipse 60% 50% at 20% 100%, rgba(143, 93, 20, 0.08), transparent 66%);
+}
+
+/*
+ * 종이 질감 — 크림 단색이 밋밋해 보이는 것을 막는 3.5% 노이즈 (supanova soft-skill §3.A.2).
+ * 스크롤 컨테이너가 아닌 고정 오버레이라 성능 영향 없음 (§6 가드레일).
+ */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* 히어로/공유카드 배경 아우라 */
@@ -75,30 +104,36 @@ body::before {
 }
 
 /*
- * 글래스 카드 — DESIGN_DIRECTION §2 "워드마크 로고타입" 옆에 정식 등록된 두 번째 표면 규칙.
- * bg-roast-900 + border-roast-700 조합을 대체한다 (12개 파일 일괄 적용, 2026-07-09).
- * @layer components에 둬서 함께 쓰이는 Tailwind 유틸리티(focus:border-* 등)가 항상 이긴다.
+ * 카드 표면 — 더블베젤. 클래스명 .glass-card는 20여 개 파일에서 쓰여 유지하되(리네임 회귀 위험),
+ * 다크 시절의 backdrop-blur 유리에서 라이트용 "트레이+유리판" 구조로 재정의했다.
+ * 트레이는 실제 여백을 먹지 않도록 box-shadow spread로 그린다 — 레이아웃 영향 0.
  */
 @layer components {
   .glass-card {
     border-radius: var(--radius-card);
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
+    background: var(--surface-inner);
+    border: none;
     box-shadow:
-      inset 0 1px 0 var(--glass-highlight),
-      var(--glass-shadow);
+      0 0 0 var(--tray-width) var(--surface-tray),
+      0 0 0 calc(var(--tray-width) + 1px) var(--surface-ring),
+      inset 0 1px 1px var(--surface-highlight),
+      var(--surface-shadow);
   }
   .glass-card-strong {
     border-radius: var(--radius-card);
-    background: var(--glass-bg-strong);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
+    background: #fff;
+    border: none;
     box-shadow:
-      inset 0 1px 0 var(--glass-highlight),
-      var(--glass-shadow);
+      0 0 0 var(--tray-width) var(--surface-tray),
+      0 0 0 calc(var(--tray-width) + 1px) var(--surface-ring),
+      inset 0 1px 1px var(--surface-highlight),
+      0 16px 40px -16px rgba(70, 45, 20, 0.28);
+  }
+  /* 점선 테두리 변형(빈 상태)은 트레이 대신 파선을 쓴다 — 두 장치가 겹치면 지저분해진다 */
+  .glass-card.border-dashed {
+    background: transparent;
+    border: 1px dashed var(--color-roast-700);
+    box-shadow: none;
   }
 
   /*
@@ -106,7 +141,7 @@ body::before {
    * hover가 없는 터치 환경에서도 "눌렸다"는 즉각 반응을 준다 (tap-feedback-speed <100ms).
    */
   .pressable {
-    transition: transform 150ms ease-out;
+    transition: transform 320ms var(--ease-spring);
   }
   .pressable:active {
     transform: scale(0.98);
@@ -117,19 +152,22 @@ body::before {
    * 지연은 8번째 항목에서 상한 — 긴 리스트(49개)에서 아래쪽이 한없이 늦게 뜨지 않게.
    */
   .stagger-item {
-    animation: fade-up 280ms ease-out backwards;
+    animation: fade-up 460ms var(--ease-spring) backwards;
     animation-delay: calc(min(var(--stagger-i, 0), 8) * 40ms);
   }
 }
 
+/* 진입 시 blur→선명 (supanova soft-skill §5.C) — 요소가 "떠오르는" 물성 */
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(12px);
+    filter: blur(3px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
   }
 }
 
@@ -160,12 +198,14 @@ body::before {
   height: 22px;
   border-radius: 999px;
   background: var(--color-amber-glow);
-  border: 3px solid var(--color-roast-950);
+  border: 3px solid var(--color-roast-900);
+  box-shadow: 0 1px 4px rgba(70, 45, 20, 0.28); /* 라이트 배경에서 thumb 윤곽 확보 */
 }
 .flavor-slider::-moz-range-thumb {
   width: 22px;
   height: 22px;
   border-radius: 999px;
   background: var(--color-amber-glow);
-  border: 3px solid var(--color-roast-950);
+  border: 3px solid var(--color-roast-900);
+  box-shadow: 0 1px 4px rgba(70, 45, 20, 0.28);
 }
