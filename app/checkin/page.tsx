@@ -7,7 +7,9 @@ import { StepPhoto } from "./StepPhoto";
 import { StepRate, type RateResult } from "./StepRate";
 import { RadarChart } from "@/components/RadarChart";
 import { ShareSheet } from "@/components/ShareSheet";
-import { addCheckin, clearDraft, loadDraft, saveDraft } from "@/lib/data/local";
+import { clearDraft, loadDraft, saveDraft } from "@/lib/data/local";
+import { saveCheckin } from "@/lib/data/checkins";
+import { useSession } from "@/lib/auth/session";
 import type { LocalCheckin } from "@/lib/data/local";
 import type { MockCafe } from "@/lib/mock/seed";
 import { shareCardDataFromCheckin } from "@/lib/shareCard";
@@ -24,9 +26,15 @@ const STEP_TITLES: Record<Step, string> = {
  * 드래프트는 IndexedDB에 저장 — 유일한 로컬 저장 예외 (TECHNICAL_SPEC §3).
  */
 export default function CheckinPage() {
+  const { user } = useSession();
   const [step, setStep] = useState<Step>(1);
   const [context, setContext] = useState<"cafe" | "home">("cafe");
-  const [cafe, setCafe] = useState<{ id: string; name: string } | null>(null);
+  const [cafe, setCafe] = useState<{
+    id: string;
+    name: string;
+    district: string;
+    slug: string | null; // null = 유저가 즉석 등록한 카페 (카탈로그에 없음)
+  } | null>(null);
   const [gpsVerified, setGpsVerified] = useState(false);
   const [photoDataUrl, setPhotoDataUrl] = useState<string | null>(null);
   const [done, setDone] = useState<LocalCheckin | null>(null);
@@ -41,7 +49,12 @@ export default function CheckinPage() {
         setContext(draft.context ?? "cafe");
         setCafe(
           draft.cafeId && draft.cafeName
-            ? { id: draft.cafeId, name: draft.cafeName }
+            ? {
+                id: draft.cafeId,
+                name: draft.cafeName,
+                district: draft.cafeDistrict ?? "",
+                slug: draft.cafeSlug ?? null,
+              }
             : null,
         );
         setGpsVerified(draft.gpsVerified ?? false);
@@ -59,6 +72,8 @@ export default function CheckinPage() {
       context,
       cafeId: cafe?.id ?? null,
       cafeName: cafe?.name ?? null,
+      cafeDistrict: cafe?.district ?? null,
+      cafeSlug: cafe?.slug ?? null,
       gpsVerified,
       photoDataUrl: photoDataUrl ?? undefined,
     });
@@ -66,7 +81,13 @@ export default function CheckinPage() {
 
   const handleSelectCafe = (selected: MockCafe, verified: boolean) => {
     setContext("cafe");
-    setCafe({ id: selected.id, name: selected.name });
+    setCafe({
+      id: selected.id,
+      name: selected.name,
+      district: selected.district,
+      // localCafeToMock은 slug 자리에 로컬 id를 넣는다 — 카탈로그 slug가 아니므로 이관 키가 못 된다
+      slug: selected.id.startsWith("local-cafe-") ? null : selected.slug,
+    });
     setGpsVerified(verified);
     setStep(2);
   };
@@ -79,13 +100,17 @@ export default function CheckinPage() {
   };
 
   const handleSubmit = async (r: RateResult) => {
-    const record = await addCheckin({
+    const record = await saveCheckin({
       context,
       cafeId: cafe?.id ?? null,
       cafeName: cafe?.name ?? null,
+      cafeDistrict: cafe?.district ?? null,
+      cafeSlug: cafe?.slug ?? null,
       beanId: r.bean.id,
       beanName: r.bean.name,
       roasterName: r.bean.roasterName,
+      beanOrigin: r.bean.origin,
+      beanSlug: r.bean.slug,
       brewMethod: r.brewMethod,
       rating: r.rating,
       profile: r.profile,
@@ -95,7 +120,7 @@ export default function CheckinPage() {
       gpsVerified,
       memo: r.memo || undefined,
       isPublic: r.isPublic,
-    });
+    }, user?.id ?? null);
     await clearDraft();
     setDone(record);
   };

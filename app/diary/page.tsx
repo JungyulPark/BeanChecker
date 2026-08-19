@@ -10,6 +10,8 @@ import { InstallPrompt } from "@/components/InstallPrompt";
 import { RadarChart } from "@/components/RadarChart";
 import { ReportButton } from "@/components/ReportButton";
 import { listCheckins, type LocalCheckin } from "@/lib/data/local";
+import { pendingCount } from "@/lib/data/checkins";
+import { useSession } from "@/lib/auth/session";
 import { FLAVOR_TAGS } from "@/lib/flavorTags";
 import { daysOffRoast, roastAgeLabel } from "@/lib/freshness";
 import type { FlavorProfile } from "@/types/domain";
@@ -50,11 +52,18 @@ function avgProfile(checkins: LocalCheckin[]): FlavorProfile | null {
 }
 
 export default function DiaryPage() {
+  const { status } = useSession();
   const [checkins, setCheckins] = useState<LocalCheckin[] | null>(null);
+  const [pending, setPending] = useState(0);
 
   useEffect(() => {
     listCheckins().then(setCheckins);
   }, []);
+
+  // 이 기기에만 있는 기록 수. 로그인 후 CheckinSync가 올리면 0으로 줄어든다.
+  useEffect(() => {
+    pendingCount().then(setPending);
+  }, [status, checkins]);
 
   const stats = useMemo(() => {
     if (!checkins || checkins.length === 0) return null;
@@ -114,6 +123,21 @@ export default function DiaryPage() {
         </div>
       ) : (
         <>
+          {/* 이 기기에만 있는 기록 안내 — "로그인하니 기록이 사라졌다"를 만들지 않으려면
+              사라질 수 있다는 사실을 먼저 말해야 한다 */}
+          {status === "anon" && pending > 0 && (
+            <Link
+              href="/login?next=/diary"
+              className="mt-5 flex items-center justify-between glass-card border-dashed px-4 py-3"
+            >
+              <span className="text-caption text-crema-400">
+                <span className="font-mono text-crema-100">{pending}잔</span>이 이 기기에만
+                있어요 — 로그인하면 계정으로 옮겨집니다
+              </span>
+              <span className="shrink-0 pl-3 text-caption text-amber-glow">로그인 →</span>
+            </Link>
+          )}
+
           {/* 통계 */}
           <section className="mt-5 grid grid-cols-2 gap-3">
             <div className="glass-card p-4">

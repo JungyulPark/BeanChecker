@@ -65,3 +65,45 @@ jobs:
           path: ${{ runner.temp }}/*.png
           if-no-files-found: ignore
           retention-days: 7
+
+  # 서버 동기화 검증은 별도 잡 — env가 붙은 빌드가 필요해서 verify와 빌드를 공유할 수 없다.
+  # (verify는 시드 폴백 경로, 여기는 Supabase 경로를 본다)
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: 의존성 설치
+        run: npm ci
+
+      - name: 빌드 (도달 불가 Supabase env)
+        run: npm run build
+        env:
+          # 127.0.0.1:54999에는 아무것도 없다 — 서버가 죽은 상황을 그대로 재현한다.
+          # 테스트가 필요한 응답은 Playwright route()로 가로챈다 (tests/sync.cjs 주석 참조).
+          NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:54999
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: fake-anon-key-for-ci
+          NEXT_PUBLIC_SITE_URL: http://localhost:3101
+
+      - name: Playwright 브라우저 설치
+        run: npx playwright install --with-deps chromium
+
+      - name: 서버 기동
+        run: |
+          npm start -- -p 3101 &
+          npx wait-on http://localhost:3101 --timeout 60000
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:54999
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: fake-anon-key-for-ci
+
+      - name: 동기화 검증 (E2E)
+        run: node tests/sync.cjs
+        env:
+          QA_BASE_URL: http://localhost:3101
+          QA_SUPABASE_URL: http://127.0.0.1:54999

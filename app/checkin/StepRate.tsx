@@ -32,7 +32,13 @@ const ORIGINS = [
 ] as const;
 
 export type RateResult = {
-  bean: { id: string; name: string; roasterName: string | null };
+  bean: {
+    id: string;
+    name: string;
+    roasterName: string | null;
+    origin: string;
+    slug: string | null; // null = 즉석 등록 (아직 카탈로그에 없는 원두)
+  };
   brewMethod: "espresso" | "filter" | "other";
   rating: number;
   profile: FlavorProfile;
@@ -96,7 +102,7 @@ export function StepRate({
   );
 
   const selectBean = (b: MockBean) => {
-    setBean({ id: b.id, name: b.name, roasterName: b.roasterName });
+    setBean({ id: b.id, name: b.name, roasterName: b.roasterName, origin: b.origin, slug: b.slug });
     setRegistering(false);
   };
 
@@ -105,6 +111,8 @@ export function StepRate({
       id: `local-${normalize(beanQuery)}-${newOrigin}`,
       name: beanQuery.trim(),
       roasterName: null,
+      origin: newOrigin,
+      slug: null,
     });
     setRegistering(false);
   };

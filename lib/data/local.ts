@@ -20,6 +20,12 @@ export type LocalCheckin = {
   beanId: string;
   beanName: string;
   roasterName: string | null;
+  // 서버 이관용 좌표 — 로컬 기록을 나중에 DB 행으로 옮기려면 "어떤 원두/카페였나"를
+  // id가 아니라 **자연키**로 들고 있어야 한다. 시드 id("bean-…")와 DB uuid는 호환되지 않기 때문.
+  beanOrigin: string; // 신규 등록 원두도 사용자가 산지는 고른다
+  beanSlug: string | null; // null = 사용자가 즉석 등록한 원두 (이관 시 beans에 새로 만든다)
+  cafeDistrict: string | null;
+  cafeSlug: string | null; // null = 홈브루이거나 사용자가 즉석 등록한 카페
   brewMethod: "espresso" | "filter" | "other";
   rating: number;
   profile: FlavorProfile;

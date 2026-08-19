@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Nanum_Myeongjo, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { BRAND } from "@/lib/brand";
 import { ServiceWorkerRegistrar } from "@/components/ServiceWorkerRegistrar";
+import { SessionProvider } from "@/lib/auth/session";
+import { CheckinSync } from "@/components/CheckinSync";
 import "./globals.css";
 
 const display = Nanum_Myeongjo({
@@ -55,7 +57,10 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        {children}
+        <SessionProvider>
+          {children}
+          <CheckinSync />
+        </SessionProvider>
         <ServiceWorkerRegistrar />
       </body>
     </html>
