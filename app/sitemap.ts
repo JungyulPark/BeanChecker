@@ -13,6 +13,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: base, lastModified: now, changeFrequency: "daily" as const, priority: 1 },
+    // 법적 고지 — 검색 노출 가치는 낮지만 신뢰 신호이자 카카오 심사 확인 대상
+    { url: `${base}/privacy`, lastModified: now, changeFrequency: "yearly" as const, priority: 0.3 },
+    { url: `${base}/terms`, lastModified: now, changeFrequency: "yearly" as const, priority: 0.3 },
     ...MOCK_CAFES.map((c) => ({
       url: `${base}/cafe/${c.district}/${c.slug}`,
       lastModified: now,

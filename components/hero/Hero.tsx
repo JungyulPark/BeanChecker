@@ -49,6 +49,16 @@ export function Hero() {
           첫 잔 기록하기
         </Link>
       </div>
+
+      {/* 법적 고지 — 히어로의 유일한 부가 요소. 작게, 그러나 반드시 있어야 한다 */}
+      <footer className="relative mt-6 flex gap-4 text-caption text-crema-400">
+        <Link href="/privacy" className="underline underline-offset-4">
+          개인정보처리방침
+        </Link>
+        <Link href="/terms" className="underline underline-offset-4">
+          이용약관
+        </Link>
+      </footer>
     </section>
   );
 }

@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+# 같은 브랜치에 새 푸시가 오면 진행 중인 실행을 취소 (러너 낭비 방지)
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: 의존성 설치
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: 타입 체크
+        run: npx tsc --noEmit
+
+      - name: 빌드
+        run: npm run build
+        env:
+          # CI에서는 실DB에 붙지 않는다 — 시드 폴백 경로를 검증한다.
+          # (DB 경로는 프리뷰 배포에서 실제 env로 검증)
+          NEXT_PUBLIC_SITE_URL: http://localhost:3100
+
+      - name: Playwright 브라우저 설치
+        run: npx playwright install --with-deps chromium
+
+      - name: 서버 기동
+        run: |
+          npm start -- -p 3100 &
+          npx wait-on http://localhost:3100 --timeout 60000
+
+      - name: 회귀 검증 (E2E)
+        run: node tests/qa.cjs
+        env:
+          QA_BASE_URL: http://localhost:3100
+          QA_OUT_DIR: ${{ runner.temp }}
+
+      - name: 실패 시 스크린샷 업로드
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-screenshots
+          path: ${{ runner.temp }}/*.png
+          if-no-files-found: ignore
+          retention-days: 7

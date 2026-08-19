@@ -1,52 +1,91 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { createServerClient } from "@supabase/ssr";
 
 /**
- * /admin 임시 게이트 — Supabase Auth(profiles.is_admin) 연결 전까지의 스톱갭.
- * HTTP Basic Auth를 서버(엣지 미들웨어)에서 검사한다 — 비밀번호가 클라이언트 번들에
- * 노출되지 않는다는 점에서 클라이언트 사이드 비밀번호 체크와 근본적으로 다르다.
+ * 1) Supabase 세션 쿠키 갱신 — 서버 컴포넌트는 쿠키를 쓸 수 없으므로 여기서 한다.
+ * 2) /admin 게이트 — profiles.is_admin. Supabase 미설정 환경에서는 기존 Basic Auth로 폴백.
  *
- * fail-closed: ADMIN_BASIC_AUTH_USER/PASSWORD가 설정 안 되어 있으면 무조건 401 —
- * "설정 안 했으니 그냥 통과"를 절대 허용하지 않는다.
- *
- * TODO(Supabase 연결 후): 이 미들웨어를 지우고 Supabase 세션 + profiles.is_admin
- * 체크로 교체한다 (TECHNICAL_SPEC §3 Auth: "로그인 필수 라우트 = /checkin, /diary, /admin").
+ * fail-closed 원칙 유지: 어느 경로로도 "설정 안 됐으니 그냥 통과"는 없다.
  */
-export function middleware(request: NextRequest) {
-  if (!request.nextUrl.pathname.startsWith("/admin")) {
-    return NextResponse.next();
-  }
+const ADMIN_PATH = "/admin";
 
-  const expectedUser = process.env.ADMIN_BASIC_AUTH_USER;
-  const expectedPassword = process.env.ADMIN_BASIC_AUTH_PASSWORD;
-
+function basicAuthGate(request: NextRequest) {
+  const user = process.env.ADMIN_BASIC_AUTH_USER;
+  const password = process.env.ADMIN_BASIC_AUTH_PASSWORD;
   const unauthorized = () =>
     new NextResponse("Authentication required", {
       status: 401,
       headers: { "WWW-Authenticate": 'Basic realm="admin"' },
     });
 
-  if (!expectedUser || !expectedPassword) {
-    // env 미설정 = 접근 불가. 조용히 열어주지 않는다 (fail-closed).
+  if (!user || !password) return unauthorized();
+
+  const header = request.headers.get("authorization");
+  if (!header?.startsWith("Basic ")) return unauthorized();
+
+  let decoded = "";
+  try {
+    decoded = atob(header.slice(6));
+  } catch {
     return unauthorized();
   }
-
-  const authHeader = request.headers.get("authorization");
-  if (!authHeader?.startsWith("Basic ")) {
+  const idx = decoded.indexOf(":");
+  if (idx < 0) return unauthorized();
+  if (decoded.slice(0, idx) !== user || decoded.slice(idx + 1) !== password) {
     return unauthorized();
   }
+  return null; // 통과
+}
 
-  const decoded = atob(authHeader.slice("Basic ".length));
-  const separatorIndex = decoded.indexOf(":");
-  const user = decoded.slice(0, separatorIndex);
-  const password = decoded.slice(separatorIndex + 1);
+export async function middleware(request: NextRequest) {
+  let response = NextResponse.next({ request });
 
-  if (user !== expectedUser || password !== expectedPassword) {
-    return unauthorized();
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  // Supabase 미설정 → 세션 개념이 없으므로 /admin은 Basic Auth 스톱갭으로
+  if (!url || !key) {
+    if (request.nextUrl.pathname.startsWith(ADMIN_PATH)) {
+      return basicAuthGate(request) ?? response;
+    }
+    return response;
   }
 
-  return NextResponse.next();
+  const supabase = createServerClient(url, key, {
+    cookies: {
+      getAll: () => request.cookies.getAll(),
+      setAll: (list) => {
+        list.forEach(({ name, value }) => request.cookies.set(name, value));
+        response = NextResponse.next({ request });
+        list.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
+      },
+    },
+  });
+
+  // getUser()는 토큰을 서버에서 검증한다 — getSession()과 달리 위조 쿠키를 신뢰하지 않는다
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (request.nextUrl.pathname.startsWith(ADMIN_PATH)) {
+    if (!user) {
+      const login = request.nextUrl.clone();
+      login.pathname = "/login";
+      login.searchParams.set("next", request.nextUrl.pathname);
+      return NextResponse.redirect(login);
+    }
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("is_admin")
+      .eq("id", user.id)
+      .maybeSingle();
+    if (error || data?.is_admin !== true) {
+      return new NextResponse("Forbidden", { status: 403 });
+    }
+  }
+
+  return response;
 }
 
 export const config = {
-  matcher: ["/admin", "/admin/:path*"],
+  // 정적 자산·이미지는 세션 갱신이 불필요하므로 제외 (엣지 호출 비용·지연 절감)
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|icon.svg|.*\\.(?:png|jpg|jpeg|svg|webp|ico)$).*)"],
 };
