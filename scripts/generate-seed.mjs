@@ -268,6 +268,9 @@ const beans = beansCsv.map((r) => {
     topFlavorTags,
     // 구매 동선 — 로스터 공식몰만 (인스타 제외: 구매 페이지가 아님)
     purchaseUrl: officialUrl(r.source_url, { allowInstagram: false }),
+    // 품종은 CSV에 없다 — 추측 금지(CLAUDE.md 원칙). 로스터 공식 표기를 확인한 건만
+    // admin/DB로 채운다. 시드는 전부 null로 두고, 화면은 값이 있을 때만 노출한다.
+    variety: null,
   };
 });
 

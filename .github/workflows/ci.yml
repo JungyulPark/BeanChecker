@@ -31,6 +31,11 @@ jobs:
       - name: 타입 체크
         run: npx tsc --noEmit
 
+      # 마이그레이션과 database.types.ts가 어긋나면 여기서 잡힌다.
+      # (이 컨테이너엔 Docker가 없어 supabase gen types를 못 돌린다 — 스크립트 주석 참조)
+      - name: 스키마 ↔ 타입 드리프트 검사
+        run: npm run check:types-drift
+
       - name: 빌드
         run: npm run build
         env:

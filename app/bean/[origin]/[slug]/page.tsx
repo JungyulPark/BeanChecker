@@ -99,8 +99,14 @@ export default async function BeanPage({
           )}
         </header>
 
-        {(bean.process !== null || bean.roastLevel !== null) && (
+        {(bean.process !== null || bean.roastLevel !== null || bean.variety !== null) && (
           <section className="mt-6 flex flex-wrap gap-2">
+            {/* 품종은 스페셜티인이 원산지 다음으로 보는 값 — 로스터 공식 표기가 있을 때만 노출한다 */}
+            {bean.variety !== null && (
+              <span className="rounded-full border border-amber-glow/50 px-3 py-1 text-caption text-amber-glow">
+                {bean.variety}
+              </span>
+            )}
             {bean.process !== null && (
               <span className="rounded-full border border-roast-700 px-3 py-1 text-caption text-crema-400">
                 {PROCESS_LABEL[bean.process]}

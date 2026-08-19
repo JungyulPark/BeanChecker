@@ -78,6 +78,7 @@ function mapBean(row: Tables<"beans">, roasterName: string | null): MockBean {
     avgProfile: (row.avg_profile as FlavorProfile | null) ?? null,
     topFlavorTags: SEED_TAGS.get(`${row.origin}/${row.slug}`) ?? [],
     purchaseUrl: row.purchase_url ?? SEED_PURCHASE.get(`${row.origin}/${row.slug}`) ?? null,
+    variety: row.variety,
   };
 }
 

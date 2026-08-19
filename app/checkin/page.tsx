@@ -90,6 +90,7 @@ export default function CheckinPage() {
       rating: r.rating,
       profile: r.profile,
       flavorTags: r.flavorTags,
+      roastDate: r.roastDate,
       photoDataUrl,
       gpsVerified,
       memo: r.memo || undefined,

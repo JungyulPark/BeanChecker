@@ -37,6 +37,7 @@ export type Database = {
           roast_year: number | null
           roaster_id: string | null
           slug: string
+          variety: string | null
           verified: boolean
         }
         Insert: {
@@ -59,6 +60,7 @@ export type Database = {
           roast_year?: number | null
           roaster_id?: string | null
           slug: string
+          variety?: string | null
           verified?: boolean
         }
         Update: {
@@ -81,6 +83,7 @@ export type Database = {
           roast_year?: number | null
           roaster_id?: string | null
           slug?: string
+          variety?: string | null
           verified?: boolean
         }
         Relationships: [
@@ -179,9 +182,10 @@ export type Database = {
           id: string
           is_public: boolean
           memo: string | null
-          photo_url: string
+          photo_url: string | null
           profile: Json
           rating: number
+          roast_date: string | null
           user_id: string
         }
         Insert: {
@@ -196,9 +200,10 @@ export type Database = {
           id?: string
           is_public?: boolean
           memo?: string | null
-          photo_url: string
+          photo_url?: string | null
           profile: Json
           rating: number
+          roast_date?: string | null
           user_id: string
         }
         Update: {
@@ -213,9 +218,10 @@ export type Database = {
           id?: string
           is_public?: boolean
           memo?: string | null
-          photo_url?: string
+          photo_url?: string | null
           profile?: Json
           rating?: number
+          roast_date?: string | null
           user_id?: string
         }
         Relationships: [

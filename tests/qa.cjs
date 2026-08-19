@@ -116,6 +116,16 @@ const CONTRAST_FN = `(() => {
   await p.getByPlaceholder("원두 이름 검색").fill("첼베사");
   await p.waitForTimeout(400);
   await p.getByRole("button", { name: /첼베사/ }).first().click();
+
+  // 로스팅 칩: 미선택이 기본, 한 탭에 경과일·신선도 구간이 계산돼 나온다 (lib/freshness.ts)
+  const roastDefault = (await p.getByText("봉투에 적힌 로스팅 날짜를 모르면").count()) > 0;
+  await p.getByRole("button", { name: "1주 전", exact: true }).click();
+  await p.waitForTimeout(200);
+  const roastCalc =
+    (await p.getByText("로스팅 7일차").count()) > 0 &&
+    (await p.getByText("음용 적기").count()) > 0;
+  log("10. 로스팅 칩 — 기본 미선택 + 경과일/구간 계산", roastDefault && roastCalc);
+
   const sl = p.locator("input.flavor-slider");
   for (let i = 0; i < 5; i++) await sl.nth(i).fill(String([6,7,8,3,6][i]));
   await p.locator('button[aria-label="4점"]').click();
@@ -123,29 +133,36 @@ const CONTRAST_FN = `(() => {
   await p.waitForTimeout(300);
   const submit = p.getByRole("button", { name: "기록 완료" });
   const canSubmit = await submit.isEnabled();
-  log("10. 체크인 제출 가능", canSubmit);
+  log("11. 체크인 제출 가능", canSubmit);
   if (canSubmit) {
     await submit.click();
     await p.waitForTimeout(1200);
-    log("11. 완료 화면 도달", (await p.getByText("첼베사").count()) > 0);
+    log("12. 완료 화면 도달", (await p.getByText("첼베사").count()) > 0);
+
+    // 저장 왕복: 칩으로 고른 값이 IndexedDB를 거쳐 다이어리에 남아야 한다
+    await p.goto(BASE + "/diary", { waitUntil: "domcontentloaded" });
+    await p.waitForTimeout(1200);
+    const diary = await p.locator("main").innerText();
+    log("13. 로스팅 경과일 저장 왕복", /로스팅 7일차/.test(diary),
+        diary.match(/로스팅 \d+일차/)?.[0] ?? "표시 없음");
   }
 
   // 12. 404
   const r404 = await p.goto(BASE + "/cafe/seongsu/nope-nope", { waitUntil: "domcontentloaded" });
-  log("12. 없는 카페 404", r404.status() === 404);
+  log("14. 없는 카페 404", r404.status() === 404);
 
   // 13. 아이콘/매니페스트
   const icon = await p.request.get(BASE + "/icon.svg");
   const mani = await p.request.get(BASE + "/manifest.webmanifest");
   const mj = await mani.json();
-  log("13. 아이콘·매니페스트 정합", icon.ok() && mj.theme_color === "#efe7da", `theme=${mj.theme_color}`);
+  log("15. 아이콘·매니페스트 정합", icon.ok() && mj.theme_color === "#efe7da", `theme=${mj.theme_color}`);
 
   // 14. sitemap/robots
   const sm = await p.request.get(BASE + "/sitemap.xml");
   const rb = await p.request.get(BASE + "/robots.txt");
-  log("14. SEO 산출물", sm.ok() && rb.ok());
+  log("16. SEO 산출물", sm.ok() && rb.ok());
 
-  log("15. 전 구간 JS 에러 0건", errors.length === 0, errors.slice(0, 2).join(" / "));
+  log("17. 전 구간 JS 에러 0건", errors.length === 0, errors.slice(0, 2).join(" / "));
 
   const passed = R.filter(Boolean).length;
   console.log(`\n===== ${passed}/${R.length} PASS =====`);

@@ -7,6 +7,7 @@ import { SEED_CAFES, SEED_BEANS } from "./seed.generated";
  * 카페·원두 본체는 launch/*.csv → scripts/generate-seed.mjs 로 생성 (seed.generated.ts, 직접 수정 금지).
  * 5건 룰(TECHNICAL_SPEC §3): 실데이터 신규 항목은 전부 avgRating null — 집계는 실제 체크인이 쌓여야 열린다.
  * 여기 남긴 DEMO_BEANS 5종은 레이더 차트·향미 페이지 시연용 자리표시자 (Supabase 집계 배치 연결 시 소멸).
+ * variety는 이름·산지가 스스로 단정하는 건만 채웠다 — 나머지는 null로 두어 "미상" 표시 경로도 함께 시연한다.
  */
 
 export type MockCafe = {
@@ -42,6 +43,7 @@ export type MockBean = {
   avgProfile: FlavorProfile | null; // null = 5건 미달
   topFlavorTags: FlavorTagId[];
   purchaseUrl: string | null; // 로스터 공식몰 구매 링크 — Phase 3 어필리에이트·파트너십의 선행 동선
+  variety: string | null; // 품종(게이샤·SL28·티피카…). null = 미상 — 스페셜티에선 원산지만큼 중요한 1급 속성
 };
 
 const DEMO_BEANS: MockBean[] = [
@@ -55,6 +57,7 @@ const DEMO_BEANS: MockBean[] = [
     avgProfile: { acidity: 8, sweetness: 7, body: 4, bitterness: 2, aftertaste: 7 },
     topFlavorTags: ["berry", "floral", "black-tea"],
     purchaseUrl: null,
+    variety: "에티오피아 재래종",
   },
   {
     id: "bean-gesha", name: "파나마 게이샤 에스메랄다", slug: "gesha-esmeralda",
@@ -66,6 +69,7 @@ const DEMO_BEANS: MockBean[] = [
     avgProfile: { acidity: 9, sweetness: 8, body: 3, bitterness: 1, aftertaste: 8 },
     topFlavorTags: ["floral", "stone-fruit", "black-tea"],
     purchaseUrl: null,
+    variety: "게이샤",
   },
   {
     id: "bean-huila", name: "콜롬비아 우일라 수프리모", slug: "huila-supremo",
@@ -77,6 +81,7 @@ const DEMO_BEANS: MockBean[] = [
     avgProfile: { acidity: 4, sweetness: 7, body: 8, bitterness: 5, aftertaste: 6 },
     topFlavorTags: ["chocolate", "caramel", "nutty"],
     purchaseUrl: null,
+    variety: null,
   },
   {
     id: "bean-yirg", name: "에티오피아 예가체프 G1", slug: "yirgacheffe-g1",
@@ -88,6 +93,7 @@ const DEMO_BEANS: MockBean[] = [
     avgProfile: { acidity: 7, sweetness: 8, body: 5, bitterness: 2, aftertaste: 7 },
     topFlavorTags: ["berry", "winey", "honey"],
     purchaseUrl: null,
+    variety: "에티오피아 재래종",
   },
   {
     id: "bean-kenya", name: "케냐 니에리 AA", slug: "nyeri-aa",
@@ -99,6 +105,7 @@ const DEMO_BEANS: MockBean[] = [
     avgProfile: null,
     topFlavorTags: ["citrus", "winey"],
     purchaseUrl: null,
+    variety: null,
   },
 ];
 

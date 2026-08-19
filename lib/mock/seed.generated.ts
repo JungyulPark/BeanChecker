@@ -721,7 +721,8 @@ export const SEED_BEANS: MockBean[] = [
       "brown-sugar",
       "nutty"
     ],
-    "purchaseUrl": "https://fritz.co.kr/product/%ED%94%84%EB%A6%B3%EC%B8%A0-old-dog-fritz-blend-coffee-bean/91/"
+    "purchaseUrl": "https://fritz.co.kr/product/%ED%94%84%EB%A6%B3%EC%B8%A0-old-dog-fritz-blend-coffee-bean/91/",
+    "variety": null
   },
   {
     "id": "bean-seoul-cinema",
@@ -742,7 +743,8 @@ export const SEED_BEANS: MockBean[] = [
     "checkinCount": 0,
     "avgProfile": null,
     "topFlavorTags": [],
-    "purchaseUrl": "https://fritz.co.kr/"
+    "purchaseUrl": "https://fritz.co.kr/",
+    "variety": null
   },
   {
     "id": "bean-natsume-soseki",
@@ -769,7 +771,8 @@ export const SEED_BEANS: MockBean[] = [
       "citrus",
       "nutty"
     ],
-    "purchaseUrl": "https://anthracitecoffee.com/20"
+    "purchaseUrl": "https://anthracitecoffee.com/20",
+    "variety": null
   },
   {
     "id": "bean-air-and-dream",
@@ -797,7 +800,8 @@ export const SEED_BEANS: MockBean[] = [
       "citrus",
       "floral"
     ],
-    "purchaseUrl": "https://anthracitecoffee.com/20"
+    "purchaseUrl": "https://anthracitecoffee.com/20",
+    "variety": null
   },
   {
     "id": "bean-pablo-neruda",
@@ -825,7 +829,8 @@ export const SEED_BEANS: MockBean[] = [
       "berry",
       "nutty"
     ],
-    "purchaseUrl": "https://anthracitecoffee.com/20"
+    "purchaseUrl": "https://anthracitecoffee.com/20",
+    "variety": null
   },
   {
     "id": "bean-bad-blood",
@@ -846,7 +851,8 @@ export const SEED_BEANS: MockBean[] = [
     "checkinCount": 0,
     "avgProfile": null,
     "topFlavorTags": [],
-    "purchaseUrl": "https://coffeelibre.kr/"
+    "purchaseUrl": "https://coffeelibre.kr/",
+    "variety": null
   },
   {
     "id": "bean-no-surprise",
@@ -867,7 +873,8 @@ export const SEED_BEANS: MockBean[] = [
     "checkinCount": 0,
     "avgProfile": null,
     "topFlavorTags": [],
-    "purchaseUrl": "https://coffeelibre.kr/"
+    "purchaseUrl": "https://coffeelibre.kr/",
+    "variety": null
   },
   {
     "id": "bean-dark-libre",
@@ -892,7 +899,8 @@ export const SEED_BEANS: MockBean[] = [
       "chocolate",
       "nutty"
     ],
-    "purchaseUrl": "https://coffeelibre.kr/"
+    "purchaseUrl": "https://coffeelibre.kr/",
+    "variety": null
   },
   {
     "id": "bean-black-suit",
@@ -915,7 +923,8 @@ export const SEED_BEANS: MockBean[] = [
     "topFlavorTags": [
       "chocolate"
     ],
-    "purchaseUrl": "https://beanbrothers.co.kr/"
+    "purchaseUrl": "https://beanbrothers.co.kr/",
+    "variety": null
   },
   {
     "id": "bean-velvet-white",
@@ -938,7 +947,8 @@ export const SEED_BEANS: MockBean[] = [
     "topFlavorTags": [
       "citrus"
     ],
-    "purchaseUrl": "https://beanbrothers.co.kr/"
+    "purchaseUrl": "https://beanbrothers.co.kr/",
+    "variety": null
   },
   {
     "id": "bean-altos-del-paraiso",
@@ -964,7 +974,8 @@ export const SEED_BEANS: MockBean[] = [
       "honey",
       "berry"
     ],
-    "purchaseUrl": "https://beanbrothers.co.kr/"
+    "purchaseUrl": "https://beanbrothers.co.kr/",
+    "variety": null
   },
   {
     "id": "bean-violet-blend",
@@ -985,7 +996,8 @@ export const SEED_BEANS: MockBean[] = [
     "checkinCount": 0,
     "avgProfile": null,
     "topFlavorTags": [],
-    "purchaseUrl": "https://180coffee.com/"
+    "purchaseUrl": "https://180coffee.com/",
+    "variety": null
   },
   {
     "id": "bean-el-renacer-ombligon",
@@ -1012,7 +1024,8 @@ export const SEED_BEANS: MockBean[] = [
       "citrus",
       "stone-fruit"
     ],
-    "purchaseUrl": "https://m.180coffee.com/product/list.html?cate_no=42"
+    "purchaseUrl": "https://m.180coffee.com/product/list.html?cate_no=42",
+    "variety": null
   },
   {
     "id": "bean-el-silencio",
@@ -1035,7 +1048,8 @@ export const SEED_BEANS: MockBean[] = [
     "topFlavorTags": [
       "tropical"
     ],
-    "purchaseUrl": "https://reflect-coffee.co.kr/"
+    "purchaseUrl": "https://reflect-coffee.co.kr/",
+    "variety": null
   },
   {
     "id": "bean-el-rosario",
@@ -1056,7 +1070,8 @@ export const SEED_BEANS: MockBean[] = [
     "checkinCount": 0,
     "avgProfile": null,
     "topFlavorTags": [],
-    "purchaseUrl": "https://reflect-coffee.co.kr/"
+    "purchaseUrl": "https://reflect-coffee.co.kr/",
+    "variety": null
   },
   {
     "id": "bean-el-encanto",
@@ -1079,7 +1094,8 @@ export const SEED_BEANS: MockBean[] = [
     "topFlavorTags": [
       "berry"
     ],
-    "purchaseUrl": "https://reflect-coffee.co.kr/"
+    "purchaseUrl": "https://reflect-coffee.co.kr/",
+    "variety": null
   },
   {
     "id": "bean-all-day-blend",
@@ -1104,7 +1120,8 @@ export const SEED_BEANS: MockBean[] = [
     "topFlavorTags": [
       "chocolate"
     ],
-    "purchaseUrl": "https://terarosa.com/"
+    "purchaseUrl": "https://terarosa.com/",
+    "variety": null
   },
   {
     "id": "bean-buttery",
@@ -1127,7 +1144,8 @@ export const SEED_BEANS: MockBean[] = [
     "topFlavorTags": [
       "nutty"
     ],
-    "purchaseUrl": null
+    "purchaseUrl": null,
+    "variety": null
   },
   {
     "id": "bean-gotige",
@@ -1148,7 +1166,8 @@ export const SEED_BEANS: MockBean[] = [
     "checkinCount": 0,
     "avgProfile": null,
     "topFlavorTags": [],
-    "purchaseUrl": "https://cmlandco.kr/"
+    "purchaseUrl": "https://cmlandco.kr/",
+    "variety": null
   },
   {
     "id": "bean-new-tendency",
@@ -1169,7 +1188,8 @@ export const SEED_BEANS: MockBean[] = [
     "checkinCount": 0,
     "avgProfile": null,
     "topFlavorTags": [],
-    "purchaseUrl": "https://cmlandco.kr/"
+    "purchaseUrl": "https://cmlandco.kr/",
+    "variety": null
   },
   {
     "id": "bean-black-in-seoul",
@@ -1196,7 +1216,8 @@ export const SEED_BEANS: MockBean[] = [
       "caramel",
       "nutty"
     ],
-    "purchaseUrl": "https://champcoffee.kr/"
+    "purchaseUrl": "https://champcoffee.kr/",
+    "variety": null
   },
   {
     "id": "bean-brown-in-seoul",
@@ -1223,7 +1244,8 @@ export const SEED_BEANS: MockBean[] = [
       "honey",
       "berry"
     ],
-    "purchaseUrl": "https://champcoffee.kr/"
+    "purchaseUrl": "https://champcoffee.kr/",
+    "variety": null
   },
   {
     "id": "bean-el-socorro-gesha",
@@ -1242,7 +1264,8 @@ export const SEED_BEANS: MockBean[] = [
     "checkinCount": 0,
     "avgProfile": null,
     "topFlavorTags": [],
-    "purchaseUrl": "https://lowkeycoffee.com/shop/list-cf10"
+    "purchaseUrl": "https://lowkeycoffee.com/shop/list-cf10",
+    "variety": null
   },
   {
     "id": "bean-consaca",
@@ -1261,7 +1284,8 @@ export const SEED_BEANS: MockBean[] = [
     "checkinCount": 0,
     "avgProfile": null,
     "topFlavorTags": [],
-    "purchaseUrl": "https://lowkeycoffee.com/shop/list-cf10"
+    "purchaseUrl": "https://lowkeycoffee.com/shop/list-cf10",
+    "variety": null
   },
   {
     "id": "bean-aricha",
@@ -1280,7 +1304,8 @@ export const SEED_BEANS: MockBean[] = [
     "checkinCount": 0,
     "avgProfile": null,
     "topFlavorTags": [],
-    "purchaseUrl": "https://lowkeycoffee.com/shop/list-cf10"
+    "purchaseUrl": "https://lowkeycoffee.com/shop/list-cf10",
+    "variety": null
   },
   {
     "id": "bean-deep-blending",
@@ -1303,7 +1328,8 @@ export const SEED_BEANS: MockBean[] = [
     "topFlavorTags": [
       "nutty"
     ],
-    "purchaseUrl": "https://dblcoffee.com/"
+    "purchaseUrl": "https://dblcoffee.com/",
+    "variety": null
   },
   {
     "id": "bean-blue-blending",
@@ -1326,7 +1352,8 @@ export const SEED_BEANS: MockBean[] = [
     "topFlavorTags": [
       "berry"
     ],
-    "purchaseUrl": "https://dblcoffee.com/"
+    "purchaseUrl": "https://dblcoffee.com/",
+    "variety": null
   },
   {
     "id": "bean-travertine-kenya",
@@ -1349,6 +1376,7 @@ export const SEED_BEANS: MockBean[] = [
     "topFlavorTags": [
       "citrus"
     ],
-    "purchaseUrl": null
+    "purchaseUrl": null,
+    "variety": null
   }
 ];

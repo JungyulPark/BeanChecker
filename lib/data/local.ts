@@ -26,6 +26,7 @@ export type LocalCheckin = {
   flavorTags: FlavorTagId[];
   photoDataUrl: string | null; // 사진은 선택 — 인증은 보상이지 게이트가 아니다 (CLAUDE.md §1)
   gpsVerified: boolean;
+  roastDate: string | null; // "YYYY-MM-DD". 잔 단위 속성 — lib/freshness.ts 주석 참조
   memo?: string;
   isPublic: boolean;
   hidden: boolean; // 신고 임시조치 (TECHNICAL_SPEC §1 checkins.hidden)

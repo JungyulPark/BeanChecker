@@ -54,115 +54,115 @@ values
   ('커피투어 광화문점', true, 'POINT(126.97 37.579)'::extensions.geography, '서울 종로구 사직로10길 12, 신우빌딩 1층', 'seochon', 'coffee-tour-roasters', false, null)
 on conflict (district, slug) do nothing;
 
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '올드독', '올드독olddog', c.id, 'blend', '코스타리카40%/인도35%/과테말라25%', 'washed', null, array['다크초콜릿','흑당','로스티드 피칸'], 'old-dog', false, 'https://fritz.co.kr/product/%ED%94%84%EB%A6%B3%EC%B8%A0-old-dog-fritz-blend-coffee-bean/91/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '올드독', '올드독olddog', c.id, 'blend', '코스타리카40%/인도35%/과테말라25%', 'washed', null, array['다크초콜릿','흑당','로스티드 피칸'], 'old-dog', false, 'https://fritz.co.kr/product/%ED%94%84%EB%A6%B3%EC%B8%A0-old-dog-fritz-blend-coffee-bean/91/', null
 from public.cafes c where c.name = '프릳츠 커피 컴퍼니 도화점'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '서울 시네마', '서울시네마', c.id, 'blend', null, null, null, array['밝은 산미와 깨끗한 단맛'], 'seoul-cinema', false, 'https://fritz.co.kr/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '서울 시네마', '서울시네마', c.id, 'blend', null, null, null, array['밝은 산미와 깨끗한 단맛'], 'seoul-cinema', false, 'https://fritz.co.kr/', null
 from public.cafes c where c.name = '프릳츠 커피 컴퍼니 도화점'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '나쓰메 소세키', '나쓰메소세키', c.id, 'blend', '에티오피아 아리차·콜롬비아 후일라·과테말라 와이칸', null, null, array['시트러스','아몬드','밀크초콜릿'], 'natsume-soseki', false, 'https://anthracitecoffee.com/20'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '나쓰메 소세키', '나쓰메소세키', c.id, 'blend', '에티오피아 아리차·콜롬비아 후일라·과테말라 와이칸', null, null, array['시트러스','아몬드','밀크초콜릿'], 'natsume-soseki', false, 'https://anthracitecoffee.com/20', null
 from public.cafes c where c.name = '앤트러사이트 커피 합정'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '공기와 꿈', '공기와꿈', c.id, 'blend', '에티오피아 코케·케냐 키리냐가·과테말라 와이칸', null, null, array['복합 플로럴','레드커런트','자몽','캐슈넛'], 'air-and-dream', false, 'https://anthracitecoffee.com/20'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '공기와 꿈', '공기와꿈', c.id, 'blend', '에티오피아 코케·케냐 키리냐가·과테말라 와이칸', null, null, array['복합 플로럴','레드커런트','자몽','캐슈넛'], 'air-and-dream', false, 'https://anthracitecoffee.com/20', null
 from public.cafes c where c.name = '앤트러사이트 커피 합정'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '파블로 네루다', '파블로네루다', c.id, 'blend', '과테말라 와이칸·에티오피아 아리차', null, null, array['크랜베리','스트로베리','헤이즐넛','브라운슈가'], 'pablo-neruda', false, 'https://anthracitecoffee.com/20'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '파블로 네루다', '파블로네루다', c.id, 'blend', '과테말라 와이칸·에티오피아 아리차', null, null, array['크랜베리','스트로베리','헤이즐넛','브라운슈가'], 'pablo-neruda', false, 'https://anthracitecoffee.com/20', null
 from public.cafes c where c.name = '앤트러사이트 커피 합정'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '배드 블러드', '배드블러드', c.id, 'blend', '에티오피아30%/코스타리카40%/니카라과30%', null, null, array['과일 시럽의 단맛'], 'bad-blood', false, 'https://coffeelibre.kr/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '배드 블러드', '배드블러드', c.id, 'blend', '에티오피아30%/코스타리카40%/니카라과30%', null, null, array['과일 시럽의 단맛'], 'bad-blood', false, 'https://coffeelibre.kr/', null
 from public.cafes c where c.name = '커피리브레 연남'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '노 서프라이즈', '노서프라이즈', c.id, 'blend', '인도40%/온두라스40%/에티오피아20%', null, null, array['농밀한 과일의 단맛'], 'no-surprise', false, 'https://coffeelibre.kr/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '노 서프라이즈', '노서프라이즈', c.id, 'blend', '인도40%/온두라스40%/에티오피아20%', null, null, array['농밀한 과일의 단맛'], 'no-surprise', false, 'https://coffeelibre.kr/', null
 from public.cafes c where c.name = '커피리브레 연남'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '다크 리브레', '다크리브레', c.id, 'blend', '인도50%/온두라스20%/콜롬비아30%', null, null, array['다크초콜릿','견과의 고소함'], 'dark-libre', false, 'https://coffeelibre.kr/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '다크 리브레', '다크리브레', c.id, 'blend', '인도50%/온두라스20%/콜롬비아30%', null, null, array['다크초콜릿','견과의 고소함'], 'dark-libre', false, 'https://coffeelibre.kr/', null
 from public.cafes c where c.name = '커피리브레 연남'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '블랙수트', '블랙수트', c.id, 'blend', '브라질60%/콜롬비아25%/에티오피아15%', null, null, array['풍부한 초콜릿향'], 'black-suit', false, 'https://beanbrothers.co.kr/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '블랙수트', '블랙수트', c.id, 'blend', '브라질60%/콜롬비아25%/에티오피아15%', null, null, array['풍부한 초콜릿향'], 'black-suit', false, 'https://beanbrothers.co.kr/', null
 from public.cafes c where c.name = '빈브라더스 합정'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '벨벳화이트', '벨벳화이트', c.id, 'ethiopia', null, null, null, array['싱그러운 시트러스향'], 'velvet-white', false, 'https://beanbrothers.co.kr/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '벨벳화이트', '벨벳화이트', c.id, 'ethiopia', null, null, null, array['싱그러운 시트러스향'], 'velvet-white', false, 'https://beanbrothers.co.kr/', null
 from public.cafes c where c.name = '빈브라더스 합정'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '콜롬비아 알토스 델 파라이소', '콜롬비아알토스델파라이소', c.id, 'colombia', null, null, null, array['과일잼','야생꿀','레드커런트'], 'altos-del-paraiso', false, 'https://beanbrothers.co.kr/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '콜롬비아 알토스 델 파라이소', '콜롬비아알토스델파라이소', c.id, 'colombia', null, null, null, array['과일잼','야생꿀','레드커런트'], 'altos-del-paraiso', false, 'https://beanbrothers.co.kr/', null
 from public.cafes c where c.name = '빈브라더스 합정'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '바이올렛 블렌드', '바이올렛블렌드', c.id, 'blend', '에티오피아 내추럴+콜롬비아 워시드', null, null, array['과일의 단맛과 산미'], 'violet-blend', false, 'https://180coffee.com/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '바이올렛 블렌드', '바이올렛블렌드', c.id, 'blend', '에티오피아 내추럴+콜롬비아 워시드', null, null, array['과일의 단맛과 산미'], 'violet-blend', false, 'https://180coffee.com/', null
 from public.cafes c where c.name = '180커피로스터스 합정'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '콜롬비아 엘 레나세르 옴블리곤', '콜롬비아엘레나세르옴블리곤', c.id, 'colombia', null, null, null, array['다크체리','오렌지필','벨벳 같은 다크초콜릿 피니시'], 'el-renacer-ombligon', false, 'https://m.180coffee.com/product/list.html?cate_no=42'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '콜롬비아 엘 레나세르 옴블리곤', '콜롬비아엘레나세르옴블리곤', c.id, 'colombia', null, null, null, array['다크체리','오렌지필','벨벳 같은 다크초콜릿 피니시'], 'el-renacer-ombligon', false, 'https://m.180coffee.com/product/list.html?cate_no=42', null
 from public.cafes c where c.name = '180커피로스터스 합정'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '콜롬비아 엘 실렌시오', '콜롬비아엘실렌시오', c.id, 'colombia', null, 'washed', null, array['망고 등 열대과일향'], 'el-silencio', false, 'https://reflect-coffee.co.kr/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '콜롬비아 엘 실렌시오', '콜롬비아엘실렌시오', c.id, 'colombia', null, 'washed', null, array['망고 등 열대과일향'], 'el-silencio', false, 'https://reflect-coffee.co.kr/', null
 from public.cafes c where c.name = '리플렉트커피 로스팅 랩'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '콜롬비아 엘 로사리오', '콜롬비아엘로사리오', c.id, 'colombia', null, 'other', null, array['수박향'], 'el-rosario', false, 'https://reflect-coffee.co.kr/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '콜롬비아 엘 로사리오', '콜롬비아엘로사리오', c.id, 'colombia', null, 'other', null, array['수박향'], 'el-rosario', false, 'https://reflect-coffee.co.kr/', null
 from public.cafes c where c.name = '리플렉트커피 로스팅 랩'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '콜롬비아 엘 엔칸토', '콜롬비아엘엔칸토', c.id, 'colombia', null, null, null, array['딸기 등 베리향'], 'el-encanto', false, 'https://reflect-coffee.co.kr/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '콜롬비아 엘 엔칸토', '콜롬비아엘엔칸토', c.id, 'colombia', null, null, null, array['딸기 등 베리향'], 'el-encanto', false, 'https://reflect-coffee.co.kr/', null
 from public.cafes c where c.name = '리플렉트커피 로스팅 랩'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '올데이 블렌드', '올데이블렌드', c.id, 'blend', '과테말라·브라질 베이스+르완다·케냐·에티오피아', null, null, array['진한 초콜릿','농후한 단맛','부드러운 목넘김'], 'all-day-blend', false, 'https://terarosa.com/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '올데이 블렌드', '올데이블렌드', c.id, 'blend', '과테말라·브라질 베이스+르완다·케냐·에티오피아', null, null, array['진한 초콜릿','농후한 단맛','부드러운 목넘김'], 'all-day-blend', false, 'https://terarosa.com/', null
 from public.cafes c where c.name = '테라로사 양재역점'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '버터리', '버터리', c.id, 'blend', '에티오피아 시다모/콜롬비아 마이크로랏/인도 카피 로얄', null, 5, array['진하고 고소한 맛'], 'buttery', false, null
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '버터리', '버터리', c.id, 'blend', '에티오피아 시다모/콜롬비아 마이크로랏/인도 카피 로얄', null, 5, array['진하고 고소한 맛'], 'buttery', false, null, null
 from public.cafes c where c.name = '벙커컴퍼니 압구정'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '고티지', '고티지', c.id, 'blend', '구성 비공개', null, null, array['균형잡힌 풍미'], 'gotige', false, 'https://cmlandco.kr/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '고티지', '고티지', c.id, 'blend', '구성 비공개', null, null, array['균형잡힌 풍미'], 'gotige', false, 'https://cmlandco.kr/', null
 from public.cafes c where c.name = '카멜커피 도산2호점'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '뉴텐던시', '뉴텐던시', c.id, 'blend', '구성 비공개', null, null, array['조화로운 과일향'], 'new-tendency', false, 'https://cmlandco.kr/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '뉴텐던시', '뉴텐던시', c.id, 'blend', '구성 비공개', null, null, array['조화로운 과일향'], 'new-tendency', false, 'https://cmlandco.kr/', null
 from public.cafes c where c.name = '카멜커피 도산2호점'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '블랙 인 서울', '블랙인서울', c.id, 'blend', '구성 비공개', null, null, array['너트','카라멜','초콜릿'], 'black-in-seoul', false, 'https://champcoffee.kr/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '블랙 인 서울', '블랙인서울', c.id, 'blend', '구성 비공개', null, null, array['너트','카라멜','초콜릿'], 'black-in-seoul', false, 'https://champcoffee.kr/', null
 from public.cafes c where c.name = '챔프커피 을지로점'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '브라운 인 서울', '브라운인서울', c.id, 'blend', '구성 비공개', null, null, array['허니','카라멜','딸기'], 'brown-in-seoul', false, 'https://champcoffee.kr/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '브라운 인 서울', '브라운인서울', c.id, 'blend', '구성 비공개', null, null, array['허니','카라멜','딸기'], 'brown-in-seoul', false, 'https://champcoffee.kr/', null
 from public.cafes c where c.name = '챔프커피 을지로점'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '과테말라 엘 소코로 게이샤', '과테말라엘소코로게이샤', c.id, 'guatemala', null, null, null, null, 'el-socorro-gesha', false, 'https://lowkeycoffee.com/shop/list-cf10'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '과테말라 엘 소코로 게이샤', '과테말라엘소코로게이샤', c.id, 'guatemala', null, null, null, null, 'el-socorro-gesha', false, 'https://lowkeycoffee.com/shop/list-cf10', null
 from public.cafes c where c.name = '로우키'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '콜롬비아 콘사카', '콜롬비아콘사카', c.id, 'colombia', null, null, null, null, 'consaca', false, 'https://lowkeycoffee.com/shop/list-cf10'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '콜롬비아 콘사카', '콜롬비아콘사카', c.id, 'colombia', null, null, null, null, 'consaca', false, 'https://lowkeycoffee.com/shop/list-cf10', null
 from public.cafes c where c.name = '로우키'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '에티오피아 아리차', '에티오피아아리차', c.id, 'ethiopia', null, null, null, null, 'aricha', false, 'https://lowkeycoffee.com/shop/list-cf10'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '에티오피아 아리차', '에티오피아아리차', c.id, 'ethiopia', null, null, null, null, 'aricha', false, 'https://lowkeycoffee.com/shop/list-cf10', null
 from public.cafes c where c.name = '로우키'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select 'Deep 블렌딩', 'deep블렌딩', c.id, 'blend', '구성 비공개', null, 2, array['고소한 향미와 깔끔한 산미'], 'deep-blending', false, 'https://dblcoffee.com/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select 'Deep 블렌딩', 'deep블렌딩', c.id, 'blend', '구성 비공개', null, 2, array['고소한 향미와 깔끔한 산미'], 'deep-blending', false, 'https://dblcoffee.com/', null
 from public.cafes c where c.name = '딥블루레이크'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select 'Blue 블렌딩', 'blue블렌딩', c.id, 'blend', '구성 비공개', null, 2, array['복합적인 베리류 향미'], 'blue-blending', false, 'https://dblcoffee.com/'
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select 'Blue 블렌딩', 'blue블렌딩', c.id, 'blend', '구성 비공개', null, 2, array['복합적인 베리류 향미'], 'blue-blending', false, 'https://dblcoffee.com/', null
 from public.cafes c where c.name = '딥블루레이크'
 on conflict (origin, slug) do nothing;
-insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select '케냐 싱글오리진', '케냐싱글오리진', c.id, 'kenya', null, null, null, array['레몬 껍질을 씹은 듯한 산미'], 'travertine-kenya', false, null
+insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select '케냐 싱글오리진', '케냐싱글오리진', c.id, 'kenya', null, null, null, array['레몬 껍질을 씹은 듯한 산미'], 'travertine-kenya', false, null, null
 from public.cafes c where c.name = '트래버틴 한남'
 on conflict (origin, slug) do nothing;

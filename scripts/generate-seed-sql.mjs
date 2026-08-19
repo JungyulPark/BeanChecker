@@ -42,8 +42,8 @@ sql += `\non conflict (district, slug) do nothing;\n\n`;
 sql += beans
   .map((b) => {
     const roasterName = b.roasterName;
-    return `insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
-select ${q(b.name)}, ${q(b.normalizedName)}, c.id, ${q(b.origin)}, ${q(b.region)}, ${q(b.process)}, ${b.roastLevel ?? "null"}, ${arr(b.officialNotes)}, ${q(b.slug)}, false, ${q(b.purchaseUrl)}
+    return `insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url, variety)
+select ${q(b.name)}, ${q(b.normalizedName)}, c.id, ${q(b.origin)}, ${q(b.region)}, ${q(b.process)}, ${b.roastLevel ?? "null"}, ${arr(b.officialNotes)}, ${q(b.slug)}, false, ${q(b.purchaseUrl)}, ${q(b.variety)}
 from public.cafes c where c.name = ${q(roasterName)}
 on conflict (origin, slug) do nothing;`;
   })

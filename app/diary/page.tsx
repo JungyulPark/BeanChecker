@@ -11,6 +11,7 @@ import { RadarChart } from "@/components/RadarChart";
 import { ReportButton } from "@/components/ReportButton";
 import { listCheckins, type LocalCheckin } from "@/lib/data/local";
 import { FLAVOR_TAGS } from "@/lib/flavorTags";
+import { daysOffRoast, roastAgeLabel } from "@/lib/freshness";
 import type { FlavorProfile } from "@/types/domain";
 
 /**
@@ -206,6 +207,16 @@ export default function DiaryPage() {
                       })}
                     </span>
                   </p>
+                  {/* 로스팅 경과일 — 기록 시점 기준 고정값(지금 기준이 아니다).
+                      "그때 며칠차였나"가 기록의 의미다 */}
+                  {(() => {
+                    const d = daysOffRoast(c.roastDate, new Date(c.createdAt));
+                    return d === null ? null : (
+                      <p className="mt-0.5 text-caption text-crema-400">
+                        {roastAgeLabel(d)}
+                      </p>
+                    );
+                  })()}
                   <div className="mt-1.5 flex flex-wrap items-center gap-1">
                     {c.flavorTags.map((t) => (
                       <span

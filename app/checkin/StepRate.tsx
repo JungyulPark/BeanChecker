@@ -10,6 +10,7 @@ import {
   type DraftFlavorProfile,
 } from "@/components/FlavorSliders";
 import { TagPicker } from "@/components/TagPicker";
+import { RoastDatePicker } from "@/components/RoastDatePicker";
 import { MOCK_BEANS, type MockBean } from "@/lib/mock/seed";
 import type { FlavorProfile } from "@/types/domain";
 import type { FlavorTagId } from "@/lib/flavorTags";
@@ -36,6 +37,7 @@ export type RateResult = {
   rating: number;
   profile: FlavorProfile;
   flavorTags: FlavorTagId[];
+  roastDate: string | null; // 선택 — 모르면 null (강제하면 오염 데이터가 들어온다)
   memo: string;
   isPublic: boolean;
 };
@@ -68,6 +70,7 @@ export function StepRate({
   const [rating, setRating] = useState(0);
   const [profile, setProfile] = useState<DraftFlavorProfile>(EMPTY_PROFILE);
   const [tags, setTags] = useState<FlavorTagId[]>([]);
+  const [roastDate, setRoastDate] = useState<string | null>(null);
   const [memo, setMemo] = useState("");
   const [isPublic, setIsPublic] = useState(true);
 
@@ -253,6 +256,14 @@ export function StepRate({
         </div>
       </section>
 
+      {/* 로스팅 시점 — 선택. 스페셜티에서 신선도는 원산지만큼 큰 변수다 (lib/freshness.ts) */}
+      <section>
+        <h2 className="mb-2 text-body font-semibold text-crema-100">
+          로스팅 <span className="font-normal text-crema-400">(선택)</span>
+        </h2>
+        <RoastDatePicker value={roastDate} onChange={setRoastDate} />
+      </section>
+
       {/* 별점 */}
       <section>
         <h2 className="mb-2 text-body font-semibold text-crema-100">별점</h2>
@@ -325,6 +336,7 @@ export function StepRate({
               rating,
               profile: completeProfile,
               flavorTags: tags,
+              roastDate,
               memo,
               isPublic,
             })
