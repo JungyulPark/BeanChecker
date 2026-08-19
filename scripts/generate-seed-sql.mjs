@@ -29,11 +29,11 @@ const arr = (a) =>
 
 let sql = `-- 자동 생성: node scripts/generate-seed-sql.mjs (원본: launch/*.csv)\n-- 실행 컨텍스트: 직접 연결(postgres) — RLS 미적용. idempotent.\n\n`;
 
-sql += `insert into public.cafes (name, is_roastery, location, address, district, slug, verified)\nvalues\n`;
+sql += `insert into public.cafes (name, is_roastery, location, address, district, slug, verified, website_url)\nvalues\n`;
 sql += cafes
   .map(
     (c) =>
-      `  (${q(c.name)}, ${c.isRoastery}, 'POINT(${c.lng} ${c.lat})'::extensions.geography, ${q(c.address)}, ${q(c.district)}, ${q(c.slug)}, false)`,
+      `  (${q(c.name)}, ${c.isRoastery}, 'POINT(${c.lng} ${c.lat})'::extensions.geography, ${q(c.address)}, ${q(c.district)}, ${q(c.slug)}, false, ${q(c.websiteUrl)})`,
   )
   .join(",\n");
 sql += `\non conflict (district, slug) do nothing;\n\n`;
@@ -42,8 +42,8 @@ sql += `\non conflict (district, slug) do nothing;\n\n`;
 sql += beans
   .map((b) => {
     const roasterName = b.roasterName;
-    return `insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified)
-select ${q(b.name)}, ${q(b.normalizedName)}, c.id, ${q(b.origin)}, ${q(b.region)}, ${q(b.process)}, ${b.roastLevel ?? "null"}, ${arr(b.officialNotes)}, ${q(b.slug)}, false
+    return `insert into public.beans (name, normalized_name, roaster_id, origin, region, process, roast_level, official_notes, slug, verified, purchase_url)
+select ${q(b.name)}, ${q(b.normalizedName)}, c.id, ${q(b.origin)}, ${q(b.region)}, ${q(b.process)}, ${b.roastLevel ?? "null"}, ${arr(b.officialNotes)}, ${q(b.slug)}, false, ${q(b.purchaseUrl)}
 from public.cafes c where c.name = ${q(roasterName)}
 on conflict (origin, slug) do nothing;`;
   })

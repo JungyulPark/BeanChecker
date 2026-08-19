@@ -25,7 +25,9 @@ const DISTRICT_KO = new Map(DISTRICTS.map((d) => [d.id, d.ko]));
 const SEED_TAGS = new Map(
   MOCK_BEANS.map((b) => [`${b.origin}/${b.slug}`, b.topFlavorTags]),
 );
-// 구매/공식채널 링크는 아직 DB 컬럼이 없다 — 시드 매칭으로 보강 (컬럼 추가 시 이 맵 제거)
+// 구매/공식채널 링크는 0003 마이그레이션으로 DB 1급 컬럼이 됐다.
+// 아래 시드 맵은 **폴백 전용** — DB 미연결 환경(env 없음)과, 백필 이전에 만들어진
+// 행이 남아 있을 때만 쓰인다. DB 값이 있으면 언제나 DB가 이긴다.
 const SEED_PURCHASE = new Map(
   MOCK_BEANS.map((b) => [`${b.origin}/${b.slug}`, b.purchaseUrl]),
 );
@@ -52,7 +54,7 @@ function mapCafe(row: Tables<"cafes">): MockCafe {
     lng: coord.lng,
     avgRating: row.avg_rating,
     checkinCount: row.checkin_count,
-    websiteUrl: SEED_WEBSITE.get(`${row.district}/${row.slug}`) ?? null,
+    websiteUrl: row.website_url ?? SEED_WEBSITE.get(`${row.district}/${row.slug}`) ?? null,
   };
 }
 
@@ -75,7 +77,7 @@ function mapBean(row: Tables<"beans">, roasterName: string | null): MockBean {
     checkinCount: row.checkin_count,
     avgProfile: (row.avg_profile as FlavorProfile | null) ?? null,
     topFlavorTags: SEED_TAGS.get(`${row.origin}/${row.slug}`) ?? [],
-    purchaseUrl: SEED_PURCHASE.get(`${row.origin}/${row.slug}`) ?? null,
+    purchaseUrl: row.purchase_url ?? SEED_PURCHASE.get(`${row.origin}/${row.slug}`) ?? null,
   };
 }
 

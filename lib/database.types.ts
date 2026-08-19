@@ -31,6 +31,7 @@ export type Database = {
           official_notes: string[] | null
           origin: string
           process: string | null
+          purchase_url: string | null
           region: string | null
           roast_level: number | null
           roast_year: number | null
@@ -52,6 +53,7 @@ export type Database = {
           official_notes?: string[] | null
           origin: string
           process?: string | null
+          purchase_url?: string | null
           region?: string | null
           roast_level?: number | null
           roast_year?: number | null
@@ -73,6 +75,7 @@ export type Database = {
           official_notes?: string[] | null
           origin?: string
           process?: string | null
+          purchase_url?: string | null
           region?: string | null
           roast_level?: number | null
           roast_year?: number | null
@@ -119,6 +122,7 @@ export type Database = {
           name: string
           slug: string
           verified: boolean
+          website_url: string | null
         }
         Insert: {
           address: string
@@ -134,6 +138,7 @@ export type Database = {
           name: string
           slug: string
           verified?: boolean
+          website_url?: string | null
         }
         Update: {
           address?: string
@@ -149,6 +154,7 @@ export type Database = {
           name?: string
           slug?: string
           verified?: boolean
+          website_url?: string | null
         }
         Relationships: [
           {
