@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Nanum_Myeongjo, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { BRAND } from "@/lib/brand";
+import { ServiceWorkerRegistrar } from "@/components/ServiceWorkerRegistrar";
 import "./globals.css";
 
 const display = Nanum_Myeongjo({
@@ -53,7 +54,10 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
         />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <ServiceWorkerRegistrar />
+      </body>
     </html>
   );
 }

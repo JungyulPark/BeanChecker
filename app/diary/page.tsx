@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { BottomNav } from "@/components/BottomNav";
 import { BRAND } from "@/lib/brand";
 import { GearSection } from "@/components/GearSection";
+import { InstallPrompt } from "@/components/InstallPrompt";
 import { RadarChart } from "@/components/RadarChart";
 import { ReportButton } from "@/components/ReportButton";
 import { listCheckins, type LocalCheckin } from "@/lib/data/local";
@@ -222,6 +223,9 @@ export default function DiaryPage() {
               </article>
             ))}
           </section>
+
+          {/* 홈 화면 추가 — 기록이 쌓인 유저에게만 권한다(재방문 의도 확인된 시점) */}
+          <InstallPrompt />
 
           {/* 홈브루 장비 (쿠팡 파트너스) — 링크 미설정 시 자동 숨김, lib/gear.ts 참조 */}
           <GearSection />
